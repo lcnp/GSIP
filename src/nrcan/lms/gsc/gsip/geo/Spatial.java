@@ -15,14 +15,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import javax.servlet.ServletContext;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
+import jakarta.servlet.ServletContext;
+
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.Response;
 
 import nrcan.lms.gsc.gsip.Constants;
 import nrcan.lms.gsc.gsip.Manager;
@@ -30,6 +33,7 @@ import nrcan.lms.gsc.gsip.util.db.Binder;
 import nrcan.lms.gsc.gsip.util.db.Database;
 import nrcan.lms.gsc.gsip.util.db.ResultSetReader;
 
+import org.apache.http.HttpStatus;
 import org.json.simple.JSONObject;
 
 import freemarker.template.utility.StringUtil;
@@ -39,6 +43,8 @@ import freemarker.template.utility.StringUtil;
 
 @Path("geo")
 public class Spatial {
+	public static final String VALID_POSTGRES_TABLE = "^[A-Za-z_][A-Za-z_0-9$]*$"; // letter, number, underscore , must start with a letter
+	private final Pattern valid_table = Pattern.compile(VALID_POSTGRES_TABLE);
 	@Context ServletContext context;
 	//TODO: lots of assumption about the naming, but I suppose one could configure views in the database to address discrepencies
 	public static final String SQL = "SELECT json_build_object(\r\n" + 
@@ -51,7 +57,7 @@ public class Spatial {
 			"        'uri', uri\r\n" + 
 			"     )\r\n" + 
 			" )\r\n" + 
-			" FROM  %s";
+			" FROM  %s LIMIT 500";
 	public static final String SQL_FILTER = "SELECT json_build_object(\r\n" + 
 			"    'type',       'Feature',\r\n" + 
 			"    'id',         id,\r\n" + 
@@ -75,12 +81,19 @@ public class Spatial {
 	public Response getSpatialData(@QueryParam("f") String format,@PathParam("db") String db,@PathParam("table") String table)
 	{
 		
+		// db can only be a valid connection id (configured in context.xml)
+		// the table must be a valid table name, nothing else
 		
 		try{
+		if (isValid(table))
+		{
 		String sql = String.format(SQL, table);
 		
 		ResponseStreamer rs = new ResponseStreamer(new DatasetHandler(db,sql));
 		return Response.ok(rs).type("application/vnd.geo+json").build();
+		}
+		else
+			return Response.status(HttpStatus.SC_NOT_ACCEPTABLE).entity("Not acceptable").build();
 		}
 		catch(Exception ex)
 		{
@@ -88,15 +101,36 @@ public class Spatial {
 		return Response.serverError().build();
 		}
 	}
+	
+	/**
+	 * checks if the table name is valid, and somewhat safe, I exclude stuff that begins with pg_
+	 * @return
+	 */
+	private boolean isValid(String t)
+	{
+		if (t == null) return false;
+		 Matcher matcher = valid_table.matcher(t);
+		 if (matcher.matches())
+		 {
+			 return !t.toLowerCase().startsWith("pg_");
+		 }
+		 else
+			 return false;
+	}
+	
 	@Path("remote/{db}/{table}/{id}")
 	@GET
 	public Response getSpatialLiteRecord(@QueryParam("f") String format,@PathParam("db") String db,@PathParam("table") String table,@PathParam("id") String id)
 	{
-		//TODO: lots of things can go bad here...
 		try{
-		String sql = String.format(SQL_FILTER, table);
-		ResponseStreamer rs = new ResponseStreamer(new DatasetHandlerBinder(db,sql,Integer.parseInt(id)));
-		return Response.ok(rs).type("application/vnd.geo+json").build();
+		if (isValid(table))
+			{
+			String sql = String.format(SQL_FILTER, table);
+			ResponseStreamer rs = new ResponseStreamer(new DatasetHandlerBinder(db,sql,Integer.parseInt(id)));
+			return Response.ok(rs).type("application/vnd.geo+json").build();
+			}
+		else
+			return Response.status(HttpStatus.SC_NOT_ACCEPTABLE).entity("Not acceptable").build();
 		}
 		catch(Exception ex)
 		{

@@ -1,0 +1,219 @@
+# ontology adapted from https://github.com/opengeospatial/HY_Features/blob/master/ontology/ogc_ready/hyf.ttl
+# some types used on geoconnex.us are not listed in the ogc ready ontology (like https://www.opengis.net/def/hy_features/ontology/hyf/HY_HydrometricNetwork)
+# those will be added to ontology.ttl
+
+# removed constain because JENA is balking
+
+@prefix sc:    <http://shapechange.net/resources/ont/base#> .
+@prefix hyf:   <https://www.opengis.net/def/hy_features/ontology/hyf/> .
+@prefix gsp:   <http://www.opengis.net/ont/geosparql#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix meta:  <http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+hyf:realizedCatchment
+        a                owl:ObjectProperty ;
+        rdfs:range       hyf:HY_Catchment ;
+        skos:definition  "identifies the one and only one catchment that is realized by a particular feature. Referencing the hydrologic complex containing the catchment and all of its realizations, supports a catchment's existence to be recognized and linked to multiple realizations without the complexity and full detail of a scientific model. By referencing the catchment topology, topological relationships can be established and common identifiers assigned."@en .
+
+hyf:HY_HydroFeature  a   owl:Class ;
+        rdfs:subClassOf  hyf:HY_HydroFeature.
+
+
+hyf:HY_InteriorCatchment
+        a                owl:Class ;
+        rdfs:subClassOf  hyf:HY_Catchment ;
+        skos:definition  "The HY_InteriorCatchment feature type (Figure 32) specializes the general HY_Catchment class as a catchment which is generally not connected to other catchments. This class describes the interior catchment as a catchment enveloped by other catchments to which it may temporarily contribute. While the interior catchment concept precludes flow to neighboring surface catchments, holistically it is a candidate for establishing connections to groundwater or atmospheric systems."@en .
+
+hyf:HY_FlowPath  a       owl:Class ;
+        rdfs:subClassOf  hyf:HY_CatchmentRealization ;
+        skos:definition  "The <b>HY_Flowpath</b> feature type realizes a catchment specifically as a path connecting the inflow and outflow of the catchment it realizes.\r\n\r\nHY_Flowpath specializes HY_CatchmentRealization with respect to an implied linear geometric representation including a straight or curved line. Topologically, the flowpath connects the inflow and outflow of the catchment, and is understood as an edge bounded by an inflow node and an outflow node, and corresponding to left-bank and right-bank catchment faces. Hydrologically, the flowpath is a line describing a moving particle of water. \r\n\r\nThrough generalization, HY_Flowpath inherits the <i>shape</i> and the <i>realizedCatchment</i> properties. The optional <i>shape</i> of the flowpath is usually a single curve."@en .
+
+
+hyf:distanceExpression
+        a                owl:ObjectProperty ;
+        rdfs:range       hyf:HY_DistanceFromReferent ;
+        skos:definition  "absolute or interpolative value of the distance from the feature being used as a reference, including an indication of accuracy and precision of the absolute value. An implementation may use the HY_DistanceFromReferent (data type) referencing basic types. Alternatively, the types described in ISO 19103: Conceptual Schema may be used."@en .
+
+hyf:distanceDescription
+        a                owl:ObjectProperty ;
+        rdfs:range       hyf:HY_DistanceDescription ;
+        skos:definition  "term describing the distance from the feature being used as a reference. An implementation may use the HY_DistanceDescription code list. Alternatively, the types described in ISO 19103: Conceptual Schema may be used."@en .
+
+
+hyf:HY_Catchment  a      owl:Class ;
+        rdfs:subClassOf  hyf:HY_HydroFeature ;
+        skos:definition  "The Catchment model conceptualizes the hydrologic determination of a catchment through inflow and outflow hydro nexus features with the role of getting flow from a contributing catchment, or providing inflow to a receiving catchment (Figure 25 and Figure 26). Conceptually, each catchment has an outflow hydro nexus, and any hydro nexus has a corresponding catchment, even if catchment and/or hydro nexus may not be present in a particular application. A catchment interacts with upper and lower catchments via associated hydro nexuses, and ultimately contributes flow to the hydro nexus of a containing catchment. The catchment should be understood as the logical link between two hydro nexuses.\r\n\r\nThe HY_Catchment feature type captures the union of catchment and hydro nexus, and the multiple realizations of the holistic catchment concept. These realizations include both topological realizations, as well as their geometric representation. HY_Catchment may be further specialized with respect to catchment interaction. \r\n\r\nThe HY_Catchment feature type (Figure 26) specializes the general HY_HydroFeature type. Through generalization, HY_Catchment inherits the <i>name</i> property. It carries a <i>code</i> attribute and the associations: <i>outflow</i>, <i>inflow</i>, <i>containingCatchment</i>, <i>containedCatchment</i>, <i>conjointCatchment</i>, <i>upperCatchment</i>, <i>lowerCatchment</i>, <i>catchmentRealization</i>."@en .
+
+hyf:catchmentArea  a     owl:ObjectProperty ;
+        rdfs:range       hyf:HY_CatchmentArea ;
+        skos:definition  "catchment area that participates in the network."@en .
+
+hyf:accuracyStatement
+        a                owl:DatatypeProperty ;
+        rdfs:range       xsd:string ;
+        skos:definition  "simple statement whether the distance value agrees with the value accepted as being true.  This statement assumes that all known corrections have been applied. An implementation may use the types described in ISO 19103: Conceptual Schema."@en .
+
+hyf:precisionStatement
+        a                owl:DatatypeProperty ;
+        rdfs:range       sc:Measure ;
+        skos:definition  "simple statement on the smallest unit of division on the scale of measurement. An implementation may use the types described in ISO 19103: Conceptual Schema."@en .
+
+hyf:conjointCatchment
+        a                owl:ObjectProperty ;
+        rdfs:range       hyf:HY_Catchment ;
+        skos:definition  "catchment that interacts with the catchment across an internal boundary line."@en .
+
+hyf:HY_CatchmentDivide
+        a                owl:Class ;
+        rdfs:subClassOf  hyf:HY_CatchmentRealization ;
+        skos:definition  "The <b>HY_CatchmentDivide</b> feature type realizes a catchment specifically as catchment boundary connecting the inflow and outflow of the catchment it realizes, whereby inflow and outflow may overlay.\r\n\r\nImplying a linear geometric representation, a catchment boundary is topologically understood as an edge bounded by inflow node and outflow nodes, and corresponding to left-bank and right-bank catchment faces inside of the boundary. Hydrologically, the boundary refers to the summit line separating adjacent catchments. \r\n\r\nThrough generalization, HY_CatchmentDivide inherits the <i>shape</i> and the <i>realizedCatchment</i> properties. The <i>shape</i> of the catchment divide may be implemented as a composition of succeeding curves or a polygon ring."@en .
+
+hyf:usage  a             owl:ObjectProperty ;
+        rdfs:range       hyf:HY_NameUsage ;
+        skos:definition  "expresses the kind of name usage in a specific community, using a term from the HY_NameUsage code list, or a controlled vocabulary. Alternative code lists may be used but should be related to the terms in the HY_NameUsage codelist using an appropriate formalism."@en .
+
+hyf:namesPart  a         owl:DatatypeProperty ;
+        rdfs:range       xsd:boolean ;
+        skos:definition  "indicates whether the name applies to a part of feature only or not, using the Boolean value type"@en .
+
+hyf:realizedNexus  a     owl:ObjectProperty ;
+        rdfs:range       hyf:HY_HydroNexus ;
+        skos:definition  "identifies the one and only one nexus that is realized by a particular feature. Referencing the hydrologic complex containing the hydro nexus and all of its realizations, supports an arbitrary feature of interest to be recognized as outlet of a catchment, and to be placed using the river referencing defined in this standard."@en .
+
+hyf:HY_HydroLocationType
+        a                owl:Class ;
+        rdfs:subClassOf  skos:Concept ;
+        skos:definition  "terms identifying a Hydro Location determined to realize the conceptual nexus.\r\n\r\nIf required, an implementation should use terms from this code list, defined specifically to conform to a terminology common in the hydrology domain. Note that alternative code lists may be used but should be related to the terms in but should be related to the terms in this code list using an appropriate formalism.\r\n\r\n<b>\r\n</b>"@en .
+
+hyf:nexusRealization  a  owl:ObjectProperty ;
+        rdfs:range       hyf:HY_HydroLocation ;
+        skos:definition  "identifies a hydrologic feature which realizes the hydro nexus. A topological nexus realization is of lower dimension than the realization of the corresponding catchment. Example: an outflow node realizing the nexus would be of lower dimension than the flowpath edge realizing the contributing catchment."@en .
+
+hyf:endorheicDrainage
+        a                owl:ObjectProperty ;
+        rdfs:range       hyf:HY_InteriorCatchment ;
+        skos:definition  "should be used to identify an endorheic-drained catchment, which is not, but may be temporarily connected to the enveloping catchment."@en .
+
+hyf:absolute  a          owl:DatatypeProperty ;
+        rdfs:range       sc:Measure ;
+        skos:definition  "geometric expression of the distance from a located referent. An implementation may use the types described in ISO 19103: Conceptual Schema."@en .
+
+hyf:containedCatchment
+        a                owl:ObjectProperty ;
+        rdfs:range       hyf:HY_Catchment ;
+        skos:definition  "catchment nested in a containing catchment."@en .
+
+hyf:referenceLocation
+        a                owl:ObjectProperty ;
+        rdfs:range       hyf:HY_HydroLocation ;
+        skos:definition  "identifies the permanent reference location, usually an existing inflow or outflow hydro nexus relative to which a position is assigned to a hydro location feature of interest."@en .
+
+hyf:outflow  a           owl:ObjectProperty ;
+        rdfs:range       hyf:HY_HydroNexus ;
+        skos:definition  "hydro nexus in terms of an outflow of the contributing catchment. For a dendritic network of catchments, the outflow of a contributing catchment coincides with the inflow to a receiving catchment. This supports description of upstream-downstream relationships between catchments."@en .
+
+hyf:catchmentRealization
+        a                owl:ObjectProperty ;
+        rdfs:range       hyf:HY_CatchmentRealization ;
+        skos:definition  "topological or geographic feature which realizes the logical catchment."@en .
+
+hyf:exorheicDrainage  a  owl:ObjectProperty ;
+        rdfs:range       hyf:HY_DendriticCatchment ;
+        skos:definition  "should be used to identify an exorheic-drained catchment which is permanently connected to the encompassing catchment."@en .
+
+hyf:inflow  a            owl:ObjectProperty ;
+        rdfs:range       hyf:HY_HydroNexus ;
+        skos:definition  "hydro nexus in terms of an inflow to the receiving catchment. For a dendritic network of catchments, the outflow of a contributing catchment coincides with the inflow to a receiving catchment. This supports description of upstream-downstream relationships between catchments."@en .
+
+hyf:interpolative  a     owl:DatatypeProperty ;
+        rdfs:range       xsd:double ;
+        skos:definition  "interpolative expression (percentage) of the distance from a located referent. An implementation may use the types described in ISO 19103: Conceptual Schema."@en .
+
+hyf:containingCatchment
+        a                owl:ObjectProperty ;
+        rdfs:range       hyf:HY_Catchment ;
+        skos:definition  "catchment nesting contained catchments."@en .
+
+hyf:code  a              owl:ObjectProperty ;
+        rdfs:range       rdfs:Resource ;
+        skos:definition  "unique identifier to the catchment in given context. The code attribute should be implemented using a controlled classification or coding system. Example: WMO Basin Codes."@en .
+
+hyf:linearElement  a     owl:ObjectProperty ;
+        rdfs:range       hyf:HY_FlowPath ;
+        skos:definition  "identifies a flowpath used as the linear element along which a position is assigned to a hydro-location, or any feature of interest."@en .
+
+hyf:HY_DendriticCatchment
+        a                owl:Class ;
+        rdfs:subClassOf  hyf:HY_Catchment ;
+        skos:definition  "The HY_DendriticCatchment feature type (Figure 31) specializes the general HY_Catchment class as a catchment which is determined by a single common downstream catchment. It represents the catchment as the topological link between an inflow and an outflow. This allows catchments to be connected in a dendritic network by upstream-downstream relationships without knowing the complex hydrology between inflow and outflow. This concept requires a stable identifier purposefully assigned to the catchment and that catchments are delineated as a simple tree hierarchy. \r\n\r\nHY_DendriticCatchment inherits from generalization the <i>code</i>, <i>outflow</i>, <i>inflow</i>, <i>containingCatchment</i>, <i>containedCatchment</i>, <i>conjointCatchment</i>, <i>upperCatchment</i>, <i>lowerCatchment</i>, and <i>catchmentRealization</i> properties, and has an <i>encompassingCatchment</i> association. The dendritic nature of this feature is enforced through <i>single-outflow, single-receiving-catchment </i>and<i> single-lower-catchment</i> constraints."@en .
+
+hyf:flowpath  a          owl:ObjectProperty ;
+        rdfs:range       hyf:HY_FlowPath ;
+        skos:definition  "flowpath that participates in the network."@en .
+
+hyf:locatedReferent  a   owl:ObjectProperty ;
+        rdfs:range       hyf:HY_HydroLocation ;
+        skos:definition  "identifies an already referenced location such as a catchment outlet relative to which a position may be assigned to a feature of interest."@en .
+
+hyf:preferredBy  a       owl:ObjectProperty ;
+        rdfs:range       meta:ResponsibleParty ;
+        skos:definition  "specifies that the name is the preferred name according to the named entity. The CI_Responsibility type may be used to further structure the information about the responsible party and their role."@en .
+
+hyf:HY_DistanceDescription
+        a                owl:Class ;
+        rdfs:subClassOf  skos:Concept ;
+        skos:definition  "list of general terms commonly used in hydrology to describe a spatial relationship between two locations.\r\n\r\nIf required, an implementation should use terms from this code list, defined specifically to conform to a terminology common in the hydrology domain. Note that alternative code lists may be used but should be related to the terms in but should be related to the terms in this code list using an appropriate formalism."@en .
+
+hyf:catchmentDivide  a   owl:ObjectProperty ;
+        rdfs:range       hyf:HY_CatchmentDivide ;
+        skos:definition  "catchment boundary that participates in the network."@en .
+
+hyf:upperCatchment  a    owl:ObjectProperty ;
+        rdfs:range       hyf:HY_Catchment ;
+        skos:definition  "catchment located immediately above of the catchment,"@en .
+
+hyf:variantSpelling  a   owl:DatatypeProperty ;
+        rdfs:range       xsd:boolean ;
+        skos:definition  "indicates whether the name is a variant spelling or not using the Boolean value type."@en .
+
+hyf:lowerCatchment  a    owl:ObjectProperty ;
+        rdfs:range       hyf:HY_Catchment ;
+        skos:definition  "catchment located immediately below of the catchment,"@en .
+
+hyf:HY_CatchmentArea  a  owl:Class ;
+        rdfs:subClassOf  hyf:HY_CatchmentRealization ;
+        skos:definition  "The <b>HY_CatchmentArea</b> feature type realizes a catchment specifically as a catchment area connecting the inflow and outflow of the catchment it realizes. \r\n\r\nHY_CatchmentArea specializes HY_CatchmentRealization with respect to an implied areal geometric representation. Topologically, the catchment area connecting the inflow and outflow of the catchment is a face bounded inwards by an inflow edge and outwards by an outflow edge. Hydrologically, catchment area refers to the area having a common outlet for its runoff. \r\n\r\nThrough generalization, HY_CatchmentArea inherits the <i>shape</i> and the <i>realizedCatchment</i> properties. The optional <i>shape</i> of the catchment may be implemented as a surface."@en .
+
+hyf:HY_CartographicRealization
+        a                owl:Class ;
+        rdfs:subClassOf  hyf:HY_CatchmentRealization ;
+        skos:definition  "The HY_CartographicRealization feature type realizes a catchment as set of separate cartographic layers or maps, displaying a network of hydrologic features which may be connected at the representation level, or not. \r\n\r\nSpecializing HY_CatchmentRealization, it inherits from generalization the <i>shape</i> attribute and the <i>realizedCatchment</i> association."@en .
+
+hyf:HY_HydroNetwork  a   owl:Class ;
+        rdfs:subClassOf  hyf:HY_CatchmentRealization ;
+        skos:definition  "The <b>HY_HydroNetwork</b> feature type realizes a catchment as a network of connected hydrologic features. Such a network realizes the hierarchical network of logically connected catchments contained in a larger catchment. It may be a sequence of flowpaths, an aggregate of catchment areas or a mesh of catchment divides. \r\n\r\nHY_HydroNetwork feature type specializes HY_CatchmentRealization. Through generalization it inherits the <i>shape</i> and the <i>realizedCatchment</i> properties, and carries the associations <i>flowpath</i>, <i>catchmentDivide</i> and <i>catchmentArea</i>. The optional <i>shape</i> of the is usually given through the individual geometry of the network parts."@en .
+
+hyf:contributingCatchment
+        a                owl:ObjectProperty ;
+        rdfs:range       hyf:HY_Catchment ;
+        skos:definition  "identifies the catchment that contributes flow to this hydro nexus. This allows connection of a catchment's outflow to an identified inflow and to determine its position through referencing the inflow."@en .
+
+hyf:hydroLocationType
+        a                owl:ObjectProperty ;
+        rdfs:range       hyf:HY_HydroLocationType ;
+        skos:definition  "expresses the type of the realized nexus, using a term from the HY_HydroLocationType code list, or a controlled vocabulary. Alternative code lists may be used but should be related to the terms in this code list using an appropriate formalism."@en .
+
+hyf:referencedPosition
+        a                owl:ObjectProperty ;
+        rdfs:range       hyf:HY_IndirectPosition ;
+        skos:definition  "position expressed as measured or otherwise described distance from a known, already located referent. Commonly, this is used to locate a feature of interest such as a hydrometric station in relation to a catchment's outlet fixed by co-ordinates."@en .
+
+hyf:receivingCatchment
+        a                owl:ObjectProperty ;
+        rdfs:range       hyf:HY_Catchment ;
+        skos:definition  "identifies the catchment that receives flow from this hydro nexus. This allows connection of a catchment's inflow to an identified outflow and to determine its position through referencing the outflow."@en .
+

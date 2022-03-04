@@ -3,8 +3,8 @@ package nrcan.lms.gsc.gsip.app;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
 
 import nrcan.lms.gsc.gsip.Manager;
 import nrcan.lms.gsc.gsip.conf.Configuration;
@@ -30,6 +30,8 @@ public class Listener implements ServletContextListener {
 		//TODO: clear any resource (none so far)
 		Manager.getInstance().terminate();
 		Logger.getAnonymousLogger().log(Level.INFO,"### Application has stopped - killing running tasks !");
+		
+
 
 	}
 

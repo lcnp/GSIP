@@ -3,7 +3,7 @@ package nrcan.lms.gsc.gsip;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 import nrcan.lms.gsc.gsip.conf.Configuration;
 import nrcan.lms.gsc.gsip.data.DataManager;
@@ -89,13 +89,17 @@ public class Manager {
 		}
 	}
 	
+	
+	
 	public void terminate()
 	{
+		
 		conf = null;
 		template = null;
 		if (store != null) store.close();
 		store = null;
 		data = null;
+		
 		
 		
 	}

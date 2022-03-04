@@ -1,0 +1,78 @@
+curl -v -X POST \
+    -H 'Content-Type: application/json' \
+     https://cf-geoconnex-dev.cluster-cadlcqyheg76.ca-central-1.neptune.amazonaws.com:8182/loader -d '
+    {
+      "source" : "s3://cf-neptune-artifacts/rdf/",
+      "format" : "turtle",
+      "iamRoleArn" : "arn:aws:iam::279053176446:role/dev-cf-geoconnex-dev1-neptune-iam-role-ca-central-1",
+      "region" : "ca-central-1",
+      "failOnError" : "FALSE",
+      "parallelism" : "MEDIUM",
+      "updateSingleCardinalityProperties" : "FALSE",
+      "queueRequest" : "TRUE"
+    }'
+    
+docker run -e SourceBucketName=geoconnex-data-dev -e DEFAULT_INPUT_FOLDER=rdf -e DEFAULT_OUTPUT_FOLDER=rdf-target -e COMMAND_TO_EXEC="$(curl -X POST -H 'Content-Type: application/json' https://geoconnex-dev-instance-1.cadlcqyheg76.ca-central-1.neptune.amazonaws.com:8182/loader -d ' { "source" : "s3://geoconnex-data-dev/rdf/", "format" : "turtle", "iamRoleArn" : "arn:aws:iam::279053176446:role/neptune-load-data-role", "region" : "ca-central-1", "failOnError" : "FALSE", "parallelism" : "MEDIUM", "updateSingleCardinalityProperties" : "FALSE", "queueRequest" : "TRUE" }')" gsipinferencer-manual
+
+docker run -e SourceBucketName=geoconnex-data-dev -e DEFAULT_INPUT_FOLDER=rdf -e DEFAULT_OUTPUT_FOLDER=rdf-target -e NEPTUNE_ENDPOINT="geoconnex-dev-instance-1.cadlcqyheg76.ca-central-1.neptune.amazonaws.com" -e IAM_ROLE_ARN="arn:aws:iam::279053176446:role/neptune-load-data-role"
+curl G 'https://geoconnex-dev-instance-1.cadlcqyheg76.ca-central-1.neptune.amazonaws.com:8182/loader/639a06d6-f68e-491d-b082-5635b949c00e'
+    
+Smple queries :
+
+date;time curl -X POST "https://cf-geoconnex-dev.cluster-cadlcqyheg76.ca-central-1.neptune.amazonaws.com:8182/sparql" \
+   -H "Content-Type: application/x-www-form-urlencoded" \
+   -H "Accept:application/sparql-results+json" \
+   --data-urlencode 'format=json' \
+   --data-urlencode 'default-graph-uri=http://www.example.com/ABC' \
+   --data-urlencode 'query=SELECT * FROM <http://www.example.com/ABC> WHERE { ?s ?p ?o } LIMIT 5' \
+   --write-out '%{url_effective};%{http_code};%
+   {time_total};%{time_namelookup};%{time_connect};%{size_download};%{speed_download}\n';date;
+   
+date;time curl -X POST "https://cf-geoconnex-dev.cluster-cadlcqyheg76.ca-central-1.neptune.amazonaws.com:8182/sparql" \
+   -H "Content-Type: application/x-www-form-urlencoded" \
+   -H "Accept:application/sparql-results+json" \
+   --data-urlencode 'format=json' \
+   --data-urlencode 'default-graph-uri=http://www.example.com/ABC' \
+   --data-urlencode 'query=PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX schema: <https://schema.org/> CONSTRUCT {<https://geoconnex.ca/id/catchment/02OJ*DC> ?p ?o. ?o ?p2 ?o2. <https://geoconnex.ca/id/catchment/02OJ*DC> ?p3 ?l} WHERE {<https://geoconnex.ca/id/catchment/02OJ*DC> ?p ?o. ?o ?p2 ?o2. <https://geoconnex.ca/id/catchment/02OJ*DC> ?p3 ?l. FILTER (isLiteral(?l))}' \
+   --write-out '%{url_effective};%{http_code};%{time_total};%{time_namelookup};%{time_connect};%{size_download};%{speed_download}\n';date;
+
+
+https://github.com/NRCan/gsip/blob/master/local.env
+    
+GSIP_APP=http://pub.gsip-dev.geo.ca/gsip
+GSIP_BASEURI=http://localhost:8080/gsip
+
+Incase of blazegraph:
+GSIP_TRIPLESTORE=http://localhost:9999/bigdata/namespace/kb/sparql
+
+Incase of Neptune: 
+GSIP_TRIPLESTORE=https://geoconnex-dev-instance-1.cadlcqyheg76.ca-central-1.neptune.amazonaws.com:8182/sparql 
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX schema: <https://schema.org/> CONSTRUCT {<https://geoconnex.ca/id/catchment/02OJ*AB> ?p ?o. ?o ?p2 ?o2. <https://geoconnex.ca/id/catchment/02OJ*AB> ?p3 ?l} WHERE {<https://geoconnex.ca/id/catchment/02OJ*AB> ?p ?o. ?o ?p2 ?o2. <https://geoconnex.ca/id/catchment/02OJ*AB> ?p3 ?l. FILTER (isLiteral(?l))}' 
+
+
+
+docker run  -e GSIP_TRIPLESTORE='https://cf-geoconnex-dev.cluster-cadlcqyheg76.ca-central-1.neptune.amazonaws.com:8182/sparql' -e GSIP_BASEURI='http://localhost:8080/gsip' -e GSIP_APP='http://localhost:8080/gsip' gsip-manual
+docker ps
+docker exec -it 30997f9c5be6 bash
+docker ps
+docker exec -it f7adcbd02630 bash
+docker logs -f --until=2s condescending_meitner
+docker system prune
+
+*******************Update process************
+cd gsip/
+git merge origin/master
+git fetch
+git pull
+docker images
+docker rmi --force ded9c20682c4
+docker images
+df
+aws ecr get-login-password --region ca-central-1 | docker login --username AWS --password-stdin 279053176446.dkr.ecr.ca-central-1.amazonaws.com
+docker build -t gsip-manual .
+docker tag gsip-manual:latest 279053176446.dkr.ecr.ca-central-1.amazonaws.com/gsip-manual:latest
+docker push 279053176446.dkr.ecr.ca-central-1.amazonaws.com/gsip-manual:latest
+  
+
+aws s3 sync s3://geoconnex-data-dev s3://cf-neptune-ldf-artifacts
