@@ -41,13 +41,16 @@
 <dependency>
     <groupId>org.apache.jena</groupId>
     <artifactId>apache-jena-libs</artifactId>
+
     <version>4.6.1</version>
+
     <type>pom</type>
 </dependency>
 <dependency>
     <groupId>org.apache.jena</groupId>
     <artifactId>jena-core</artifactId>
     <version>4.6.1</version>
+
 </dependency>
 
 <!-- 
@@ -94,8 +97,11 @@
 <dependency>
     <groupId>org.slf4j</groupId>
     <artifactId>slf4j-simple</artifactId>
-    <version>2.0.5</version>
+
+    <version>2.0.6</version>
+
 </dependency>
+
 <!-- https://mvnrepository.com/artifact/com.github.eprst/murmur3 -->
 <dependency>
   <groupId>com.github.eprst</groupId>
@@ -144,7 +150,7 @@
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-core</artifactId>
 
-    <version>2.14.1</version>
+    <version>2.14.2</version>
 
 </dependency>
 
@@ -284,7 +290,7 @@
 <dependency>
     <groupId>com.sun.xml.bind</groupId>
     <artifactId>jaxb-impl</artifactId>
-    <version>4.0.1</version>
+    <version>4.0.2</version>
 </dependency>
 
 <!-- https://mvnrepository.com/artifact/com.sun.istack/istack-commons-runtime -->
