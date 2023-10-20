@@ -146,13 +146,14 @@ ${model.encode("JSON-LD")}
 							<!--<small>(unclassified - non classifié)</small>-->
 							<h3>Available Representations:</h3>
 							<!--<i class="material-icons">arrow_right</i><i class="material-icons">arrow_drop_down</i>-->
-
+							
 							<#assign collapsableId = 0>
 							<#assign collapsableShow = ''>
 							<#assign collapsableShow_arrow = 'arrow_drop_down'>
 							<div class="accordion" id="accordionExample">
-	
-							<#list model.getRepresentations() as r>
+							
+							<#list model.getAllProviders() as p>
+							
 
 							<#if collapsableId == 0>
 								<#assign collapsableShow = 'show'>
@@ -167,31 +168,26 @@ ${model.encode("JSON-LD")}
 								<div class="card-header" id="heading_${collapsableId}">
 								<h2 class="mb-0">
 									<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse_${collapsableId}" aria-expanded="true" aria-controls="collapse_${collapsableId}">
-									${model.getPreferredLabel(r, "en", "No label")}<sub><i class="material-icons"> ${collapsableShow_arrow}</i>
+									Source : ${model.getPreferredLabel(p, "en", "No label")}<sub><i class="material-icons"> ${collapsableShow_arrow}</i>
 									</sub></button>
 								</h2>
 								</div>
 								
 								<div id="collapse_${collapsableId}" class="collapse ${collapsableShow}" aria-labelledby="heading_${collapsableId}" data-parent="#accordionExample">
 								<div class="card-body">
-
+								<#list model.getRepresentationByProvider(p) as r>
 								<div class="representation">
 								<table width="100%">
 
-									<tr><td><b>Conforms to : </b> <a href="${model.getConformsTo(r)}"><#switch model.getConformsTo(r)>
-										<#case "https://www.opengis.net/def/gwml2">GroundwaterML 2<#break>
-										<#case "https://opengeospatial.github.io/SELFIE/">Second Environmental Linked Features Interoperability Experiment<#break>
-
-										<#default>${model.getConformsTo(r)}</#switch></a></td></tr>
-									<tr><td><b>Provider : </b> <a href="${model.getProvider(r)}"><#switch model.getProvider(r)>
-										<#case "http://gin.gw-info.net">Groundwater Information Network<#break>
-										<#case "http://gin.geosciences.ca">Groundwater Information Network<#break>
-										<#default>${model.getProvider(r)}</#switch></a></td></tr>
+									<tr><td><b>${model.getPreferredLabel(r, "en", "No label")}</a></td></tr>
+									
 
 									<#assign links = []>
 									<#list model.getUrls(r,true) as url>
 									<#assign link><a href="${url.getUrl()}"><#switch url.getLabel()>
 												<#case "application/rdf+xml"><img class="img-fluid" title="Display in RDF/XML format" alt="Display in RDF/XML format" src="${host}/app/img/rdfxmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
+												<#case "text/xml"><img class="img-fluid" title="Display in XML format" alt="Display in XML format" src="${host}/app/img/rdfxmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
+												
 												<#case "application/ld+json"><img class="img-fluid" title="Display in JSON format" alt="Display in JSON format" src="${host}/app/img/jsonicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
 												<#case "application/x-turtle"><img class="img-fluid" title="Display in TTL (Turtle) format" alt="Display in TTL (Turtle) format" src="${host}/app/img/ttlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
 												<#case "text/html"><img class="img-fluid" title="Display web page" alt="Display web page" src="${host}/app/img/htmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
@@ -204,9 +200,9 @@ ${model.encode("JSON-LD")}
 									<tr><td colspan=2>
 									<b>Formats :</b>  ${links?join(" ")}
 									</td></tr>
-
+								</#list> <#-- representation-->
 								</table>
-								</div>
+								</div> <#-- class representation -->
 
 								</div>
 								</div>

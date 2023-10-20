@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javax.xml.namespace.QName;
 
@@ -188,6 +189,48 @@ public class ModelWrapper {
 			subjectOf.add(s.getResource());
 		}
 		return subjectOf;
+	}
+
+	/**
+	 * return all providers for a given resource
+	 * @param res
+	 * @return
+	 */
+	public List<Resource> getAllProviders(Resource res)
+	{
+		
+		return getRepresentations(res).stream().map(r -> getProviders(r)).flatMap(List::stream).distinct().collect(Collectors.toList());
+		
+	}
+
+	/**
+	 * return all providers for the context resource
+	 * @return
+	 */
+	public List<Resource> getAllProviders()
+	{
+		return getRepresentations().stream().map(r -> getProviders(r)).flatMap(List::stream).distinct().collect(Collectors.toList());
+	}
+
+	/**
+	 * Get all the representations of the context resource that have this provider
+	 * @param provider
+	 * @return
+	 */
+	public List<Resource> getRepresentationByProvider(Resource provider)
+	{
+		return getRepresentations().stream().filter(m -> getProviders(m).contains(provider)).collect(Collectors.toList());
+	}
+
+	/**
+	 * The all the reprensentation of a specific context resource that has this provider
+	 * @param context
+	 * @param provider
+	 * @return
+	 */
+	public List<Resource> getRepresentationByProvider(Resource context,Resource provider)
+	{
+		return getRepresentations(context).stream().filter(m -> getProviders(m).contains(provider)).collect(Collectors.toList());
 	}
 	
 	public List<Resource> getProviders(Resource res)
