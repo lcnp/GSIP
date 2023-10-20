@@ -81,9 +81,8 @@ ${model.encode("JSON-LD")}
 <body>
 	<header>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-		<img src="${host}/app/img/logominwhiteback25px.png"
-			alt="" /> <a class="navbar-brand" href="#" style="padding-left: 4px;">GSIP
-			Linked Data Demonstration</a>
+		<img src="${host}/app/img/ngsc-logo.png"
+			alt="" /> <a class="navbar-brand" href="#" style="padding-left: 4px;">CGDN: Canadian Geoscience Data Network</a>
 	</nav>
 	</header>
 
@@ -228,7 +227,7 @@ ${model.encode("JSON-LD")}
 									<#list grp?keys as p>
 										<li><strong>${p}:</strong>
 										<#list grp[p] as link>
-										<a
+										| <a
 											href="${link.getUrl()!'none'}"
 											title="${link.getUrl()!'none'}">${link.getResLabel()}</a>
 										</#list>
@@ -243,7 +242,7 @@ ${model.encode("JSON-LD")}
 									<#list res?keys as r>
 										<li>
 										<#list res[r] as l>
-										<a
+										| <a
 											href="${l.getUrl()}"
 											title="${l.getUrl()}">${l.getResLabel()}</a> : <strong>${l.getLabel()}</strong>
 										</#list>
