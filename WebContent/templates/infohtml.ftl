@@ -81,15 +81,16 @@ ${model.encode("JSON-LD")}
 <body>
 	<header>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-		<img src="${host}/app/img/ngsc-logo.png"
-			alt="" /> <a class="navbar-brand" href="#" style="padding-left: 4px;">CGDN: Canadian Geoscience Data Network</a>
+		<img src="${host}/app/img/${model.getLocText('ngsc-logo-en.png','ngsc-logo-fr.png')}"
+			alt="" /> <a class="navbar-brand" href="#" style="padding-left: 4px;">${model.getLocText("CGDN: Canadian Geoscience Data Network","RDGC: Réseau de données géoscientifiques canadien")}</a>
+			<a class=".btn-nav" href="?lang=${model.getLocText('fr','en')}">${model.getLocText("Français","English")}</a>
 	</nav>
 	</header>
 
 	<main role="main" class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<h1>${model.getPreferredLabel("en","Unamed")}</h1>
+				<h1>${model.getPreferredLabel("N/A")}</h1>
 				<blockquote class="blockquote container">
 					<div class="row">
 						<div class="col-sm-12 col-md-9">
@@ -98,38 +99,40 @@ ${model.encode("JSON-LD")}
 								<samp>${model.getTypeLabel()}</samp>
 							</p>
 							<p class="mb-0">
-								<strong>Identifier: </strong>
+								<strong>${model.getLocText("Identifier:","Identifiant:")} </strong>
 								<samp>
 									<a href="${model.getContextResourceUri()}">${model.getContextResourceUri()}</a>
 								</samp>
 							</p>
-							<p><small>(Unclassified information)</small></p>
+							<p><small>${model.getLocText("(Unclassified information)","(Information non classée)")}</small></p>
 						</div>
 						<div class="col-sm-12 col-md-3">
 							<a href="${model.getContextResourceUri()}?f=rdf"
 								target="_blank"><img class="img-fluid"
-								title="Display page in RDF/XML format"
-								alt="View in RDF/XML format"
+								title="${model.getLocText('Display page in RDF/XML format','Afficher la page en format RDF/XML')}"
+								alt="${model.getLocText('View in RDF/XML format','Afficher en format RDF/XML')}"
 								src="${host}/app/img/rdfxmlicon.png"
 								style="max-width: 35px; padding: 10px 5px 0 5px" />
 							</a>
 							<a
 								href="${model.getContextResourceUri()}?f=json"
 								target="_blank"><img class="img-fluid"
-								title="Display page in JSON-LD format"
-								alt="View in JSON-LD format"
+								title="${model.getLocText('Display page in JSON-LD format','Afficher la page en format JSON-LD')}"
+								alt="${model.getLocText('View in JSON-LD format','Afficher en JSON-LD')}"
 								src="${host}/app/img/jsonicon.png"
 								style="max-width: 35px; padding: 10px 5px 0 5px" /></a>
 							<a
 								href="${model.getContextResourceUri()}?f=ttl"
 								target="_blank"><img class="img-fluid"
-								title="Display page in TTL format" alt="View in TTL format"
+								title="${model.getLocText('Display page in TTL format','Afficher la page en format TTL')}" 
+								alt="${model.getLocText('View in TTL format','Afficher en format TTL')}"
 								src="${host}/app/img/ttlicon.png"
 								style="max-width: 35px; padding: 10px 5px 0 5px" /></a>
 
 							<a href="${model.getNonInfoUri()}LOD_Node/CAN_Hydro_LOD_Node" 
 								target="_blank"> <img class="img_fluid"  
-								title="This node" alt="Access this node" src="${host}/app/img/node.png" 
+								title="${model.getLocText('This node','Ce noeud')}" alt="${model.getLocText('Access this node','Accéder à ce noeud')}" 
+								src="${host}/app/img/node.png" 
 								style="max-width: 35px; padding: 10px 5px 0 5px" /></a>
 						</div>
 					</div>
@@ -143,7 +146,7 @@ ${model.encode("JSON-LD")}
 						<div class="col-sm-12 col-md-12">
 							</#if>
 							<!--<small>(unclassified - non classifié)</small>-->
-							<h3>Available Representations:</h3>
+							<h3>${model.getLocText('Available Representations','Représentations disponibles')}:</h3>
 							<!--<i class="material-icons">arrow_right</i><i class="material-icons">arrow_drop_down</i>-->
 							
 							<#assign collapsableId = 0>
@@ -167,7 +170,7 @@ ${model.encode("JSON-LD")}
 								<div class="card-header" id="heading_${collapsableId}">
 								<h2 class="mb-0">
 									<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse_${collapsableId}" aria-expanded="true" aria-controls="collapse_${collapsableId}">
-									Source : ${model.getPreferredLabel(p, "en", "No label")}<sub><i class="material-icons"> ${collapsableShow_arrow}</i>
+									Source : ${model.getPreferredLabel(p, locale, "N/A")}<sub><i class="material-icons"> ${collapsableShow_arrow}</i>
 									</sub></button>
 								</h2>
 								</div>
@@ -178,22 +181,22 @@ ${model.encode("JSON-LD")}
 								<div class="representation">
 								<table width="100%">
 
-									<tr><td><b>${model.getPreferredLabel(r, "en", "No label")}</a></td></tr>
+									<tr><td><b>${model.getPreferredLabel(r, locale, "N/A")}</a></td></tr>
 									
 
 									<#assign links = []>
 									<#list model.getUrls(r,true) as url>
 									<#assign link><a href="${url.getUrl()}"><#switch url.getLabel()>
-												<#case "application/rdf+xml"><img class="img-fluid" title="Display in RDF/XML format" alt="Display in RDF/XML format" src="${host}/app/img/rdfxmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "text/xml"><img class="img-fluid" title="Display in XML format" alt="Display in XML format" src="${host}/app/img/rdfxmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
+												<#case "application/rdf+xml"><img class="img-fluid" title="${model.getLocText('Display in RDF/XML format','Afficher en format RDF/XML')}" alt="${model.getLocText('Display in RDF/XML','Afficher en format RDF/XML')}" src="${host}/app/img/rdfxmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
+												<#case "text/xml"><img class="img-fluid" title="${model.getLocText('Display in XML format','Afficher en format XML')}" alt="${model.getLocText('Display in XML format','Afficher en format XML')}" src="${host}/app/img/rdfxmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
 												
-												<#case "application/ld+json"><img class="img-fluid" title="Display in JSON format" alt="Display in JSON format" src="${host}/app/img/jsonicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "application/x-turtle"><img class="img-fluid" title="Display in TTL (Turtle) format" alt="Display in TTL (Turtle) format" src="${host}/app/img/ttlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "text/html"><img class="img-fluid" title="Display web page" alt="Display web page" src="${host}/app/img/htmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "text/plain"><img class="img-fluid" title="Display in plain text format" alt="Display in plain text format" src="${host}/app/img/txticon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "image/jpeg"><img class="img-fluid" title="Display in jpeg" alt="Display in jpeg" src="${host}/app/img/jpg-outline.png" style="max-width: 35px;padding: 10px 5px 0 5px"/><#break>
-												<#case "application/vnd.geo+json"><img class="img-fluid" title="Display in GeoJSON format" alt="Display in GeoJSON format" src="${host}/app/img/geojsonicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#default><img class="img-fluid" title="Display in ${url.getLabel()} format" alt="Display in ${url.getLabel()} format" src="${host}/app/img/othericon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/></#switch></a></#assign>
+												<#case "application/ld+json"><img class="img-fluid" title="${model.getLocText('Display in JSON format','Afficher en format JSON')}" alt="${model.getLocText('Display in JSON format','Afficher en format JSON')}" src="${host}/app/img/jsonicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
+												<#case "application/x-turtle"><img class="img-fluid" title="${model.getLocText('Display in TTL (Turtle) format','Afficher en format TTL (Turtle)')}" alt="${model.getLocText('Display in TTL (Turtle) format','Afficher en format TTL (Turtle)')}" src="${host}/app/img/ttlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
+												<#case "text/html"><img class="img-fluid" title="${model.getLocText('Display web page''Afficher la page Web')}" alt="${model.getLocText('Display web page''Afficher la page Web')}" src="${host}/app/img/htmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
+												<#case "text/plain"><img class="img-fluid" title="${model.getLocText('Display in plain text format''Afficher en format texte')}" alt="${model.getLocText('Display in plain text format''Afficher en format texte')}t" src="${host}/app/img/txticon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
+												<#case "image/jpeg"><img class="img-fluid" title="${model.getLocText('Display in jpeg','Afficher en jpeg')}" alt="${model.getLocText('Display in jpeg','Afficher en jpeg')}" src="${host}/app/img/jpg-outline.png" style="max-width: 35px;padding: 10px 5px 0 5px"/><#break>
+												<#case "application/vnd.geo+json"><img class="img-fluid" title="${model.getLocTexT('Display in GeoJSON format''Afficher en format GeoJSON')}" alt="${model.getLocTexT('Display in GeoJSON format''Afficher en format GeoJSON')}" src="${host}/app/img/geojsonicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
+												<#default><img class="img-fluid" title="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" alt="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" src="${host}/app/img/othericon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/></#switch></a></#assign>
 									<#assign links = links + [link]>
 									</#list>
 									<tr><td colspan=2>
@@ -212,13 +215,12 @@ ${model.encode("JSON-LD")}
 							</div>
 
 							<br/>
-							<h3>Related Features:</h3>
+							<h3>${model.getLocText("Related Features","Entités reliées")}:</h3>
 							<ul class="nav nav-tabs" role="tablist">
 								<li class="nav-item"><a class="nav-link active"
-									href="#g_type" role="tab" data-toggle="tab">Grouped by
-										relations</a></li>
+									href="#g_type" role="tab" data-toggle="tab">${model.getLocText("Grouped by relations","Groupées par relations")}</a></li>
 								<li class="nav-item"><a class="nav-link" href="#g_res"
-									role="tab" data-toggle="tab">Grouped by features</a></li>
+									role="tab" data-toggle="tab">${model.getLocText("Grouped by features","Groupées par entitées")}</a></li>
 							</ul>
 							<div class="tab-content">
 								<div role="tabpanel" class="tab-pane active" id="g_type">

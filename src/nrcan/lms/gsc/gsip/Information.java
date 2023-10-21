@@ -124,7 +124,7 @@ public class Information {
 			Map<String,Object> p = getParameters(uriInfo,idUri); // build from already parsed information
 			// add info about emptyness
 			p.put("hasStatements", storedModel.isEmpty()?"false":"true");
-			p.put("model", new ModelWrapper(storedModel,idUri));
+			p.put("model", new ModelWrapper(storedModel,idUri,locale));
 			storedModel.read(TemplateManager.getInstance().getGraph(p, matchedTemplate),null,"TURTLE");
 		}
 		
@@ -166,7 +166,7 @@ public class Information {
 	 */
 	private Response serializeHTML(Model model,String resource,String locale)
 	{
-		ModelWrapper mw = new ModelWrapper(ModelUtil.getAlternateModel(model),ModelUtil.getAlternateResource(resource));
+		ModelWrapper mw = new ModelWrapper(ModelUtil.getAlternateModel(model),ModelUtil.getAlternateResource(resource),locale);
 		// get the template used to create 
 		String htmlTemplate = Configuration.getInstance().getHtmlTemplate(mw.getContextResourceUri());
 		String out = null;

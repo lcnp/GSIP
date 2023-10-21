@@ -51,6 +51,7 @@ import nrcan.lms.gsc.gsip.vocabulary.SCHEMA;
 public class ModelWrapper {
 
 	private Model model;
+	private String locale = "en";
 	private Resource contextResource;
 	public static final String SCHEMAORG = "https://schema.org/";
 	//TODO. I should get the default baseUri from context, not hardcoded
@@ -64,6 +65,14 @@ public class ModelWrapper {
 		**/
 	}
 	
+	public ModelWrapper(Model m,String contextResource,String locale)
+	{
+		this.model = m;
+		this.contextResource = m.getResource(contextResource);
+		// if locale is null, it's english, otherwise french is is starts with 'f'
+		this.locale = locale == null?"en":(locale.toLowerCase().startsWith("f")?"fr":"en");
+		Logger.getAnonymousLogger().log(Level.WARNING,"Language " + this.locale);
+	}
 	
 	
 
@@ -119,6 +128,11 @@ public class ModelWrapper {
 	public String getPreferredLabel(String language,String defaultLabel)
 	{
 		return getPreferredLabel(contextResource,language,defaultLabel);
+	}
+
+	public String getPreferredLabel(String defaultLabel)
+	{
+		return getPreferredLabel(contextResource,locale,defaultLabel);
 	}
 	
 	/**
@@ -409,7 +423,7 @@ public class ModelWrapper {
 			// the object must be a resource
 			if (statement.getObject().isResource())
 			{
-				String l = getPreferredLabel(statement.getResource(),"en", this.getLastPart(statement.getResource().getURI()));
+				String l = getPreferredLabel(statement.getResource(),locale, this.getLastPart(statement.getResource().getURI()));
 				links.add(new Link(p.getLocalName(),statement.getResource().getURI(),l));
 			}
 
@@ -610,7 +624,8 @@ public class ModelWrapper {
 			try {
 			Resource typeResource = s.getResource();
 			if (typeResource.isAnon()) continue;
-			nextElement = this.getPreferredLabel(typeResource, "en", getLastPart(typeResource.getURI()));
+			// try to find a label for the type in the request language, if not, just use the typename
+			nextElement = this.getPreferredLabel(typeResource, locale, getLastPart(typeResource.getURI()));
 			}
 			catch(Exception ex)
 			{
@@ -625,6 +640,18 @@ public class ModelWrapper {
 		return sb.toString();
 	
 		
+		
+	}
+
+	/**
+	 * helper function to return a string in the preferred language
+	 * @param en
+	 * @param fr
+	 * @return
+	 */
+	public String getLocText(String en,String fr)
+	{
+		return locale.equals("fr")?fr:en;
 		
 	}
 	
