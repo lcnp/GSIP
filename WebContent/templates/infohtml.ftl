@@ -83,7 +83,7 @@ ${model.encode("JSON-LD")}
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 		<img src="${host}/app/img/${model.getLocText('ngsc-logo-en.png','ngsc-logo-fr.png')}"
 			alt="" /> <a class="navbar-brand" href="#" style="padding-left: 4px;">${model.getLocText("CGDN: Canadian Geoscience Data Network","RDGC: Réseau de données géoscientifiques canadien")}</a>
-			<a class=".btn-nav" href="?lang=${model.getLocText('fr','en')}">${model.getLocText("Français","English")}</a>
+			<a class="btn-nav mr-auto" href="?lang=${model.getLocText('fr','en')}">${model.getLocText("Français","English")}</a>
 	</nav>
 	</header>
 
@@ -188,19 +188,20 @@ ${model.encode("JSON-LD")}
 									<#list model.getUrls(r,true) as url>
 									<#assign link><a href="${url.getUrl()}"><#switch url.getLabel()>
 												<#case "application/rdf+xml"><img class="img-fluid" title="${model.getLocText('Display in RDF/XML format','Afficher en format RDF/XML')}" alt="${model.getLocText('Display in RDF/XML','Afficher en format RDF/XML')}" src="${host}/app/img/rdfxmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "text/xml"><img class="img-fluid" title="${model.getLocText('Display in XML format','Afficher en format XML')}" alt="${model.getLocText('Display in XML format','Afficher en format XML')}" src="${host}/app/img/rdfxmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												
+												<#case "text/xml"><img class="img-fluid" title="${model.getLocText('Display in XML format','Afficher en format XML')}" alt="${model.getLocText('Display in XML format','Afficher en format XML')}" src="${host}/app/img/xmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
+												<#case "application/gml+xml;subtype=erml"><img class="img-fluid" title="${model.getLocText('Display in ERML format','Afficher en format ERML')}" alt="${model.getLocText('Display in ERML format','Afficher en format ERML')}" src="${host}/app/img/ermlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
+												<#case "application/gml+xml"><img class="img-fluid" title="${model.getLocText('Display in GML/XML format','Afficher en format GML/XML')}" alt="${model.getLocText('Display in GML/XML format','Afficher en format GML/XML')}" src="${host}/app/img/gmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
 												<#case "application/ld+json"><img class="img-fluid" title="${model.getLocText('Display in JSON format','Afficher en format JSON')}" alt="${model.getLocText('Display in JSON format','Afficher en format JSON')}" src="${host}/app/img/jsonicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
 												<#case "application/x-turtle"><img class="img-fluid" title="${model.getLocText('Display in TTL (Turtle) format','Afficher en format TTL (Turtle)')}" alt="${model.getLocText('Display in TTL (Turtle) format','Afficher en format TTL (Turtle)')}" src="${host}/app/img/ttlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
 												<#case "text/html"><img class="img-fluid" title="${model.getLocText('Display web page''Afficher la page Web')}" alt="${model.getLocText('Display web page''Afficher la page Web')}" src="${host}/app/img/htmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
 												<#case "text/plain"><img class="img-fluid" title="${model.getLocText('Display in plain text format''Afficher en format texte')}" alt="${model.getLocText('Display in plain text format''Afficher en format texte')}t" src="${host}/app/img/txticon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
 												<#case "image/jpeg"><img class="img-fluid" title="${model.getLocText('Display in jpeg','Afficher en jpeg')}" alt="${model.getLocText('Display in jpeg','Afficher en jpeg')}" src="${host}/app/img/jpg-outline.png" style="max-width: 35px;padding: 10px 5px 0 5px"/><#break>
-												<#case "application/vnd.geo+json"><img class="img-fluid" title="${model.getLocTexT('Display in GeoJSON format''Afficher en format GeoJSON')}" alt="${model.getLocTexT('Display in GeoJSON format''Afficher en format GeoJSON')}" src="${host}/app/img/geojsonicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
+												<#case "application/vnd.geo+json"><img class="img-fluid" title="${model.getLocTexT('Display in GeoJSON format''Afficher en format GeoJSON')}" alt="${model.getLocText('Display in GeoJSON format''Afficher en format GeoJSON')}" src="${host}/app/img/geojsonicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
 												<#default><img class="img-fluid" title="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" alt="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" src="${host}/app/img/othericon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/></#switch></a></#assign>
 									<#assign links = links + [link]>
 									</#list>
 									<tr><td colspan=2>
-									<b>Formats :</b>  ${links?join(" ")}
+									Formats :  ${links?join(" ")}
 									</td></tr>
 								</#list> <#-- representation-->
 								</table>
@@ -230,8 +231,8 @@ ${model.encode("JSON-LD")}
 										<li><strong>${p}:</strong>
 										<#list grp[p] as link>
 										| <a
-											href="${link.getUrl()!'none'}"
-											title="${link.getUrl()!'none'}">${link.getResLabel()}</a>
+											href="${link.getUrl()}?lang=${locale}"
+											title="${link.getUrl()}">${link.getResLabel()}</a>
 										</#list>
 
 										</li>
@@ -245,7 +246,7 @@ ${model.encode("JSON-LD")}
 										<li>
 										<#list res[r] as l>
 										| <a
-											href="${l.getUrl()}"
+											href="${l.getUrl()}?lang=${locale}"
 											title="${l.getUrl()}">${l.getResLabel()}</a> : <strong>${l.getLabel()}</strong>
 										</#list>
 

@@ -42,7 +42,7 @@ public class NonInformationUri {
 	 * @param callback
 	 * @return
 	 */
-	public Response redirectToResource(@QueryParam("f") String f,@QueryParam("format") String format,@QueryParam("callback") String callback)
+	public Response redirectToResource(@QueryParam("f") String f,@QueryParam("format") String format,@QueryParam("callback") String callback,@QueryParam("lang") String lang)
 	{
 		if (format==null)
 			format = f;
@@ -82,6 +82,11 @@ public class NonInformationUri {
 			{
 				ub.addParameter("callback", callback);
 				
+			}
+
+			if (lang != null && lang.length() > 0)
+			{
+				ub.addParameter("lang",lang);
 			}
 			
 			newLocation = ub.build();

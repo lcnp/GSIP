@@ -22,21 +22,17 @@ import jakarta.ws.rs.core.UriInfo;
 import static nrcan.lms.gsc.gsip.Constants.APPLICATION_RDFXML;
 import static nrcan.lms.gsc.gsip.Constants.APPLICATION_TURTLE;
 import static nrcan.lms.gsc.gsip.Constants.TEXT_TURTLE;
-import static nrcan.lms.gsc.gsip.Constants.APP_URI;
 import static nrcan.lms.gsc.gsip.Constants.PERSISTENT_URI;
 
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.StringWriter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-import org.apache.http.HttpRequest;
 import org.apache.http.HttpStatus;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.riot.Lang;
@@ -51,10 +47,9 @@ import nrcan.lms.gsc.gsip.model.ModelUtil;
 import nrcan.lms.gsc.gsip.model.ModelWrapper;
 import nrcan.lms.gsc.gsip.template.TemplateManager;
 import nrcan.lms.gsc.gsip.triple.TripleStore;
-import nrcan.lms.gsc.gsip.triple.RemoteStore;
 import nrcan.lms.gsc.gsip.util.MediaTypeUtil;
 import nrcan.lms.gsc.gsip.util.MediaTypeUtil.InfoOutputFormat;
-import nrcan.lms.gsc.gsip.util.QuantifiedMedia;
+
 
 import static nrcan.lms.gsc.gsip.Constants.BASE_URI;
 
