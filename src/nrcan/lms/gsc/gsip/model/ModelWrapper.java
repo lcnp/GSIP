@@ -15,6 +15,7 @@ import javax.xml.namespace.QName;
 
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
@@ -180,6 +181,58 @@ public class ModelWrapper {
 		
 		
 		
+	}
+
+	/**
+	 * Get all the labels for this language
+	 * @param lang language of the label
+	 * @param includeUnderfined return those who have underfined language
+	 * @return
+	 */
+	public List<String> getLabels(String lang,boolean includeUndefined)
+	{
+		return getLabels(this.contextResource,lang,includeUndefined);
+	}
+
+	/**
+	 * 
+	 * @param r context resource
+	 * @param lang
+	 * @param includeUnderfined
+	 * @return
+	 */
+	public List<String> getLabels(Resource r,String lang,boolean includeUndefined)
+	{
+		List<String> labels = new ArrayList<String>();
+			StmtIterator s =  r.listProperties(RDFS.label);
+			while(s.hasNext())
+			{
+				Statement st = s.next();
+			    if (lang == null)
+					// we get them all
+					{
+						labels.add(st.getLiteral().getValue().toString());
+					}
+					else
+					{
+						if ((includeUndefined && (st.getLanguage() == null || st.getLanguage().trim().length() == 0)) || lang.equals(st.getLanguage()))
+							labels.add(st.getLiteral().getValue().toString());
+
+					}
+			}
+			return labels;
+
+	}
+
+	public String getJoinedLabels(Resource r,String lang,boolean includeUndefined,String sep)
+	{
+	
+		return	StringUtils.join(getLabels(r,lang,includeUndefined),sep);
+	}
+
+	public String getJoinedLabels(String lang,boolean includeUndefined,String sep)
+	{
+		return	StringUtils.join(getLabels(lang,includeUndefined),sep);
 	}
 	
 	/**

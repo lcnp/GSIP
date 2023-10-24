@@ -170,7 +170,7 @@ ${model.encode("JSON-LD")}
 								<div class="card-header" id="heading_${collapsableId}">
 								<h2 class="mb-0">
 									<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse_${collapsableId}" aria-expanded="true" aria-controls="collapse_${collapsableId}">
-									Source : ${model.getPreferredLabel(p, locale, "N/A")}<sub><i class="material-icons"> ${collapsableShow_arrow}</i>
+									Source : ${model.getJoinedLabels(p, locale, true," | ")}<sub><i class="material-icons"> ${collapsableShow_arrow}</i>
 									</sub></button>
 								</h2>
 								</div>
@@ -181,7 +181,7 @@ ${model.encode("JSON-LD")}
 								<div class="representation">
 								<table width="100%">
 
-									<tr><td><b>${model.getPreferredLabel(r, locale, "N/A")}</a></td></tr>
+									<tr><td><b>${model.getJoinedLabels(r, locale, true," | ")}</a></td></tr>
 									
 
 									<#assign links = []>
