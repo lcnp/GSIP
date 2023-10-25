@@ -146,7 +146,7 @@ ${model.encode("JSON-LD")}
 						<div class="col-sm-12 col-md-12">
 							</#if>
 							<!--<small>(unclassified - non classifié)</small>-->
-							<h3>${model.getLocText('Available Representations','Représentations disponibles')}:</h3>
+							<h3>${model.getLocText("Feature Descriptions","Descriptions de l'entité")}</h3>
 							<!--<i class="material-icons">arrow_right</i><i class="material-icons">arrow_drop_down</i>-->
 							
 							<#assign collapsableId = 0>
@@ -216,7 +216,7 @@ ${model.encode("JSON-LD")}
 							</div>
 
 							<br/>
-							<h3>${model.getLocText("Related Features","Entités reliées")}:</h3>
+							<h3>${model.getLocText("Related Features","Entités reliées")}</h3>
 							<ul class="nav nav-tabs" role="tablist">
 								<li class="nav-item"><a class="nav-link active"
 									href="#g_type" role="tab" data-toggle="tab">${model.getLocText("Grouped by relations","Groupées par relations")}</a></li>
