@@ -42,7 +42,7 @@ public class NonInformationUri {
 	 * @param callback
 	 * @return
 	 */
-	public Response redirectToResource(@QueryParam("f") String f,@QueryParam("format") String format,@QueryParam("callback") String callback)
+	public Response redirectToResource(@QueryParam("f") String f,@QueryParam("format") String format,@QueryParam("callback") String callback,@QueryParam("lang") String lang)
 	{
 		if (format==null)
 			format = f;
@@ -72,7 +72,7 @@ public class NonInformationUri {
 		// transfer format and callback
 			URIBuilder ub;
 			try {
-				ub = new URIBuilder(infoUri.toString());
+				ub = new URIBuilder(infoUri.toString().replace(" ","%20"));
 			if (format != null && format.length() > 0 )
 			{
 				ub.addParameter("f" , format);
@@ -83,12 +83,17 @@ public class NonInformationUri {
 				ub.addParameter("callback", callback);
 				
 			}
+
+			if (lang != null && lang.length() > 0)
+			{
+				ub.addParameter("lang",lang);
+			}
 			
 			newLocation = ub.build();
 			
 			} catch (URISyntaxException e) {
 				// TODO Auto-generated catch block
-				return Response.status(400).entity("Invalid URI").type(MediaType.TEXT_PLAIN).build();
+				return Response.status(400).entity("Invalid URI "+ infoUri).type(MediaType.TEXT_PLAIN).build();
 			}
 
 	
