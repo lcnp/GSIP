@@ -4,18 +4,18 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javax.xml.namespace.QName;
 
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
@@ -25,14 +25,11 @@ import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
-import org.apache.jena.sparql.function.library.leviathan.radiansToDegrees;
-import org.apache.jena.vocabulary.DC;
 import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.OWL;
 import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.RDFS;
 
-import nrcan.lms.gsc.gsip.Constants;
 import nrcan.lms.gsc.gsip.Manager;
 import nrcan.lms.gsc.gsip.conf.Configuration;
 import nrcan.lms.gsc.gsip.vocabulary.SCHEMA;
@@ -50,6 +47,7 @@ import nrcan.lms.gsc.gsip.vocabulary.SCHEMA;
 public class ModelWrapper {
 
 	private Model model;
+	private String locale = "en";
 	private Resource contextResource;
 	public static final String SCHEMAORG = "https://schema.org/";
 	//TODO. I should get the default baseUri from context, not hardcoded
@@ -63,6 +61,14 @@ public class ModelWrapper {
 		**/
 	}
 	
+	public ModelWrapper(Model m,String contextResource,String locale)
+	{
+		this.model = m;
+		this.contextResource = m.getResource(contextResource);
+		// if locale is null, it's english, otherwise french is is starts with 'f'
+		this.locale = locale == null?"en":(locale.toLowerCase().startsWith("f")?"fr":"en");
+		Logger.getAnonymousLogger().log(Level.WARNING,"Language " + this.locale);
+	}
 	
 	
 
@@ -119,6 +125,11 @@ public class ModelWrapper {
 	{
 		return getPreferredLabel(contextResource,language,defaultLabel);
 	}
+
+	public String getPreferredLabel(String defaultLabel)
+	{
+		return getPreferredLabel(contextResource,locale,defaultLabel);
+	}
 	
 	/**
 	 * Return the preferred label for a specific resource expressed as a String
@@ -171,6 +182,58 @@ public class ModelWrapper {
 		
 		
 	}
+
+	/**
+	 * Get all the labels for this language
+	 * @param lang language of the label
+	 * @param includeUnderfined return those who have underfined language
+	 * @return
+	 */
+	public List<String> getLabels(String lang,boolean includeUndefined)
+	{
+		return getLabels(this.contextResource,lang,includeUndefined);
+	}
+
+	/**
+	 * 
+	 * @param r context resource
+	 * @param lang
+	 * @param includeUnderfined
+	 * @return
+	 */
+	public List<String> getLabels(Resource r,String lang,boolean includeUndefined)
+	{
+		List<String> labels = new ArrayList<String>();
+			StmtIterator s =  r.listProperties(RDFS.label);
+			while(s.hasNext())
+			{
+				Statement st = s.next();
+			    if (lang == null)
+					// we get them all
+					{
+						labels.add(st.getLiteral().getValue().toString());
+					}
+					else
+					{
+						if ((includeUndefined && (st.getLanguage() == null || st.getLanguage().trim().length() == 0)) || lang.equals(st.getLanguage()))
+							labels.add(st.getLiteral().getValue().toString());
+
+					}
+			}
+			return labels;
+
+	}
+
+	public String getJoinedLabels(Resource r,String lang,boolean includeUndefined,String sep)
+	{
+	
+		return	StringUtils.join(getLabels(r,lang,includeUndefined),sep);
+	}
+
+	public String getJoinedLabels(String lang,boolean includeUndefined,String sep)
+	{
+		return	StringUtils.join(getLabels(lang,includeUndefined),sep);
+	}
 	
 	/**
 	 * Get a list of representations (subjectOf resources) for this resource
@@ -188,6 +251,48 @@ public class ModelWrapper {
 			subjectOf.add(s.getResource());
 		}
 		return subjectOf;
+	}
+
+	/**
+	 * return all providers for a given resource
+	 * @param res
+	 * @return
+	 */
+	public List<Resource> getAllProviders(Resource res)
+	{
+		
+		return getRepresentations(res).stream().map(r -> getProviders(r)).flatMap(List::stream).distinct().collect(Collectors.toList());
+		
+	}
+
+	/**
+	 * return all providers for the context resource
+	 * @return
+	 */
+	public List<Resource> getAllProviders()
+	{
+		return getRepresentations().stream().map(r -> getProviders(r)).flatMap(List::stream).distinct().collect(Collectors.toList());
+	}
+
+	/**
+	 * Get all the representations of the context resource that have this provider
+	 * @param provider
+	 * @return
+	 */
+	public List<Resource> getRepresentationByProvider(Resource provider)
+	{
+		return getRepresentations().stream().filter(m -> getProviders(m).contains(provider)).collect(Collectors.toList());
+	}
+
+	/**
+	 * The all the reprensentation of a specific context resource that has this provider
+	 * @param context
+	 * @param provider
+	 * @return
+	 */
+	public List<Resource> getRepresentationByProvider(Resource context,Resource provider)
+	{
+		return getRepresentations(context).stream().filter(m -> getProviders(m).contains(provider)).collect(Collectors.toList());
 	}
 	
 	public List<Resource> getProviders(Resource res)
@@ -366,7 +471,7 @@ public class ModelWrapper {
 			// the object must be a resource
 			if (statement.getObject().isResource())
 			{
-				String l = getPreferredLabel(statement.getResource(),"en", this.getLastPart(statement.getResource().getURI()));
+				String l = getPreferredLabel(statement.getResource(),locale, this.getLastPart(statement.getResource().getURI()));
 				links.add(new Link(p.getLocalName(),statement.getResource().getURI(),l));
 			}
 
@@ -567,7 +672,8 @@ public class ModelWrapper {
 			try {
 			Resource typeResource = s.getResource();
 			if (typeResource.isAnon()) continue;
-			nextElement = this.getPreferredLabel(typeResource, "en", getLastPart(typeResource.getURI()));
+			// try to find a label for the type in the request language, if not, just use the typename
+			nextElement = this.getPreferredLabel(typeResource, locale, getLastPart(typeResource.getURI()));
 			}
 			catch(Exception ex)
 			{
@@ -582,6 +688,18 @@ public class ModelWrapper {
 		return sb.toString();
 	
 		
+		
+	}
+
+	/**
+	 * helper function to return a string in the preferred language
+	 * @param en
+	 * @param fr
+	 * @return
+	 */
+	public String getLocText(String en,String fr)
+	{
+		return locale.equals("fr")?fr:en;
 		
 	}
 	
