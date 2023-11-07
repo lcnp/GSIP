@@ -1,138 +1,237 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Prototype: Linked Data Viewer</title>
-	
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-	<!-- Other meta tags -->
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	
-	<!-- OpenLayers CSS -->
-    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
-	
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-
-  <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
-	
-    <style type="text/css">
-      #map {
-        position: relative;
-      }
-      .chyf {
-        top: 80px;
-        left: .5em;
-      }
-     #leftmenu {
-       /*width: 50%;*/
-       background: #eee;
-       display: none;
-       z-index: 700;
-       position: absolute;
-       /*position: relative*/
-       top: 0px;
-       float: right;
-       /*opacity: 0.9;*/
-       /*padding: 0.4em;*/
-       /*min-width: 40%;*/
-       /*width: inherit;*/
-     }
-
-      html, body, #map {
-        margin: 0;
-        width: 100%;
-        height: 100%;
-      }
-
-      #text {
-        position: absolute;
-        bottom: 1em;
-        left: 1em;
-        width: 512px;
-        z-index: 20000;
-        background-color: white;
-        padding: 0 0.5em 0.5em 0.5em;
-      }
-      #logo {
-        position: absolute;
-        z-index: 100000;
-        bottom: 10px;
-        left: 30px;
-        cursor: default;
-        opacity: 1;
-        max-width: 450px;
-        visibility: visible;
-      }
+<!DOCTYPE html>
 
 
-    </style>
-  </head>
-  <body>
-     <div>
-	<h1> Page under construction in a testing stage with unformatted content </h1>
-	  <h2> Geologic instances have now a resources Registry </h2>
-	  <h3> All the resources data is stored in a database called a registry​ </h3>
-	  <h3> The registry is accessible through a web service, located here : geoconnex.ca </h3>
-	  <h3> The web resource data of a geologic instance is encoded as a URL​ composed by concatenation of the following elements:  </h3>
-	  <h4>  https://geoconnex.ca </h4>	
-	  <h4>  /id/categoryName/itemName </h4>
-	  <h4> a query string with params as:   ?f=xml </h4>
-	  <h3> Here is a resource data URL for the Richelieu river  </h3>
-	  
-	  <p> https://geoconnex.ca/id/waterbody/Richelieu?f=xml </p>
-	<h3>   Other path to starting whith /data/  ..... </h3>
-     </div>
-	  
-	<div  style="dsiplay:none" id="map" class="map" style="width: 100%; height: 100%">
-    <div id="popup"></div>
- </div>
- <div id="logo"><img style="max-width:175px" class="img-fluid" src="img/GOCcolouren.png"/></div>
+<html class="js backgroundsize borderimage csstransitions fontface svg details progressbar meter mathml cors wb-enable largeview" lang="en" dir="ltr">
 
-<div  style="dsiplay:none"  id="inputModal" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <!--<div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div> -->
-    </div>
-  </div>
+<head>
+
+
+<script type="application/ld+json">
+
+{
+	"title": "Geoconnex a registry for geologic instances",
+	"language": "en",
+	"altLangPage": "organizational-arms-fr.html",
+	"pageType": "organization",
+	"pageclass": "page-type-nav",
+	"breadcrumbs": [
+		{ "title": "Departments & agencies", "link": "https://www.canada.ca/en/government/dept.html" }
+	],
+	"dateModified": "2023-09-01",
+	"share": "true"
+}
+
+</script>
+
+
+
+<meta charset="utf-8">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>[Organization Name] - Canada.ca</title>
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta name="description" content=" ">
+<meta name="author" content=" ">
+<meta name="dcterms.title" content="[Organization Name]">
+<meta name="dcterms.description" content=" ">
+<meta name="dcterms.creator" content=" ">
+<meta name="dcterms.language" content="eng">
+<meta name="dcterms.subject" content="">
+<meta name="dcterms.issued" content="">
+<meta name="dcterms.modified" content="2023-09-01">
+
+<link rel="apple-touch-icon" sizes="57x57 72x72 114x114 144x144 150x150" class="wb-favicon" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/favicon-mobile.png"><link href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/favicon.ico" rel="icon" type="image/x-icon" class="wb-init wb-favicon-inited">
+<link rel="stylesheet" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/css/theme.min.css">
+<!-- from <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
+<noscript><link rel="stylesheet" href="https://wet-boew.github.io/themes-dist/GCWeb/wet-boew/css/noscript.min.css" /></noscript>
+
+<!-- From template canada.ca -->
+<link href="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_30/assets/favicon.ico" rel="icon" type="image/x-icon" class="wb-init wb-favicon-inited">
+<link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_30/css/theme.min.css">
+<link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_30/cdts/cdtsfixes.css">
+<link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_30/cdts/cdtsapps.css">
+<!-- From template canada.ca -->
+
+</head>
+
+
+
+
+
+
+
+<body class="page-type-nav" vocab="http://schema.org/" typeof="WebPage">
+
+
+
+<!-- Copied from template canada.ca -->
+<header><div id="wb-bnr" class="container"><section id="wb-lng" class="text-right"><h2 class="wb-inv">Language selection</h2><ul class="list-inline margin-bottom-none"><li><a lang="fr" href="apptop-fr.shtml">Français</a></li></ul></section><div class="row"><div class="brand col-xs-5 col-md-4"><img src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_30/assets/sig-blk-en.svg" alt=""><span class="wb-inv"> Government of Canada / <span lang="fr">Gouvernement du Canada</span></span></div></div></div><div class="app-bar"><div class="container"><div class="row"><section class="col-xs-12">
+<h2 class="wb-inv">Name of Web application</h2><a class="app-name" href="#">Geoconnex</a></section></div></div></div></header>
+
+<!-- end - Copied from template canada.ca -->
+
+
+
+
+<!-- the 2 lines below copied from template example -->
+<main class="container" property="mainContentOfPage" resource="#wb-main" typeof="WebPageElement">
+<h1 id="wb-cont" property="name"> Geoconnex Registry </h1>
+<!-- end of the 2 lines -->
+
+
+
+<div class="row">
+	<div class="col-sm-12 pull-left">
+		<p class="gc-byline">Geologic features are real things having each a set of data authored by multiple sources. The Registry is meant to be a centralized catalogue providing, for each feature, 
+		a concise info and links pointing to the available data. The elaboration of this registry represents the main component of the Geoconnex project    
+		that aims to make hydrologic data as easily discoverable, accessible, and usable as possible.
+		</p>
+		<p>The key to find the web resource data of a geologic feature in the Registry is encoded as a URL consisting in a concatenation of the following: </p>
+		<ul>
+		<li> Protocol and domain name :   “https://geoconnex.ca”  </li>
+		<li>Path   <ul> <li>                   e.g.    “/id/someCategory/instanceName” </li> </ul>  </li>
+		<li> Parameters string for format <ul> <li> e.g.  “?f=xml” </li> </ul> </li>  
+		</ul>
+		<p>  An example of a unique data URL for the Richelieu river is : <a  style="color:blue"  target=”_blank”  href="https://geoconnex.ca/gsip/id/waterbody/Richelieu?f=xml">
+		  https://geoconnex.ca/gsip/id/waterbody/Richelieu?f=xml </a>
+
+		</p>
+	<!-- 	<p>  An example of a unique data URL for the Richelieu river is : <a  style="color:blue"  target=”_blank”  href="https://geoconnex.ca/gsip/id/hydrogeounits/Richelieu5?f=xml">
+		 **id/waterbody/Richelieu is not functional** replaced temporarly with https://geoconnex.ca/gsip/id/hydrogeounits/Richelieu5?f=xml </a>
+
+		</p> 
+	</div> -->
+	<!--  <div class="col-sm-5 col-xs-12 pull-right">
+		{% include components/gc-follow-us/samples/follow.html %}
+	</div> --> 
+</div>
+<section>
+	<h2>A river in Geoconnex Registry </h2>
+	<div class="gc-nws row">
+		<div class="col-md-12">
+			<div class="wb-tabs carousel-s2 playing slow">
+				<ul role="tablist">
+					<li class="active">
+						<a href="#tab1"><img src="img/image304.jpg" alt="" /><span class="wb-inv">Tab 1: [News title]</span></a>
+					</li>
+					<li>
+						<a href="#tab2"><img src="img/image303.jpg" alt="" /><span class="wb-inv">Tab 2: This river has a unique URL in the Registry [News title]</span></a>
+					</li>
+				</ul>
+				<div class="tabpanels">
+					<div role="tabpanel" id="tab1" class="in fade">
+						<a href="#" class="learnmore">
+							<figure>
+								<img src="img/image304.jpg" alt="" />
+								<figcaption>
+								<!--	<p>[News title]</p>
+									<small>YYYY-MM-DD hh:mm - Type of feature</small> -->
+									<p> This river has a unique identifier in the Registry.</p>
+								</figcaption>
+							</figure>
+						</a>
+					</div>
+					<div role="tabpanel" id="tab2" class="out fade">
+						<a href="#" class="learnmore">
+							<figure>
+								<img src="img/image303.jpg" alt="" />
+								 <figcaption>
+								<!--	<p>[News title]</p>
+									<small>YYYY-MM-DD hh:mm - Type of feature</small> 
+									<p>  Brief description of the news item.</p> -->
+								</figcaption> 
+							</figure>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		 <!-- <div class="wb-feeds limit-3 col-lg-4 pull-right">
+			<ul class="feeds-cont list-unstyled lst-spcd">
+				<li>
+					<a href="http://news.gc.ca/web/fd-en.do?mthd=dpt&amp;ft=atom&amp;crtr.dpt1D=6675" rel="external">Government of Canada News Releases</a>
+				</li>
+			</ul>
+			 <p class="text-right"><strong><a href="#">All news</a></strong></p> 
+		</div> -->
+	</div>
+</section>
+
+
+<div class="row">
+	<div class="col-md-4 col-xs-12 pull-left">
+		<!-- {% include components/most-requested/most-requested.html %}  -->
+		<h3> Related project </h3>
+		<a href="https://gin.gw-info.net/service/api_ngwds:gin2/en/gin.html"> Gin project </a> 
+	</div>
+<!--	{% include components/gc-servinfo/with-embed-col-pull.html %} -->
+	<div class="pull-right col-xs-12 col-md-4">
+		<!-- <section class="lnkbx"> -->
+			<h3>Contact us</h3>
+			<ul>
+				<!-- {%- for i in (1..3) -%} -->
+				<li><a href="#">Contact number link</a></li>
+			<!--	{%- endfor -%} -->
+			</ul>
+		<!-- </section> -->
+	<!--	{% include components/more-info/more-info.html %} -->
+	</div>
 </div>
 
 
-<!-- Openlayers: The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"> </script>
 
-<!-- OpenLayers JS -->
-<!--<script src="https://openlayers.org/en/v4.4.2/build/ol.js"> </script>-->
-<script src="https://openlayers.org/en/v4.6.5/build/ol-debug.js"> </script>
+<!-- from template example -->
+</main>
 
-<!-- JQuery & Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"> </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" crossorigin="anonymous"> </script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" crossorigin="anonymous"> </script>
+<!-- 
+{% include templates/whtwedo-3-items.html %}
+{% include components/gc-corporate/org-info.html %}
+{% include components/gc-features/features.html %}
 
-<!-- Event Listener/Emitter (Pub/Sub)-->
-<script src="js/eventemitter2.js"> </script> 
+-->
 
-<!-- Custom JS - HJulien 2018 --> 
-<script src="js/apps.js"> </script> <!-- Initialize my custom applications -->
-<script src="js/jsonldhelper.js"> </script> <!-- Functions to help manipulate JSON-LD -->
-<script src="js/mapViewer.js"> </script> <!-- Custom OpenLayers Map -->
-<script src="js/urimodal.js"> </script> <!-- Custom Linked Data Modal Viewer -->
+<!-- From my app2 project  -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="wet-boew/js/wet-boew.js"></script>
+    <script src="GCWeb/js/theme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.7/jquery.i18n.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.7/jquery.i18n.messagestore.js"></script>
+   <!--  this header-en.js is not needed for the moment <script src="./i18n/header-en.js">  --> 
+   
 
-  </body>
-</html>
+<!--    From Bootstrap -->
+<!-- this line is already existing above  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>  -->
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+
+
+<!-- Footer copied from canada.ca template english -->
+<footer id="wb-info"><div class="brand"><div class="container"><div class="row"><nav class="col-md-10 ftr-urlt-lnk"><h2 class="wb-inv">About this Web application</h2><ul><li><a href="https://www.canada.ca/en/contact.html">Contact information</a></li><li><a href="https://www.canada.ca/en/transparency/terms.html">Terms and conditions</a></li><li><a href="https://www.canada.ca/en/transparency/privacy.html">Privacy</a></li></ul></nav><div class="col-xs-6 visible-sm visible-xs tofpg"><a href="#wb-cont">Top of Page <span class="glyphicon glyphicon-chevron-up"></span></a></div><div class="col-xs-6 col-md-3 col-lg-2 text-right"><img src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_30/assets/wmms-blk.svg" alt="Symbol of the Government of Canada"></div></div></div></div></footer>
+<!-- End - Footer copied from canada.ca template -->
+
+<!-- From template example --> 
+<script src="https://wet-boew.github.io/themes-dist/GCWeb/wet-boew/js/i18n/en.min.js"></script>
+<script src="https://wet-boew.github.io/themes-dist/GCWeb/wet-boew/js/deps/jquery.magnific-popup.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha384-rY/jv8mMhqDabXSo+UCggqKtdmBfd3qC2/KvyTDNQ6PcUJXaxK1tMepoQda4g5vB" crossorigin="anonymous"></script>
+<script src="https://wet-boew.github.io/themes-dist/GCWeb/wet-boew/js/wet-boew.min.js">
+</script><span id="wb-rsz" class="wb-init">&nbsp;</span>
+<script src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/js/theme.min.js"></script>
+
+<!--canada.ca template english -->
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_30/js/theme.min.js"></script>
+<script src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_30/cdts/cdtscustom.js"></script>
+<!-- End -canada.ca template english -->
+
+
+
+
+
+
+
+
+</body>
+</html> 
