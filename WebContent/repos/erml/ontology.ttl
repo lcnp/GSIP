@@ -1,0 +1,22 @@
+@prefix cgdn: <https://geoconnex.ca/id/onto/>.
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+ 
+cgdn:MineralOccurrence rdf:type owl:Class;
+cgdn:searchable "true";
+rdfs:label "Mineral Occurrence"@en,"Indice minéralisé"@fr;
+rdfs:comment "CGDN Mineral Occurrence Class. Equivalent to ERML definition of mineral occurrence.";
+rdfs:comment "For test purposes: url might not persist.".
+ 
+cgdn:partOf rdf:type owl:ObjectProperty,owl:TransitiveProperty;
+    rdfs:label "part of"@en,"partie de"@fr;
+    rdfs:comment "CGDN part of relation: between a part and a whole, e.g. a mineral occurrence (whole) divided into smaller pieces (parts), so each piece is part of the whole.".
+ 
+cgdn:hasPart rdf:type owl:ObjectProperty,owl:TransitiveProperty;
+    rdfs:label "has part"@en,"a comme partie"@fr;
+    owl:inverseOf cgdn:partOf;
+    rdfs:comment "CGDN has part relation: between a whole and a part, e.g. a mineral occurrence (whole) divided into smaller pieces (parts), so the whole has parts that are the pieces".
+
+
+

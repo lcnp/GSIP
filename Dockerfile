@@ -3,6 +3,8 @@ FROM maven:3.8.6-openjdk-11-slim AS build
 COPY src /usr/src/gsip/src
 COPY WebContent /usr/src/gsip/WebContent
 COPY pom.xml /usr/src/gsip
+ADD NRCAN-RootCA.cer /usr/local/share/ca-certificates/NRCAN-RootCA.crt
+RUN update-ca-certificates
 RUN mvn -f /usr/src/gsip/pom.xml clean package
 
 #tomcat 10
