@@ -1,5 +1,6 @@
 *~
 #*
+*.cer
 .project
 .settings
 .classpath
