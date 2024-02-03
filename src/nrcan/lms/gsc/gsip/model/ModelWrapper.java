@@ -82,6 +82,11 @@ public class ModelWrapper {
 	{
 		return contextResource.getURI();
 	}
+
+	public Resource getContextResource()
+	{
+		return contextResource;
+	}
 	
 	
 	/**
@@ -158,8 +163,25 @@ public class ModelWrapper {
 	public String getPreferredLabel(Resource res,String language,String defaultLabel)
 	{
 		
+		return getPreferredLiteral(res,RDFS.label,language,defaultLabel);
 		
-		StmtIterator s = res.listProperties(RDFS.label);
+	}
+
+	public String getPreferredComment(Resource res,String language,String defaultComment)
+	{
+		return getPreferredLiteral(res,RDFS.comment,language,defaultComment);
+	}
+
+public String getPreferredLiteral(Resource res, String qualifiedName,String language,String defaultValue)
+{
+		Property p = this.model.createProperty(qualifiedName);
+		return getPreferredLiteral(res, p,language,defaultValue);
+}
+
+	public String getPreferredLiteral(Resource res, Property property,String language,String defaultValue)
+	{
+		
+		StmtIterator s = res.listProperties(property);
 		String atLeastThisOne = null;
 		while(s.hasNext())
 		{
@@ -175,12 +197,9 @@ public class ModelWrapper {
 		}
 		
 		if (atLeastThisOne == null)
-			return defaultLabel;
+			return defaultValue;
 		else
 			return atLeastThisOne;
-		
-		
-		
 	}
 
 	/**
@@ -194,6 +213,28 @@ public class ModelWrapper {
 		return getLabels(this.contextResource,lang,includeUndefined);
 	}
 
+
+	public List<String> getLiterals(Resource r,Property qualifiedName,String lang, boolean includeUndefined)
+	{
+		List<String> labels = new ArrayList<String>();
+		StmtIterator s =  r.listProperties(qualifiedName);
+		while(s.hasNext())
+		{
+			Statement st = s.next();
+			if (lang == null)
+				// we get them all
+				{
+					labels.add(st.getLiteral().getValue().toString());
+				}
+				else
+				{
+					if ((includeUndefined && (st.getLanguage() == null || st.getLanguage().trim().length() == 0)) || lang.equals(st.getLanguage()))
+						labels.add(st.getLiteral().getValue().toString());
+
+				}
+		}
+		return labels;
+	}
 	/**
 	 * 
 	 * @param r context resource
@@ -203,25 +244,14 @@ public class ModelWrapper {
 	 */
 	public List<String> getLabels(Resource r,String lang,boolean includeUndefined)
 	{
-		List<String> labels = new ArrayList<String>();
-			StmtIterator s =  r.listProperties(RDFS.label);
-			while(s.hasNext())
-			{
-				Statement st = s.next();
-			    if (lang == null)
-					// we get them all
-					{
-						labels.add(st.getLiteral().getValue().toString());
-					}
-					else
-					{
-						if ((includeUndefined && (st.getLanguage() == null || st.getLanguage().trim().length() == 0)) || lang.equals(st.getLanguage()))
-							labels.add(st.getLiteral().getValue().toString());
+		
+		return getLiterals(r,RDFS.label,lang,includeUndefined);
 
-					}
-			}
-			return labels;
+	}
 
+	public List<String> getComments(Resource r,String lang,boolean includeUndefined)
+	{
+		return getLiterals(r,RDFS.comment,lang,includeUndefined);
 	}
 
 	public String getJoinedLabels(Resource r,String lang,boolean includeUndefined,String sep)
@@ -799,6 +829,8 @@ public class ModelWrapper {
 		else
 			return "N/A";
 	}
+
+	
 	
 	public void close()
 	{

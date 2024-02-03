@@ -1,5 +1,5 @@
-@prefix hy: <https://www.opengis.net/def/hy_features/ontology/hyf/>.
-@prefix gw: <http://geosciences.ca/def/groundwater#>.
+@prefix hy: <https://geoconnex.ca/id/onto/> .
+@prefix gw: <https://geoconnex.ca/id/onto/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcat: <http://www.w3.org/ns/dcat#>.
 @prefix ex: <http://gin.gw-info.net/example#>.

@@ -1,8 +1,8 @@
-@prefix gw: <http://geosciences.ca/def/groundwater#>.
+@prefix gw: <https://geoconnex.ca/id/onto/>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix hy: <https://www.opengis.net/def/hy_features/ontology/hyf/>.
+@prefix hy: <https://geoconnex.ca/id/onto/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix gsip: <https://geoconnex.ca/def/> .
+@prefix gsip: <https://geoconnex.ca/id/onto/>  .
 
 <https://geoconnex.ca/id/waterwells/qc.1981_4671_100> a gw:GW_Well;rdfs:label "Puits 1981_4671_100"@fr,
 "Water well 1981_4671_100"@en;

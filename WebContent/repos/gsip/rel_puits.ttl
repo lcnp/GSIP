@@ -1,4 +1,4 @@
-@prefix gsip: <https://geoconnex.ca/def/> .
+@prefix gsip: <https://geoconnex.ca/id/onto/>  .
 
 <https://geoconnex.ca/id/waterwells/qc.1978_29246_100> gsip:close-to <https://geoconnex.ca/id/waterwells/qc.1981_4671_100>.
 <https://geoconnex.ca/id/waterwells/qc.1978_29258_100> gsip:close-to <https://geoconnex.ca/id/waterwells/qc.1981_4671_100>.

@@ -1,4 +1,4 @@
-@prefix gw: <http://geosciences.ca/def/groundwater#>.
+@prefix gw: <https://geoconnex.ca/id/onto/> .
 @prefix geosparql:    <http://www.opengeospatial.org/standards/geosparql/> .
 
 <https://geoconnex.ca/id/waterwells/qc.1981_4671_100> geosparql:sfWithin <https://geoconnex.ca/id/hydrogeounits/Richelieu1>.

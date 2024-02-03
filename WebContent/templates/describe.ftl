@@ -1,8 +1,15 @@
 PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX schema: <https://schema.org/>
+<#if resource?starts_with("https://geoconnex.ca/id/onto/")>
+CONSTRUCT {<${resource}> ?p ?o. ?o ?p2 ?o2. <${resource}> ?p3 ?l.?o2 rdfs:label ?l2.}
+WHERE {<${resource}> ?p ?o. ?o ?p2 ?o2. <${resource}> ?p3 ?l. 
+ OPTIONAL {?o2 rdfs:label ?l2.}. 
+ FILTER (isLiteral(?l))}
+<#else> 
 CONSTRUCT {<${resource}> ?p ?o. ?o ?p2 ?o2. <${resource}> ?p3 ?l.?o2 rdfs:label ?l2.?o schema:geo ?g.?g ?pg ?pp.}
 WHERE {<${resource}> ?p ?o. ?o ?p2 ?o2. <${resource}> ?p3 ?l. 
  OPTIONAL {?o2 rdfs:label ?l2.}. 
  OPTIONAL {?o schema:geo ?g. ?g ?pg ?pp}. 
  FILTER (isLiteral(?l))}
+ </#if>
