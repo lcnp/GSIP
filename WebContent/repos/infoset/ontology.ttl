@@ -7,13 +7,13 @@ cgdn:MineralOccurrence rdf:type owl:Class;
 cgdn:searchable "true";
 rdfs:label "Mineral Occurrence"@en,"Indice minéralisé"@fr;
 rdfs:comment "CGDN Mineral Occurrence Class. Equivalent to ERML definition of mineral occurrence."@en,
-"Classe RDGC d'un indice minéralisé. Équivalent à la définition d'un indice minéralisé de ERML."@fr;
+"Classe RDGC d'un indice minéralisé. Équivalent à la définition d'un indice minéralisé de ERML."@fr.
 
 cgdn:Infoset rdf:type owl:Class;
 cgdn:searchable "true";
-rdfs:label "Infoset"@en[
+rdfs:label "Infoset"@en;
 rdfs:comment "CGDN Infoset Class. A collection of abstract information."@en,
-"Classe RDGC d'un Ensemble d'information. Une collection d'information abstraite."@fr;
+"Classe RDGC d'un Ensemble d'information. Une collection d'information abstraite."@fr.
  
 cgdn:partOf rdf:type owl:ObjectProperty,owl:TransitiveProperty;
     rdfs:label "part of"@en,"partie de"@fr;
@@ -23,17 +23,17 @@ cgdn:partOf rdf:type owl:ObjectProperty,owl:TransitiveProperty;
 cgdn:hasPart rdf:type owl:ObjectProperty,owl:TransitiveProperty;
     rdfs:label "has part"@en,"a comme partie"@fr;
     owl:inverseOf cgdn:partOf;
-    rdfs:comment "CGDN has part relation: between a whole and a part, e.g. a mineral occurrence (whole) divided into smaller pieces (parts), so the whole has parts that are the pieces"@en,
+    rdfs:comment "CGDN has part relation: between a whole and a part, e.g. a mineral occurrence (whole) divided into smaller pieces (parts), so the whole has parts that are the pieces."@en,
     "Relation RDGC 'a comme partie': entre un tout et une partie,  ex: un indice minéralisé (tout) divisé en elements plus petits (parties), de sorte que chaque elements sont une partie de l'ensemble."@fr.
 
 
 cgdn:concretizes rdf:type owl:ObjectProperty;
     rdfs:label "concretizes"@en,"concrétise"@fr;
     rdfs:comment "CGDN concretizes relation: holds between instances of data and info, or dataset and infoset."@en,
-    "Relation RDGC 'contrétise': lien entre les instances d'une information et d'une données, ou un Ensemble d'information et un jeu de données"@fr.
+    "Relation RDGC 'contrétise': lien entre les instances d'une information et d'une données, ou un Ensemble d'information et un jeu de données."@fr.
  
 cgdn:concretizedBy rdf:type owl:ObjectProperty;
     rdfs:label "concretizedBy"@en;
     owl:inverseOf cgdn:concretizes;
     rdfs:comment "CGDN concretizedBy relation: holds between instances of info and data, or infoset and dataset."@en,
-    "Relation RDGC 'contrétisé par': lien entre les instances d'une information et d'une données, ou un Ensemble d'information et un jeu de données"@fr.
+    "Relation RDGC 'contrétisé par': lien entre les instances d'une information et d'une données, ou un Ensemble d'information et un jeu de données."@fr.
