@@ -7,7 +7,7 @@
 @prefix cgdn: <id/onto/> .
 
 
-<info/Infoset/BC/MineralOccurrence>
+<info/Infoset/BC/MineralOccurrence/>
     a cgdn:Infoset;
     rdfs:label "CGDN BC mineral occurrence dataset"@en, "RDGC jeu de données d'indices minéralisés C-B"@fr ;
     schema:name "CGDN BC mineral occurrence dataset"@en, "RDGC jeu de données d'indices minéralisés C-B"@fr  ;
