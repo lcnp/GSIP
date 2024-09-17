@@ -1,8 +1,9 @@
 PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX schema: <https://schema.org/>
-CONSTRUCT {<${resource}> ?p ?o. ?o ?p2 ?o2. <${resource}> ?p3 ?l.?o2 rdfs:label ?l2.?o schema:geo ?g.?g ?pg ?pp.}
-WHERE {<${resource}> ?p ?o. ?o ?p2 ?o2. <${resource}> ?p3 ?l. 
+CONSTRUCT {<${resource?replace(' ','%20')}> ?p ?o. ?o ?p2 ?o2. <${resource?replace(' ','%20')}> ?p3 ?l.?o2 rdfs:label ?l2.?o schema:geo ?g.?g ?pg ?pp.}
+WHERE {<${resource?replace(' ','%20')}> ?p ?o. ?o ?p2 ?o2. <${resource?replace(' ','%20')}> ?p3 ?l. 
  OPTIONAL {?o2 rdfs:label ?l2.}. 
  OPTIONAL {?o schema:geo ?g. ?g ?pg ?pp}. 
+ 
  FILTER (isLiteral(?l))}
