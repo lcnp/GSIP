@@ -45,3 +45,35 @@ rmdir the folder, then
 ```console
 podman rm --force <CONTAINER_NAME>
 ```
+
+# rootlessport
+
+rootlessport is not terminated properly
+
+see https://devops.stackexchange.com/questions/17852/what-is-this-rootlessport-and-how-to-get-it-to-release-the-port-hold
+
+```console
+ps aux | grep rootlessport 
+```
+
+will give you the list of hungup process
+
+``` console
+eboisver@L-STF-A130028:~/GSIP$ ps aux | grep rootlessport
+eboisver    3615  0.0  0.5 1413244 48072 ?       Sl   04:20   0:01 containers-rootlessport
+eboisver    3623  0.0  0.6 1339768 49868 ?       Sl   04:20   0:00 containers-rootlessport-child
+eboisver   13561  0.0  0.6 1413500 48776 ?       Sl   04:54   0:00 containers-rootlessport
+eboisver   13569  0.0  0.5 1266036 47144 ?       Sl   04:54   0:00 containers-rootlessport-child
+eboisver   20982  0.0  0.0   4032  1960 pts/0    S+   05:49   0:00 grep --color=auto rootlessport
+```
+
+just kill the `containers-rootlessport` (the child will also be killed)
+
+eg: 
+
+```console 
+kill -9 3615
+```
+
+
+
