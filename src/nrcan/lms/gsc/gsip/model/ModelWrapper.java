@@ -33,6 +33,7 @@ import org.apache.jena.vocabulary.RDFS;
 import nrcan.lms.gsc.gsip.Manager;
 import nrcan.lms.gsc.gsip.conf.Configuration;
 import nrcan.lms.gsc.gsip.vocabulary.SCHEMA;
+import nrcan.lms.gsc.gsip.vocabulary.CGDN;
 
 
 
@@ -50,6 +51,8 @@ public class ModelWrapper {
 	private String locale = "en";
 	private Resource contextResource;
 	public static final String SCHEMAORG = "https://schema.org/";
+	// this is not not a very good design for long term, but this codebase might not be maintained in the long term
+
 	//TODO. I should get the default baseUri from context, not hardcoded
 	public ModelWrapper(Model m,String contextResource)
 	{
@@ -249,10 +252,52 @@ public class ModelWrapper {
 		{
 			Statement s = statements.next();
 			subjectOf.add(s.getResource());
+		
 		}
+		// add other Infosets related to current infoset
+		extractConcretizations(subjectOf);
 		return subjectOf;
+
 	}
 
+
+	/**
+	 * Add the concretizations of a resource to an existing list of datasets
+	 * see issue #12.
+	 */
+	private void extractConcretizations(List<Resource> currentList)
+	{
+		List<Resource> newDataset = new ArrayList<Resource>();
+		// for each element in the currentList (they are Datasets)
+		// I check if it has a concretize to find an Info
+		for(Resource dataset: currentList)
+		{
+			StmtIterator concretizesItr = dataset.listProperties(CGDN.concretizes);
+			while(concretizesItr.hasNext())
+			{
+				// get that resource
+				Resource infoset = concretizesItr.next().getResource();
+				// this guys should have a 'partOf'
+				StmtIterator partOfItr = infoset.listProperties(CGDN.partOf);
+				while(partOfItr.hasNext())
+				{
+					// this is the related Infoset
+					Resource relatedInfoSet = partOfItr.next().getResource();
+					// now, this guy has concretizedBy
+					StmtIterator concretizeByItr = relatedInfoSet.listProperties(CGDN.concretizedBy);
+					while(concretizeByItr.hasNext())
+					{
+						// this !
+						newDataset.add(concretizeByItr.next().getResource());
+
+					}
+				}
+			}
+		}
+
+		// add to the list
+		currentList.addAll(newDataset);
+	}
 	/**
 	 * return all providers for a given resource
 	 * @param res
