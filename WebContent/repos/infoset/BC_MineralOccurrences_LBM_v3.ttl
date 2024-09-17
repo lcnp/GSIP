@@ -1,4 +1,4 @@
-@base <geoconnex.ca/> .
+@base <https://geoconnex.ca/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dct: <http://purl.org/dc/terms/> .
@@ -265,6 +265,8 @@
         schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
         schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=cgi%3ACA-BC-BCGS-mineral-occurrences&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='092F%20%20015'"
     ] .
+
+   
 
 
 <info/MineralOccurrence/BC/082ENE001>
