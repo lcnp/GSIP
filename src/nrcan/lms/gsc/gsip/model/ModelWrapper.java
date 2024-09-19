@@ -254,6 +254,7 @@ public class ModelWrapper {
 			subjectOf.add(s.getResource());
 		
 		}
+		System.out.println("Got representations");
 		// add other Infosets related to current infoset
 		extractConcretizations(subjectOf);
 		return subjectOf;
@@ -267,28 +268,40 @@ public class ModelWrapper {
 	 */
 	private void extractConcretizations(List<Resource> currentList)
 	{
+		System.out.println("extracting");
 		List<Resource> newDataset = new ArrayList<Resource>();
 		// for each element in the currentList (they are Datasets)
 		// I check if it has a concretize to find an Info
 		for(Resource dataset: currentList)
 		{
+			System.out.println("current ds " + dataset.getLocalName());
 			StmtIterator concretizesItr = dataset.listProperties(CGDN.concretizes);
 			while(concretizesItr.hasNext())
 			{
-				// get that resource
-				Resource infoset = concretizesItr.next().getResource();
+				System.out.println("concretizes ");
+				//get a resource, but can be something else, will only keep going if it's a
+			
+				Resource infoset = getResourceFromItr(concretizesItr.next());
+				if (infoset == null) continue;
+				System.out.println(infoset.getLocalName());
 				// this guys should have a 'partOf'
 				StmtIterator partOfItr = infoset.listProperties(CGDN.partOf);
 				while(partOfItr.hasNext())
 				{
+					System.out.println("partOf ");
 					// this is the related Infoset
-					Resource relatedInfoSet = partOfItr.next().getResource();
+					Resource relatedInfoSet = getResourceFromItr(partOfItr.next());
+					if (relatedInfoSet == null) continue;
+					System.out.println("infoset " + relatedInfoSet.getLocalName());
 					// now, this guy has concretizedBy
 					StmtIterator concretizeByItr = relatedInfoSet.listProperties(CGDN.concretizedBy);
 					while(concretizeByItr.hasNext())
 					{
-						// this !
-						newDataset.add(concretizeByItr.next().getResource());
+						System.out.println("Dataset ");
+						Resource dsRes = getResourceFromItr(concretizeByItr.next());
+						System.out.println("dataset " + dsRes.getLocalName());
+						if (dsRes != null)
+							newDataset.add(dsRes);
 
 					}
 				}
@@ -297,6 +310,20 @@ public class ModelWrapper {
 
 		// add to the list
 		currentList.addAll(newDataset);
+	}
+
+	/**
+	 * return the Resource only if it's a Resource
+	 */
+	private static Resource getResourceFromItr(Statement s)
+	{
+		
+			RDFNode n = s.getObject();
+			System.out.println("NODE is " + (n.isResource()?" Resource ":"Not"));
+			if (n.isResource())
+				return n.asResource();
+			else return null;
+		
 	}
 	/**
 	 * return all providers for a given resource
@@ -308,6 +335,25 @@ public class ModelWrapper {
 		
 		return getRepresentations(res).stream().map(r -> getProviders(r)).flatMap(List::stream).distinct().collect(Collectors.toList());
 		
+	}
+
+	private String dumpStatement(Statement stmt)
+	{
+		StringBuilder sb = new StringBuilder();
+		Resource  subject   = stmt.getSubject();     // get the subject
+		Property  predicate = stmt.getPredicate();   // get the predicate
+		RDFNode   object    = stmt.getObject();      // get the object
+		sb.append(subject.toString());
+		sb.append(" " + predicate.toString() + " ");
+    if (object instanceof Resource) {
+		sb.append(object.toString());
+    } else {
+        // object is a literal
+        sb.append(" \"" + object.toString() + "\"");
+    }
+
+	return sb.toString();
+
 	}
 
 	/**

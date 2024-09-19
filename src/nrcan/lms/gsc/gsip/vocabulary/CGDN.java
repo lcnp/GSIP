@@ -7,7 +7,7 @@ import org.apache.jena.rdf.model.ResourceFactory;
 
 public class CGDN {
 	// code base on package org.apache.jena.vocabulary;
-	public static final String uri="https://geoconnex.ca/id/onto/";
+	public static final String uri="http://localhost:8080/gsip/id/onto/";
 	 protected static final Resource resource( String local )
      { return ResourceFactory.createResource( uri + local ); }
 
