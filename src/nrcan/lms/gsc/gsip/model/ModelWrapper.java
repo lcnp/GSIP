@@ -5,6 +5,8 @@ import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -268,38 +270,38 @@ public class ModelWrapper {
 	 */
 	private void extractConcretizations(List<Resource> currentList)
 	{
-		System.out.println("extracting");
-		List<Resource> newDataset = new ArrayList<Resource>();
+		
+		Set<Resource> newDataset = new HashSet<Resource>();
 		// for each element in the currentList (they are Datasets)
 		// I check if it has a concretize to find an Info
 		for(Resource dataset: currentList)
 		{
-			System.out.println("current ds " + dataset.getLocalName());
+			
 			StmtIterator concretizesItr = dataset.listProperties(CGDN.concretizes);
 			while(concretizesItr.hasNext())
 			{
-				System.out.println("concretizes ");
+				
 				//get a resource, but can be something else, will only keep going if it's a
 			
 				Resource infoset = getResourceFromItr(concretizesItr.next());
 				if (infoset == null) continue;
-				System.out.println(infoset.getLocalName());
+				
 				// this guys should have a 'partOf'
 				StmtIterator partOfItr = infoset.listProperties(CGDN.partOf);
 				while(partOfItr.hasNext())
 				{
-					System.out.println("partOf ");
+					
 					// this is the related Infoset
 					Resource relatedInfoSet = getResourceFromItr(partOfItr.next());
 					if (relatedInfoSet == null) continue;
-					System.out.println("infoset " + relatedInfoSet.getLocalName());
+					
 					// now, this guy has concretizedBy
 					StmtIterator concretizeByItr = relatedInfoSet.listProperties(CGDN.concretizedBy);
 					while(concretizeByItr.hasNext())
 					{
-						System.out.println("Dataset ");
+						
 						Resource dsRes = getResourceFromItr(concretizeByItr.next());
-						System.out.println("dataset " + dsRes.getLocalName());
+						
 						if (dsRes != null)
 							newDataset.add(dsRes);
 
@@ -319,7 +321,7 @@ public class ModelWrapper {
 	{
 		
 			RDFNode n = s.getObject();
-			System.out.println("NODE is " + (n.isResource()?" Resource ":"Not"));
+	
 			if (n.isResource())
 				return n.asResource();
 			else return null;
