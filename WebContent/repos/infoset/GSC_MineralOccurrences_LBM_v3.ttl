@@ -6,6 +6,11 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix cgdn: <id/onto/> .
 
+
+<https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210>
+rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Britannique"@fr.
+<https://nrcan.gc.ca/gsc> rdfs:label "Commission géologique du Canada"@fr,"Geological Survey of Canada"@en.
+
 <info/Infoset/NRCan/MineralOccurrence/>
     a cgdn:Infoset;
     rdfs:label "CGDN NRCan mineral occurrence dataset"@en, "RDGC jeu de données d'indices minéralisés RNCan"@fr ;
