@@ -22,7 +22,7 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         rdfs:label "CGDN NRCan mineral occurrence dataset in ERML"@en, "RDGC jeu de données d'indices minéralisés RNCan en ERML"@fr ;
         schema:name "CGDN NRCan mineral occurrence dataset in ERML"@en, "RDGC jeu de données d'indices minéralisés RNCan en ERML"@fr  ; 
         schema:provider <https://nrcan.gc.ca/gsc> ; 
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&SORTBY=identifier"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&SORTBY=identifier"
     ], [
         cgdn:concretizes <info/Infoset/NRCan/MineralOccurrence> ;
         dct:conformsTo "http://xmlns.earthresourceml.org/earthresourceml-lite/2.0" ;
@@ -30,14 +30,14 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         rdfs:label "CGDN NRCan mineral occurrence dataset in CSV"@en, "RDGC jeu de données d'indices minéralisés RNCan en CSV"@fr ; 
         schema:name "CGDN NRCan mineral occurrence dataset in CSV"@en, "RDGC jeu de données d'indices minéralisés RNCan en CSV"@fr ;  
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&SORTBY=identifier"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&SORTBY=identifier"
     ], [
         cgdn:concretizes <info/Infoset/NRCan/MineralOccurrence> ;
         dct:format "image/png" ;
         rdfs:label "CGDN NRCan mineral occurrence dataset in PNG"@en, "RDGC jeu de données d'indices minéralisés RNCan en PNG"@fr ;
         schema:name "CGDN NRCan mineral occurrence dataset in PNG"@en, "RDGC jeu de données d'indices minéralisés RNCan en PNG"@fr  ; 
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=erml%3A[LAYER NAME HERE],erml%3AMineralOccurrenceView&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-141,41.6,-52.5,83.2&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=erml%3A[LAYER NAME HERE],erml%3AMineralOccurrenceView&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-141,41.6,-52.5,83.2&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView"
         ] .
 
 #sameAs        
@@ -68,7 +68,7 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         ] ;
         schema:name "erml: Ellsworth; John", "NRCan Mineral Occurrence 30001383" @en, "RNCan Indice minéralisé 30001383" @fr ;
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='30001383'"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='30001383'"
     ], [
         cgdn:concretizes <info/MineralOccurrence/BC/082ENE012> ;
         dct:format "image/png" ;
@@ -80,7 +80,7 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         ] ;
         schema:name "png: Ellsworth; John", "NRCan Mineral Occurrence 30001383" @en, "RNCan Indice minéralisé 30001383" @fr ;
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=erml%3A[LAYER NAME HERE],erml%3AMineralOccurrenceView&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-119.486111%2C49.0075%2C-118.486111%2C50.0075&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=identifier='30001383'"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=erml%3A[LAYER NAME HERE],erml%3AMineralOccurrenceView&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-119.486111%2C49.0075%2C-118.486111%2C50.0075&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=identifier='30001383'"
     ], [
         cgdn:concretizes <info/MineralOccurrence/BC/082ENE012> ;
         dct:format "text/csv" ;
@@ -92,7 +92,7 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         ] ;
         schema:name "csv: Ellsworth; John", "NRCan Mineral Occurrence 30001383" @en, "RNCan Indice minéralisé 30001383" @fr ;
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001383'"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001383'"
     ] .
 
 
@@ -125,7 +125,7 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         ] ;
         schema:name "erml: King; Den; Tee; Mount Theon", "NRCan Mineral Occurrence 30001795" @en, "RNCan Indice minéralisé 30001795" @fr ;
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='30001795'"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='30001795'"
     ], [
         cgdn:concretizes <info/MineralOccurrence/NRCan/30001795> ;
         dct:format "image/png" ;
@@ -137,7 +137,7 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         ] ;
         schema:name "png: King; Den; Tee; Mount Theon", "NRCan Mineral Occurrence 30001795" @en, "RNCan Indice minéralisé 30001795" @fr ;
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=erml%3A[LAYER NAME HERE],erml%3AMineralOccurrenceView&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-127.66%2C54.89166667%2C-126.66%2C55.89166667&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=identifier='30001795'"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=erml%3A[LAYER NAME HERE],erml%3AMineralOccurrenceView&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-127.66%2C54.89166667%2C-126.66%2C55.89166667&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=identifier='30001795'"
     ], [
         cgdn:concretizes <info/MineralOccurrence/NRCan/30001795> ;
         dct:format "text/csv" ;
@@ -149,7 +149,7 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         ] ;
         schema:name "csv: King; Den; Tee; Mount Theon", "NRCan Mineral Occurrence 30001795" @en, "RNCan Indice minéralisé 30001795" @fr ;
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001795'"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001795'"
     ] .
 
 #partOf
@@ -181,7 +181,7 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         ] ;
         schema:name "erml: Off; Raid; Dot", "NRCan Mineral Occurrence 30001796" @en, "RNCan Indice minéralisé 30001796" @fr ;
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='30001796'"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='30001796'"
     ], [
         cgdn:concretizes <info/MineralOccurrence/NRCan/30001796> ;
         dct:format "image/png" ;
@@ -193,7 +193,7 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         ] ;
         schema:name "png: Off; Raid; Dot", "NRCan Mineral Occurrence 30001796" @en, "RNCan Indice minéralisé 30001796" @fr ;
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=erml%3A[LAYER NAME HERE],erml%3AMineralOccurrenceView&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-126.833333%2C54.575%2C-125.833333%2C55.575&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=identifier='30001796'"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=erml%3A[LAYER NAME HERE],erml%3AMineralOccurrenceView&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-126.833333%2C54.575%2C-125.833333%2C55.575&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=identifier='30001796'"
     ], [
         cgdn:concretizes <info/MineralOccurrence/NRCan/30001796> ;
         dct:format "text/csv" ;
@@ -205,7 +205,7 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         ] ;
         schema:name "csv: Off; Raid; Dot", "NRCan Mineral Occurrence 30001796" @en, "RNCan Indice minéralisé 30001796" @fr ;
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001796'"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001796'"
     ] .
 
 #noRelation
@@ -236,7 +236,7 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         ] ;
         schema:name "erml: E; O", "NRCan Mineral Occurrence 30001840" @en, "RNCan Indice minéralisé 30001840" @fr ;
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='30001840'"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='30001840'"
     ], [
         cgdn:concretizes <info/MineralOccurrence/NRCan/30001840> ;
         dct:format "image/png" ;
@@ -248,7 +248,7 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         ] ;
         schema:name "png: E; O", "NRCan Mineral Occurrence 30001840" @en, "RNCan Indice minéralisé 30001840" @fr ;
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=erml%3A[LAYER NAME HERE],erml%3AMineralOccurrenceView&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-125.3275%2C53.45833333%2C-124.3275%2C54.45833333&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=identifier='30001840'"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=erml%3A[LAYER NAME HERE],erml%3AMineralOccurrenceView&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-125.3275%2C53.45833333%2C-124.3275%2C54.45833333&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=identifier='30001840'"
     ], [
         cgdn:concretizes <info/MineralOccurrence/NRCan/30001840> ;
         dct:format "text/csv" ;
@@ -260,7 +260,7 @@ rdfs:label "Government of British Columbia"@en,"Gouvernement de la Colombie-Brit
         ] ;
         schema:name "csv: E; O", "NRCan Mineral Occurrence 30001840" @en, "RNCan Indice minéralisé 30001840" @fr ;
         schema:provider <https://nrcan.gc.ca/gsc> ;
-        schema:url "geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001840'"
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001840'"
     ] .
 
 <info/MineralOccurrence/BC/082ENE012>
