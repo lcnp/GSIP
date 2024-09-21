@@ -63,6 +63,24 @@ public class EmbeddedStore extends TripleStoreImpl {
 		
 	}
 
+	@Override
+	public Model getSparqlDescribeModel(String describe)
+	{
+		Model m = null;
+		try(RDFConnection conn = RDFConnectionFactory.connect(ds)){
+
+			
+			m = conn.queryDescribe(describe);
+			conn.close();
+			return m;
+			}
+			catch(Exception ex)
+			{
+				Logger.getAnonymousLogger().log(Level.SEVERE, "Failed to execute [" + describe + "]",ex);
+				return null;
+			}
+	}
+
 	private Dataset ds;
 	// at this point, expects a real path
 	public EmbeddedStore(String path)

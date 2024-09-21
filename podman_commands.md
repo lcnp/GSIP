@@ -1,5 +1,7 @@
 # Using podman
 
+Note that if you are using podman on Ubuntu, it's an older version (3.4.4) if it has a couple of issues (ie. rootlessport issue described further down on this page).
+
 To test GSIP on your desktop (podman running on WSL2)
 
 /!\ : this will work in local mode (static dataset loaded in the image in folder /repos/erml)
@@ -48,9 +50,12 @@ podman rm --force <CONTAINER_NAME>
 
 # rootlessport
 
-rootlessport is not terminated properly
+On older versions of podman, rootlessport is not terminated properly when a container is killed.
 
 see https://devops.stackexchange.com/questions/17852/what-is-this-rootlessport-and-how-to-get-it-to-release-the-port-hold
+
+The rootlessport must be terminated manually.  To get the process id
+
 
 ```console
 ps aux | grep rootlessport 

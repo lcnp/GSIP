@@ -34,8 +34,6 @@ import nrcan.lms.gsc.gsip.util.db.Database;
 import nrcan.lms.gsc.gsip.util.db.ResultSetReader;
 
 import org.apache.http.HttpStatus;
-import org.json.simple.JSONObject;
-
 import freemarker.template.utility.StringUtil;
 
 

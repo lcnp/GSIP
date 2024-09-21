@@ -6,6 +6,7 @@ import org.apache.jena.rdf.model.Model;
 public interface TripleStore {
 	
 	public Model getSparqlConstructModel(String sparql);
+	public Model getSparqlDescribeModel(String describe);
 	public Model describe(String resource);
 	public boolean resourceExists(String resource);
 	

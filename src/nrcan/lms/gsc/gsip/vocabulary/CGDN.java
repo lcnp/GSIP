@@ -9,7 +9,8 @@ public class CGDN {
 	// code base on package org.apache.jena.vocabulary;
     // GSIP_BASEURI=http://localhost:8080/gsip
 	//public static final String uri="http://localhost:8080/gsip/id/onto/";
-    public static final String uri= System.getenv("GSIP_BASEURI")+"/id/onto/";
+    //public static final String uri= System.getenv("GSIP_BASEURI")+"/id/onto/";
+    public static final String uri="https://geoconnex.ca/id/onto/";
 	 protected static final Resource resource( String local )
      { return ResourceFactory.createResource( uri + local ); }
 

@@ -1,29 +1,21 @@
 package nrcan.lms.gsc.gsip;
 
+import static nrcan.lms.gsc.gsip.Constants.APP_URI;
+
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.http.client.utils.URIBuilder;
 
 import jakarta.servlet.ServletContext;
-
-
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.PathSegment;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriInfo;
-
-
-import org.apache.http.client.utils.URIBuilder;
-
-import static nrcan.lms.gsc.gsip.Constants.BASE_URI;
-import static nrcan.lms.gsc.gsip.Constants.APP_URI;
-
 import nrcan.lms.gsc.gsip.conf.Configuration;
 
 @Path("/id/{seg:.*}")

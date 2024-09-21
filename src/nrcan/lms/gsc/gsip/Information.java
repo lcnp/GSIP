@@ -139,7 +139,7 @@ public class Information {
 			storedModel.read(TemplateManager.getInstance().getGraph(p, matchedTemplate),null,"TURTLE");
 
 		}
-	}
+		}
 
 
 		

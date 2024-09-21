@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <p:Templates xmlns:p="urn:x-gsip:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:x-gsip:1.0 ../schemas/DynamicTemplates.xsd ">
-
+    <!-- schema says that we need at least one entry -->
+    <p:template pattern="null" name="empty" template="" />
 </p:Templates>

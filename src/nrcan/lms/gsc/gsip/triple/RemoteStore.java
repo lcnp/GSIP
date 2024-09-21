@@ -35,6 +35,7 @@ public class RemoteStore extends TripleStoreImpl {
 	}
 	
 	// perform a sparql query on a data store
+	@Override
 	public Model getSparqlConstructModel(String sparql)
 	{
 		 Query query = QueryFactory.create(sparql);
@@ -49,6 +50,22 @@ public class RemoteStore extends TripleStoreImpl {
 		
 			 
 	}
+
+	public Model getSparqlDescribeModel(String describe)
+	{
+		
+		Query query = QueryFactory.create(describe);
+			  try ( RDFConnection conn = RDFConnectionFactory.connect(sparqlRepo) ) {
+		          return  conn.queryDescribe(query);
+		        }
+		 catch(Exception ex)
+		 {
+			 Logger.getAnonymousLogger().log(Level.SEVERE, "failed to execute [\n" + describe + "]\n from " + sparqlRepo ,ex);
+			 return null;
+		 }
+		
+	}
+
 	
 		
 

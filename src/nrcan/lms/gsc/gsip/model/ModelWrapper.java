@@ -241,14 +241,22 @@ public class ModelWrapper {
 	}
 	
 	/**
+	 * By default, it this returns SubjectOf
+	 * @param res
+	 * @return
+	 */
+
+	
+
+	/**
 	 * Get a list of representations (subjectOf resources) for this resource
 	 * @param res data resource, can be a blank node
 	 * @return
 	 */
-	private List<Resource> getRepresentations(Resource res)
+	private List<Resource> getRepresentations(Resource res,Property p)
 	{
 		//Logger.getAnonymousLogger().log(Level.INFO,"subjectOf "+ res.getURI());
-		StmtIterator statements = res.listProperties(SCHEMA.subjectOf);
+		StmtIterator statements = res.listProperties(p);
 		List<Resource> subjectOf = new ArrayList<Resource>();
 		while(statements.hasNext())
 		{
@@ -258,7 +266,7 @@ public class ModelWrapper {
 		}
 		System.out.println("Got representations");
 		// add other Infosets related to current infoset
-		extractConcretizations(subjectOf);
+		//extractConcretizations(subjectOf);
 		return subjectOf;
 
 	}
@@ -329,14 +337,26 @@ public class ModelWrapper {
 	}
 	/**
 	 * return all providers for a given resource
-	 * @param res
+	 * @param res a Resource that has a linkage to a Dataset, either though subjectOf or concretizedBy
 	 * @return
 	 */
-	public List<Resource> getAllProviders(Resource res)
+	public List<Resource> getAllProviders(Resource res,boolean isNir)
 	{
 		
-		return getRepresentations(res).stream().map(r -> getProviders(r)).flatMap(List::stream).distinct().collect(Collectors.toList());
+		return getRepresentations(res,getDsProperty(isNir)).stream().map(r -> getProviders(r)).flatMap(List::stream).distinct().collect(Collectors.toList());
 		
+	}
+
+
+	/**
+	 * return the correct property depending if the resource is a real thing or an info.
+	 * 
+	 * @param isNir
+	 * @return
+	 */
+	private Property getDsProperty(boolean isNir)
+	{
+		return isNir?SCHEMA.subjectOf:CGDN.concretizedBy;
 	}
 
 	private String dumpStatement(Statement stmt)
@@ -362,9 +382,9 @@ public class ModelWrapper {
 	 * return all providers for the context resource
 	 * @return
 	 */
-	public List<Resource> getAllProviders()
+	public List<Resource> getAllProviders(boolean isNir)
 	{
-		return getRepresentations().stream().map(r -> getProviders(r)).flatMap(List::stream).distinct().collect(Collectors.toList());
+		return getRepresentations(isNir).stream().map(r -> getProviders(r)).flatMap(List::stream).distinct().collect(Collectors.toList());
 	}
 
 	/**
@@ -372,9 +392,9 @@ public class ModelWrapper {
 	 * @param provider
 	 * @return
 	 */
-	public List<Resource> getRepresentationByProvider(Resource provider)
+	public List<Resource> getRepresentationByProvider(Resource provider,boolean isNir)
 	{
-		return getRepresentations().stream().filter(m -> getProviders(m).contains(provider)).collect(Collectors.toList());
+		return getRepresentations(isNir).stream().filter(m -> getProviders(m).contains(provider)).collect(Collectors.toList());
 	}
 
 	/**
@@ -383,11 +403,16 @@ public class ModelWrapper {
 	 * @param provider
 	 * @return
 	 */
-	public List<Resource> getRepresentationByProvider(Resource context,Resource provider)
+	public List<Resource> getRepresentationByProvider(Resource context,Resource provider,boolean isNir)
 	{
-		return getRepresentations(context).stream().filter(m -> getProviders(m).contains(provider)).collect(Collectors.toList());
+		return getRepresentations(context,getDsProperty(isNir)).stream().filter(m -> getProviders(m).contains(provider)).collect(Collectors.toList());
 	}
 	
+	/**
+	 * 
+	 * @param res a Dataset Resource
+	 * @return
+	 */
 	public List<Resource> getProviders(Resource res)
 	{
 		StmtIterator statements = res.listProperties(SCHEMA.provider);
@@ -400,6 +425,11 @@ public class ModelWrapper {
 		return subjectOf;
 	}
 	
+	/**
+	 * 
+	 * @param res a Dataset
+	 * @return
+	 */
 	public String getProvider(Resource res)
 	{
 		Resource p = res.getPropertyResourceValue(SCHEMA.provider);
@@ -415,22 +445,23 @@ public class ModelWrapper {
 	 * Get a list of representations (subjectOf resources) for the context resource
 	 * @return
 	 */
-	public List<Resource> getRepresentations()
+	public List<Resource> getRepresentations(boolean isNir)
 	{
 		//Logger.getAnonymousLogger().log(Level.INFO, contextResource.getURI());
-		return getRepresentations(this.contextResource.getURI());
+		return getRepresentations(this.contextResource.getURI(),isNir);
 	}
 
 	/**
 	 * Get a list of representations for a resource, expressed as a string
 	 * @param res
+	 * @param isNir is this a /id/ ?
 	 * @return
 	 */
-	public List<Resource> getRepresentations(String res)
+	public List<Resource> getRepresentations(String res,boolean isNir)
 	{
-		if (res == null) return getRepresentations();
+		if (res == null) return getRepresentations(isNir);
 		Resource r = model.getResource(getFullUri(res));
-		return getRepresentations(r);
+		return getRepresentations(r,getDsProperty(isNir));
 	}
 	
 	/**

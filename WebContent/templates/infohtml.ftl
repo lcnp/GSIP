@@ -154,7 +154,7 @@ ${model.encode("JSON-LD")}
 							<#assign collapsableShow_arrow = 'arrow_drop_down'>
 							<div class="accordion" id="accordionExample">
 							
-							<#list model.getAllProviders() as p>
+							<#list model.getAllProviders(true) as p>
 							
 
 							<#if collapsableId == 0>
@@ -177,7 +177,7 @@ ${model.encode("JSON-LD")}
 								
 								<div id="collapse_${collapsableId}" class="collapse ${collapsableShow}" aria-labelledby="heading_${collapsableId}" data-parent="#accordionExample">
 								<div class="card-body">
-								<#list model.getRepresentationByProvider(p) as r>
+								<#list model.getRepresentationByProvider(p,true) as r>
 								<div class="representation">
 								<table width="100%">
 

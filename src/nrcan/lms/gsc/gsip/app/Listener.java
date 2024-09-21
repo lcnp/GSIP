@@ -7,9 +7,6 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 
 import nrcan.lms.gsc.gsip.Manager;
-import nrcan.lms.gsc.gsip.conf.Configuration;
-import nrcan.lms.gsc.gsip.data.DataManager;
-import nrcan.lms.gsc.gsip.template.TemplateManager;
 
 /**
  * 
