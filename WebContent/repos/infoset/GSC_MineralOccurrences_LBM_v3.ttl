@@ -259,13 +259,13 @@
     ] .
 
 <info/MineralOccurrence/BC/082ENE012>
-    cgdn:partOf <info/Infoset/NRCan/MineralOccurrence/> .
+    cgdn:partOf <info/Infoset/NRCan/MineralOccurrence> .
 
 <info/MineralOccurrence/NRCan/30001795>
-    cgdn:partOf <info/Infoset/NRCan/MineralOccurrence/> .
+    cgdn:partOf <info/Infoset/NRCan/MineralOccurrence> .
 
 <info/MineralOccurrence/NRCan/30001796>
-    cgdn:partOf <info/Infoset/NRCan/MineralOccurrence/> .
+    cgdn:partOf <info/Infoset/NRCan/MineralOccurrence> .
 
 <info/MineralOccurrence/NRCan/30001840>
-    cgdn:partOf <info/Infoset/NRCan/MineralOccurrence/> .
+    cgdn:partOf <info/Infoset/NRCan/MineralOccurrence> .

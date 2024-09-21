@@ -268,13 +268,13 @@
 
 
 <info/MineralOccurrence/BC/082ENE001>
-    cgdn:partOf <info/Infoset/BC/MineralOccurrence/> .
+    cgdn:partOf <info/Infoset/BC/MineralOccurrence> .
 
 <info/MineralOccurrence/BC/082ENE012>
-    cgdn:partOf <info/Infoset/BC/MineralOccurrence/> .
+    cgdn:partOf <info/Infoset/BC/MineralOccurrence> .
 
 <info/MineralOccurrence/BC/082N%20%20037>
-    cgdn:partOf <info/Dataset/BC/MineralOccurrence/> .
+    cgdn:partOf <info/Dataset/BC/MineralOccurrence> .
 
 <info/MineralOccurrence/BC/092F%20%20015>
-    cgdn:partOf <info/Dataset/BC/MineralOccurrence/> .
+    cgdn:partOf <info/Dataset/BC/MineralOccurrence> .
