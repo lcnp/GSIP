@@ -4,7 +4,7 @@ import org.apache.jena.rdf.model.Model;
 
 import nrcan.lms.gsc.gsip.model.ModelUtil;
 
-public class TripleStoreImpl implements TripleStore {
+public abstract class TripleStoreImpl implements TripleStore {
 
 	@Override
 	public void close() {
@@ -28,11 +28,6 @@ public class TripleStoreImpl implements TripleStore {
 		return !mdl.isEmpty();
 	}
 
-	@Override
-	public Model getSparqlConstructModel(String sparql) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	
 	
