@@ -5,23 +5,8 @@ import static nrcan.lms.gsc.gsip.Constants.TEXT_TURTLE;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.StringWriter;
-import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
-
-
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.HeaderParam;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.QueryParam;
-import jakarta.ws.rs.core.Context;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.StreamingOutput;
-import jakarta.ws.rs.core.UriInfo;
-
 
 import org.apache.http.HttpStatus;
 import org.apache.jena.rdf.model.Model;
@@ -32,6 +17,16 @@ import freemarker.core.ParseException;
 import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateNotFoundException;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.HeaderParam;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.StreamingOutput;
+import jakarta.ws.rs.core.UriInfo;
 import nrcan.lms.gsc.gsip.model.ModelUtil;
 import nrcan.lms.gsc.gsip.template.TemplateManager;
 import nrcan.lms.gsc.gsip.triple.TripleStore;
