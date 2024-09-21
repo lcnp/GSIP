@@ -23,6 +23,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.riot.Lang;
@@ -53,6 +54,11 @@ public class ModelWrapper {
 	private String locale = "en";
 	private Resource contextResource;
 	public static final String SCHEMAORG = "https://schema.org/";
+	// I cannot use the real properties under Geosconnex here, they are converted to local
+	public static final Property concretizedBy =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/onto/", "concretizedBy" );
+	public static final Property concretizes =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/onto/", "concretizes" );
+	public static final Property partOf =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/onto/", "partOf" );
+	
 	// this is not not a very good design for long term, but this codebase might not be maintained in the long term
 
 	//TODO. I should get the default baseUri from context, not hardcoded
@@ -264,7 +270,7 @@ public class ModelWrapper {
 			subjectOf.add(s.getResource());
 		
 		}
-		System.out.println("Got representations");
+		//System.out.println("Got representations");
 		// add other Infosets related to current infoset
 		//extractConcretizations(subjectOf);
 		return subjectOf;
@@ -272,20 +278,35 @@ public class ModelWrapper {
 	}
 
 
+	public List<Link> getInfosetLinks(Resource ds)
+	{
+		System.out.println("looking dataset for " + ds.getURI());
+		//Resource ds = model.getResource(dataset);
+		Set<Resource> infosets = getConcretizations(ds);
+		System.out.println("we have " + infosets.size() + " infosets");
+		List<Link> links = new ArrayList<>();
+		for(Resource r:infosets)
+		{
+			Link infoSetLink = new Link("Dataset", r.getURI(), this.getLastPart(r.getURI()));
+			links.add(infoSetLink);
+		}
+		return links;
+
+	}
+
 	/**
 	 * Add the concretizations of a resource to an existing list of datasets
 	 * see issue #12.
 	 */
-	private void extractConcretizations(List<Resource> currentList)
+	private Set<Resource> getConcretizations(Resource dataset)
 	{
-		
-		Set<Resource> newDataset = new HashSet<Resource>();
+		// we assume 
+		Set<Resource> infosets = new HashSet<Resource>();
 		// for each element in the currentList (they are Datasets)
 		// I check if it has a concretize to find an Info
-		for(Resource dataset: currentList)
-		{
+	
 			
-			StmtIterator concretizesItr = dataset.listProperties(CGDN.concretizes);
+			StmtIterator concretizesItr = dataset.listProperties(concretizes);
 			while(concretizesItr.hasNext())
 			{
 				
@@ -295,31 +316,19 @@ public class ModelWrapper {
 				if (infoset == null) continue;
 				
 				// this guys should have a 'partOf'
-				StmtIterator partOfItr = infoset.listProperties(CGDN.partOf);
+				StmtIterator partOfItr = infoset.listProperties(partOf);
 				while(partOfItr.hasNext())
 				{
 					
 					// this is the related Infoset
 					Resource relatedInfoSet = getResourceFromItr(partOfItr.next());
 					if (relatedInfoSet == null) continue;
+					infosets.add(relatedInfoSet);
 					
-					// now, this guy has concretizedBy
-					StmtIterator concretizeByItr = relatedInfoSet.listProperties(CGDN.concretizedBy);
-					while(concretizeByItr.hasNext())
-					{
-						
-						Resource dsRes = getResourceFromItr(concretizeByItr.next());
-						
-						if (dsRes != null)
-							newDataset.add(dsRes);
-
-					}
 				}
 			}
-		}
-
-		// add to the list
-		currentList.addAll(newDataset);
+		
+			return infosets;
 	}
 
 	/**
@@ -356,7 +365,7 @@ public class ModelWrapper {
 	 */
 	private Property getDsProperty(boolean isNir)
 	{
-		return isNir?SCHEMA.subjectOf:CGDN.concretizedBy;
+		return isNir?SCHEMA.subjectOf:concretizedBy;
 	}
 
 	private String dumpStatement(Statement stmt)
@@ -867,7 +876,7 @@ public class ModelWrapper {
 		
 	}
 	/**
-	 * Get the URLs for the remove resource (we assume this is a data node)
+	 * Get the URLs for the remote resource (we assume this is a data node)
 	 * @param res. data resource. can be a blank node
 	 * @param useResourceUri.  if url is missing and the resource is not a blank node, use the resource URL
 	 * @return

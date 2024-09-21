@@ -200,9 +200,12 @@ ${model.encode("JSON-LD")}
 												<#default><img class="img-fluid" title="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" alt="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" src="${host}/app/img/othericon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/></#switch></a></#assign>
 									<#assign links = links + [link]>
 									</#list>
-									<tr><td colspan=2>
+									<tr><td colspan=1>
 									Formats :  ${links?join(" ")}
-									</td></tr>
+									</td><td><#list model.getInfosetLinks(r) as infoset> <a
+											href="${infoset.getUrl()}?lang=${locale}"
+											title="${infoset.getUrl()}">&gt;&gt;${infoset.getResLabel()}</a>
+											</#list></td></tr>
 								</#list> <#-- representation-->
 								</table>
 								</div> <#-- class representation -->
