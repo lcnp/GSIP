@@ -34,9 +34,15 @@ import java.util.logging.Logger;
 
 
 import org.apache.http.HttpStatus;
+import org.apache.jena.query.Query;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QueryFactory;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
+import org.apache.jena.sparql.exec.QueryExec;
 
 import freemarker.core.ParseException;
 import freemarker.template.MalformedTemplateNameException;
@@ -100,33 +106,45 @@ public class Information {
 		
 		// we need to fetch back the original uri, wich is just the current URL, but replacing the /info/ by /id/
 		// TODO: not very robust, but this info page MUST be about an /id/ page with the same structure
-		
+		// Sept 2024.  Now non /id/ can exists on their own
+		TripleStore j = Manager.getInstance().getTripleStore();
 		String idUri = this.getIdResource(uriInfo);
+
+		boolean isResourceNir = this.isNir(j, idUri);
+
+		
 		// get a model from the sparql endpoint
 		try
 		{
-		String sparql = constructSparql(idUri);
+		String sparql = constructSparql(idUri,isResourceNir);
 		//Logger.getAnonymousLogger().log(Level.INFO,sparql);
 		// server is specified in servlet initialisation
 
 		// get model from triple store
-		TripleStore j = Manager.getInstance().getTripleStore();
+		
 		Model storedModel = j.getSparqlConstructModel(sparql);
+
 		// this URI might match a pattern in the template manager
+		
+		if (TemplateManager.getInstance() != null) // it can happen
+		{
 		String matchedTemplate = TemplateManager.getInstance().getMatchingTemplate(idUri,!storedModel.isEmpty());
 		if (matchedTemplate != null)
 		{
+			
 			Map<String,Object> p = getParameters(uriInfo,idUri); // build from already parsed information
 			// add info about emptyness
 			p.put("hasStatements", storedModel.isEmpty()?"false":"true");
-			p.put("model", new ModelWrapper(storedModel,idUri,locale));
+			p.put("model", new ModelWrapper(storedModel,idUri,locale));	
 			storedModel.read(TemplateManager.getInstance().getGraph(p, matchedTemplate),null,"TURTLE");
+
 		}
-		
-		// if the model is still empty, return a 404
+	}
+
+
 		
 		if (storedModel.isEmpty()) 
-				return Response.status(HttpStatus.SC_NOT_FOUND).entity("resource " + idUri + " not found").build();
+				return Response.status(HttpStatus.SC_NOT_FOUND).type(MediaType.TEXT_PLAIN).entity("resource " + idUri + " not found").build();
 		//TODO: add a validation to check if persitentURI is defined in a prefix (not sure what will happen at this point)
 		// serialize
 		switch(of)
@@ -142,17 +160,27 @@ public class Information {
 		catch(Exception ex)
 		{
 			// boom, return an error message
-			Response.status(HttpStatus.SC_BAD_REQUEST).entity("Bad request for " + idUri + "\n" + ex.getMessage()).build();
+			return Response.status(HttpStatus.SC_BAD_REQUEST).entity("Bad request for " + idUri + "\n" + ex.getMessage()).build();
 		}
 		
 		
 		// serialize to the correct format
 		
 		
-		return null;
+		//return null;
 	}
 	
-	
+	/**
+		 * Check if this resource is a /id/ afterall. it might be an info (an Infoset).  This is highly dependant of Geoconnex logic
+		 * it highly depend on the fact the implicit relationship between NIR and IR follow the expected logic.
+		 * If there is a single NIR event in as an object, this will assume there is a NIR
+		 * Resource nir: Non information uri
+		 * 
+		 */
+		private boolean isNir(TripleStore ts,String nir)
+		{
+			return ts.resourceExists(nir);
+		}
 	
 	/**
 	 * serialize in HTML using FreeMarker
@@ -186,7 +214,7 @@ public class Information {
 		//TODO: serialize the output as HTML document
 		if (out == null)
 		{
-			return Response.noContent().build();
+			return Response.noContent().entity("The page is empty").build();
 		}else
 			
 			return Response.ok(out).type(MediaType.TEXT_HTML_TYPE).build();
@@ -263,8 +291,7 @@ public class Information {
 			if (first) {first = false; continue;}
 			infoUri.append("/"+segment.getPath());
 		}
-		//Logger.getAnonymousLogger().log(Level.INFO, "processed URI:" + uriInfo.getPath());
-		//Logger.getAnonymousLogger().log(Level.INFO,"/id/ URI:" + infoUri);
+	
 		return infoUri.toString();
 		// 
 	}
@@ -287,13 +314,13 @@ public class Information {
 	// Added supress warning because compiled expected generics (<T> templates) and
 	// Jena does not use any in the example code.  need to test it, but for now just shut the compiler up
 	@SuppressWarnings("unchecked")
-	public  static String constructSparql(String resource) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException
+	public  static String constructSparql(String resource,boolean isNir) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException
 	{
 		TemplateManager tm = TemplateManager.getInstance();
 		@SuppressWarnings("rawtypes")
 		Map p = new HashMap<String,Object>();
 		p.put("resource", resource);
-		return tm.transform(p,"describe.ftl" );
+		return tm.transform(p,isNir?"describe.ftl":"describe_info.ftl" );
 		
 	}
 	
