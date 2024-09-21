@@ -1,4 +1,4 @@
-@base <https://geoconnex.ca/> .
+@base <geoconnex.ca/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dct: <http://purl.org/dc/terms/> .
@@ -7,7 +7,7 @@
 @prefix cgdn: <id/onto/> .
 
 
-<info/Infoset/BC/MineralOccurrence/>
+<info/Infoset/BC/MineralOccurrence>
     a cgdn:Infoset;
     rdfs:label "CGDN BC mineral occurrence dataset"@en, "RDGC jeu de données d'indices minéralisés C-B"@fr ;
     schema:name "CGDN BC mineral occurrence dataset"@en, "RDGC jeu de données d'indices minéralisés C-B"@fr  ;
@@ -266,14 +266,12 @@
         schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=cgi%3ACA-BC-BCGS-mineral-occurrences&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='092F%20%20015'"
     ] .
 
-   
-
 
 <info/MineralOccurrence/BC/082ENE001>
-    cgdn:partOf <info/Dataset/BC/MineralOccurrence/> .
+    cgdn:partOf <info/Infoset/BC/MineralOccurrence/> .
 
 <info/MineralOccurrence/BC/082ENE012>
-    cgdn:partOf <info/Dataset/BC/MineralOccurrence/> .
+    cgdn:partOf <info/Infoset/BC/MineralOccurrence/> .
 
 <info/MineralOccurrence/BC/082N%20%20037>
     cgdn:partOf <info/Dataset/BC/MineralOccurrence/> .
