@@ -1,0 +1,23 @@
+= Cached MVn
+
+The default Dockerfile spawn a fresh mvn container with an empty cache, therefore, each build pull all mvn dependencies at every build. Which is good for deployement , takes a lot of time when you debug and test often
+
+`Dockerfile_mvn` can be used to create a decent pre-cache version of maven and create an image with most libraries in the image cache.
+The `Dockerfile_cache` will use this image instead of the fresh image and do minimal updates, speeding the build process.
+
+== Create the mvn container
+
+`podman build -t mnv -f Dockerfile_mvn` (important, the name must be `mvn` otherwise you will need ti change the other Dockerfile below)
+
+This will create an image (mvn) that will be used by `Dockerfile_cache` instead of the fresh image.
+
+== Building using the cache
+
+will use the `mvn` image that has a bunch 
+`podman build -t mnv -f Dockerfile_cache`
+
+This does the same job as 
+
+`podman build -t mnv .`
+
+just faster.
