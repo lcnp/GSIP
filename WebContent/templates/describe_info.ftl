@@ -13,6 +13,4 @@ CONSTRUCT {
 WHERE {<${resource?replace(' ','%20')}> ?p ?o. ?o ?p2 ?o2. <${resource?replace(' ','%20')}> ?p3 ?l. 
  OPTIONAL {?o2 rdfs:label ?l2.}. 
  OPTIONAL {?o schema:geo ?g. ?g ?pg ?pp}. 
-
- 
  FILTER (isLiteral(?l))}

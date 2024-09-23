@@ -40,6 +40,7 @@ import nrcan.lms.gsc.gsip.template.TemplateManager;
 public class Configuration {
 	public static final String DEFAULT_LANGUAGE = "en";
 	public static final String HTML_TEMPLATE = "infoTemplate";
+	public static final String HTML_TEMPLATE_INFO = "infoInfoTemplate";
 	public static final String CONF_FILE = "conf/configuration.xml";
 	private static final String GSIP_BASEURI = "http://localhost:8080";
 	private static final String GSIP_APP = "http://localhost:8080/gsip";
@@ -52,6 +53,7 @@ public class Configuration {
 	// list of alternative HTML templates 
 	private Hashtable<String,String> htmlTemplate = null;
 	private String defaultHtmlTemplate = null;
+	private String defaultHtmlInfoTemplate = null;
 	private ConfigurationType conf = null;
 	// check if we need to replace persistant URI with a baseURI
 	private boolean needReplacePersistant =false; 
@@ -223,9 +225,18 @@ public class Configuration {
 	    		}
 	    		else
 	    			this.defaultHtmlTemplate = p.value;
+				continue;
 	    	}
-	    	else
-	    		parameters.put(p.name, p.value);
+
+			if (HTML_TEMPLATE_INFO.equals(p.name))
+			{
+				// we only have one htmlInfoInfo
+				this.defaultHtmlInfoTemplate = p.value;
+				continue;
+			}
+	    	
+			// otherwise, it's a regulare parameter
+	    	parameters.put(p.name, p.value);
 	    }
 	    
 	    // check if we need to change persistant
@@ -233,12 +244,9 @@ public class Configuration {
 		// TODO, this does not substitute missing baseURI with the ServletContext URI
 		String baseUri = getParameterAsString(Constants.BASE_URI,null);
 		this.needReplacePersistant = !persistentUri.equals(baseUri);
-		
-		
-
-	    
-	   
 	}
+
+	
 	
 	public boolean getNeedReplacePersistant()
 	{
@@ -289,14 +297,23 @@ public class Configuration {
 		return parameters;
 	}
 
+	public String getInfoHtmlTemplate()
+	{
+		if (this.defaultHtmlInfoTemplate != null)
+		 return this.defaultHtmlInfoTemplate;
+		else 
+		return getHtmlTemplate(null);
+	}
+
 	// get a HTML template from a URI tail
 	public String getHtmlTemplate(String uriTail)
 	{
-		for(String p:this.htmlTemplate.keySet())
-		{
-			if (Pattern.matches(p, uriTail))
-			return htmlTemplate.get(p);
-		}
+		if (uriTail != null)
+			for(String p:this.htmlTemplate.keySet())
+			{
+				if (Pattern.matches(p, uriTail))
+				return htmlTemplate.get(p);
+			}
 		// fall back to default
 		if (this.defaultHtmlTemplate == null)
 		{

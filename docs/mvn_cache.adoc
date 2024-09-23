@@ -1,4 +1,4 @@
-= Cached MVn
+= Cached mvn
 
 The default Dockerfile spawn a fresh mvn container with an empty cache, therefore, each build pull all mvn dependencies at every build. Which is good for deployement , takes a lot of time when you debug and test often
 

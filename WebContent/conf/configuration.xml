@@ -63,7 +63,8 @@
 <!-- 		<p:parameter name="triplestore">http://localhost:8080/fuseki/gsip_file</p:parameter> -->
 			<p:parameter name="triplestore">${GSIP_TRIPLESTORE}</p:parameter>
 
-		<p:parameter name="infoTemplate">infohtml.ftl</p:parameter> <!--  default  -->
+		<p:parameter name="infoTemplate">infohtml.ftl</p:parameter><!--  info from id  -->
+		<p:parameter name="infoInfoTemplate">infoinfohtml.ftl</p:parameter> <!-- info from info -->
 		<!--  special template for geologic units (pattern starts after /id/) -->
 		<p:parameter name="infoTemplate" pattern="http.*/geologicUnits/.*">geounits.ftl</p:parameter>
 		

@@ -108,9 +108,13 @@ public class Information {
 		// TODO: not very robust, but this info page MUST be about an /id/ page with the same structure
 		// Sept 2024.  Now non /id/ can exists on their own
 		TripleStore j = Manager.getInstance().getTripleStore();
-		String idUri = this.getIdResource(uriInfo);
+		String idUri = this.getIdResource(uriInfo,true);
 
 		boolean isResourceNir = this.isNir(j, idUri);
+
+		// if not, get the /info
+
+		if (!isResourceNir) idUri = this.getIdResource(uriInfo, false);
 
 		
 		// get a model from the sparql endpoint
@@ -153,7 +157,7 @@ public class Information {
 			case ioRDFXML : return serializeModel(storedModel,Lang.RDFXML,APPLICATION_RDFXML);
 			case ioJSONLD : return ModelUtil.serializeJSONLD(storedModel,callback);
 			case ioXML : return serializeModel(storedModel,Lang.RDFXML,MediaType.TEXT_XML);
-			default : return serializeHTML(storedModel,idUri,locale);
+			default : return serializeHTML(storedModel,idUri,locale,isResourceNir);
 		}
 		
 		}
@@ -187,11 +191,11 @@ public class Information {
 	 * @param model
 	 * @return
 	 */
-	private Response serializeHTML(Model model,String resource,String locale)
+	private Response serializeHTML(Model model,String resource,String locale,boolean isNir)
 	{
 		ModelWrapper mw = new ModelWrapper(ModelUtil.getAlternateModel(model),ModelUtil.getAlternateResource(resource),locale);
 		// get the template used to create 
-		String htmlTemplate = Configuration.getInstance().getHtmlTemplate(mw.getContextResourceUri());
+		String htmlTemplate = isNir?Configuration.getInstance().getHtmlTemplate(mw.getContextResourceUri()):Configuration.getInstance().getInfoHtmlTemplate();
 		String out = null;
 		try{
 			Map<String,Object> p = new HashMap<String,Object>();
@@ -273,7 +277,7 @@ public class Information {
 		return mp;
 	}
 	
-	public  String getIdResource(UriInfo uriInfo)
+	public  String getIdResource(UriInfo uriInfo,boolean isNir)
 	{
 		String userDefinedNir = applyNirTemplate(uriInfo.getAbsolutePath().toString());
 		if (userDefinedNir != null)
@@ -284,7 +288,7 @@ public class Information {
 		// get the /id/ resource and convert to persistant
 		String persistentUri = Manager.getInstance().getConfiguration().getParameterAsString(PERSISTENT_URI, BASE_URI);
 		// this one is called by /info/, but the real NIR is /id/
-		StringBuilder infoUri = new StringBuilder(persistentUri + "/id");
+		StringBuilder infoUri = new StringBuilder(persistentUri + "/" + (isNir?"id":"info"));
 		boolean first = true;
 		for(PathSegment segment: uriInfo.getPathSegments())
 		{
@@ -295,6 +299,8 @@ public class Information {
 		return infoUri.toString();
 		// 
 	}
+
+	
 	
 	
 	private String applyNirTemplate(String mir)
