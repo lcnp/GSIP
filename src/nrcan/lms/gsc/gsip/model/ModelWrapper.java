@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.Set;
 import java.util.HashSet;
@@ -238,14 +239,34 @@ public class ModelWrapper {
 	public String getJoinedLabels(Resource r,String lang,boolean includeUndefined,String sep)
 	{
 	
-		return	StringUtils.join(getLabels(r,lang,includeUndefined),sep);
+		List<String> lbl = getLabels(r,lang,includeUndefined);
+		lbl.sort(new LauraLabelComparator());
+		return	StringUtils.join(lbl,sep);
 	}
 
 	public String getJoinedLabels(String lang,boolean includeUndefined,String sep)
 	{
-		return	StringUtils.join(getLabels(lang,includeUndefined),sep);
+		List<String> lbl = getLabels(lang,includeUndefined);
+		lbl.sort(new LauraLabelComparator());
+		return	StringUtils.join(lbl,sep);
 	}
 	
+
+	private class LauraLabelComparator implements Comparator<String>
+	{
+		@Override
+		public int compare(String s1,String s2)
+		{
+			// we don't care as long as the one with ":" is first
+			if (s1 != null && s1.contains(":"))
+				return -1;
+			if (s2 != null && s2.contains(":"))
+				return 1;
+			if (s1 == null || s2 == null)
+				return 0;
+			return s1.compareTo(s2);
+		}
+	}
 	/**
 	 * By default, it this returns SubjectOf
 	 * @param res
