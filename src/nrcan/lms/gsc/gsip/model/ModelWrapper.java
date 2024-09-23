@@ -280,10 +280,10 @@ public class ModelWrapper {
 
 	public List<Link> getInfosetLinks(Resource ds)
 	{
-		System.out.println("looking dataset for " + ds.getURI());
+		//System.out.println("looking dataset for " + ds.getURI());
 		//Resource ds = model.getResource(dataset);
 		Set<Resource> infosets = getConcretizations(ds);
-		System.out.println("we have " + infosets.size() + " infosets");
+		//System.out.println("we have " + infosets.size() + " infosets");
 		List<Link> links = new ArrayList<>();
 		for(Resource r:infosets)
 		{
@@ -314,18 +314,18 @@ public class ModelWrapper {
 			
 				Resource infoset = getResourceFromItr(concretizesItr.next());
 				if (infoset == null) continue;
-				
+				infosets.add(infoset);
 				// this guys should have a 'partOf'
-				StmtIterator partOfItr = infoset.listProperties(partOf);
-				while(partOfItr.hasNext())
-				{
+				//StmtIterator partOfItr = infoset.listProperties(partOf);
+				//while(partOfItr.hasNext())
+				//{
 					
 					// this is the related Infoset
-					Resource relatedInfoSet = getResourceFromItr(partOfItr.next());
-					if (relatedInfoSet == null) continue;
-					infosets.add(relatedInfoSet);
+				//	Resource relatedInfoSet = getResourceFromItr(partOfItr.next());
+				//	if (relatedInfoSet == null) continue;
+				//	infosets.add(relatedInfoSet);
 					
-				}
+				//}
 			}
 		
 			return infosets;
@@ -599,6 +599,7 @@ public class ModelWrapper {
 			if (RDF.getURI().equals(ns)) continue;
 			if (OWL.getURI().equals(ns)) continue;
 			if (SCHEMA.getURI().equals(ns)) continue;
+			if (sameResource(p, concretizedBy)) continue;
 			//if (DCTerms.getURI().equals(ns)) continue;
 			// if we're here, we're good
 			// the object must be a resource
@@ -611,6 +612,8 @@ public class ModelWrapper {
 		}
 		return links;
 	}
+
+	
 	
 	/**
 	 * Get relevant links (See getRelevantLinks(Resource)
@@ -936,6 +939,20 @@ public class ModelWrapper {
 	public void close()
 	{
 		this.model.close();
+	}
+
+	public static boolean sameResource(Resource r1,Resource r2)
+	{
+		if (r1 == null && r2 == null) return true;
+		if (r1 == null || r2 == null) return false;
+		//TODO: I just do this in case namespace or localname are null (possible ?)
+		try{
+		return (r1.getNameSpace().equals(r2.getNameSpace()) && r1.getLocalName().equals(r2.getLocalName()));
+		}
+		catch(Exception ex)
+		{
+			return false;
+		}
 	}
 
 }

@@ -1,0 +1,268 @@
+@base <https://geoconnex.ca/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <https://schema.org/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix cgdn: <id/onto/> .
+
+
+<info/Infoset/BC/MineralOccurrence>
+    a cgdn:Infoset;
+    rdfs:label "CGDN BC mineral occurrence dataset"@en, "RDGC jeu de données d'indices minéralisés C-B"@fr ;
+    schema:name "CGDN BC mineral occurrence dataset"@en, "RDGC jeu de données d'indices minéralisés C-B"@fr  ;
+    cgdn:concretizedBy [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "application/gml+xml;subtype=erml" ;
+        dct:conformsTo "http://xmlns.earthresourceml.org/earthresourceml-lite/2.0" ; 
+        rdfs:label "CGDN BC mineral occurrence dataset in ERML"@en, "RDGC jeu de données d'indices minéralisés C-B en ERML"@fr ;  
+        schema:name "CGDN BC mineral occurrence dataset in ERML"@en, "RDGC jeu de données d'indices minéralisés C-B en ERML"@fr  ; 
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=cgi%3ACA-BC-BCGS-mineral-occurrences&outputFormat=gml32&SORTBY=identifier" 
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "text/csv" ;
+        dct:conformsTo "http://xmlns.earthresourceml.org/earthresourceml-lite/2.0" ;         
+        rdfs:label "CGDN BC mineral occurrence dataset in CSV"@en, "RDGC jeu de données d'indices minéralisés C-B en CSV"@fr ; 
+        schema:name "CGDN BC mineral occurrence dataset in CSV"@en, "RDGC jeu de données d'indices minéralisés C-B en CSV"@fr  ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=cgi%3ACA-BC-BCGS-mineral-occurrences&outputFormat=csv&SORTBY=identifier" 
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "text/html" ;
+        rdfs:label "CGDN BC mineral occurrence dataset in HTML"@en, "RDGC jeu de données d'indices minéralisés C-B en HTML"@fr ; 
+        schema:name "CGDN BC mineral occurrence dataset in HTML"@en, "RDGC jeu de données d'indices minéralisés C-B en HTML"@fr  ; 
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "https://minfile.gov.bc.ca/"
+    ] , [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "image/png" ;
+        rdfs:label "CGDN BC mineral occurrence dataset in PNG"@en, "RDGC jeu de données d'indices minéralisés C-B en PNG"@fr ; 
+        schema:name "CGDN BC mineral occurrence dataset in PNG"@en, "RDGC jeu de données d'indices minéralisés C-B in PNG"@fr  ; 
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=cgi%3ACA-BC-BCGS-mineral-occurrences&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-139.5,48,-113.5,60.5&WIDTH=400&HEIGHT=300&query_layers=cgi%3ACA-BC-BCGS-mineral-occurrences"  
+       ] .
+
+### One example of each relation: none, sameAs, partOf, hasPart
+#No relation
+<id/MineralOccurrence/BC/082ENE001>
+    a cgdn:MineralOccurrence ;
+    rdfs:label "CGDN Mineral Occurrence BC 082ENE001" @en, "RDGC Indice minéralisé BC 082ENE001" @fr ;
+    schema:name "CGDN Mineral Occurrence BC 082ENE001" @en, "RDGC Indice minéralisé BC 082ENE001" @fr ;
+    schema:subjectOf [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "text/html" ;
+        rdfs:label "html: MCKINLEY, MCKINLEY (L.140S), FRANKLIN CAMP", "BC Mineral Occurrence 082ENE001" @en, "C-B Indice minéralisé 082ENE001" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 49.540833 ;
+            schema:Longitude -118.3875
+        ] ;
+        schema:name "html: MCKINLEY, MCKINLEY (L.140S), FRANKLIN CAMP", "BC Mineral Occurrence 082ENE001" @en, "C-B Indice minéralisé 082ENE001" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://minfile.gov.bc.ca/Summary.aspx?minfilno=082ENE001"
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "application/gml+xml;subtype=erml" ;
+        rdfs:label "erml: MCKINLEY, MCKINLEY (L.140S), FRANKLIN CAMP", "BC Mineral Occurrence 082ENE001" @en, "C-B Indice minéralisé 082ENE001" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 49.540833 ;
+            schema:Longitude -118.3875
+        ] ;
+        schema:name "erml: MCKINLEY, MCKINLEY (L.140S), FRANKLIN CAMP", "BC Mineral Occurrence 082ENE001" @en, "C-B Indice minéralisé 082ENE001" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cgi%3ACA-BC-BCGS-mineral-occurrences&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='082ENE001'"
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "image/png" ;
+        rdfs:label "png: MCKINLEY, MCKINLEY (L.140S), FRANKLIN CAMP", "BC Mineral Occurrence 082ENE001" @en, "C-B Indice minéralisé 082ENE001" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 49.540833 ;
+            schema:Longitude -118.3875
+        ] ;
+        schema:name "png: MCKINLEY, MCKINLEY (L.140S), FRANKLIN CAMP", "BC Mineral Occurrence 082ENE001" @en, "C-B Indice minéralisé 082ENE001" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=cgi%3ACA-BC-BCGS-mineral-occurrences&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-118.8875,49.040833,-117.8875,50.040833&WIDTH=400&HEIGHT=300&query_layers=cgi%3ACA-BC-BCGS-mineral-occurrences&maxFeatures=10&CQL_FILTER=identifier='082ENE001'"
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "text/csv" ;
+        rdfs:label "csv: MCKINLEY, MCKINLEY (L.140S), FRANKLIN CAMP", "BC Mineral Occurrence 082ENE001" @en, "C-B Indice minéralisé 082ENE001" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 49.540833 ;
+            schema:Longitude -118.3875
+        ] ;
+        schema:name "csv: MCKINLEY, MCKINLEY (L.140S), FRANKLIN CAMP", "BC Mineral Occurrence 082ENE001" @en, "C-B Indice minéralisé 082ENE001" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=cgi%3ACA-BC-BCGS-mineral-occurrences&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='082ENE001'"
+    ] .
+
+#sameAs
+<id/MineralOccurrence/BC/082ENE012>
+    a cgdn:MineralOccurrence ;
+    rdfs:label "CGDN Mineral Occurrence BC 082ENE012" @en, "RDGC Indice minéralisé BC 082ENE012" @fr ;
+    schema:name "CGDN Mineral Occurrence BC 082ENE012" @en, "RDGC Indice minéralisé BC 082ENE012" @fr ;
+    schema:subjectOf [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "text/html" ;
+        rdfs:label "html: ELLSWORTH, BEV, TUFF, MAL, JOHN, MOSH", "BC Mineral Occurrence 082ENE012" @en, "C-B Indice minéralisé 082ENE012" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 49.5075 ;
+            schema:Longitude -118.986111
+        ] ;
+        schema:name "html: ELLSWORTH, BEV, TUFF, MAL, JOHN, MOSH", "BC Mineral Occurrence 082ENE012" @en, "C-B Indice minéralisé 082ENE012" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://minfile.gov.bc.ca/Summary.aspx?minfilno=082ENE012"
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "application/gml+xml;subtype=erml" ;
+        rdfs:label "erml: ELLSWORTH, BEV, TUFF, MAL, JOHN, MOSH", "BC Mineral Occurrence 082ENE012" @en, "C-B Indice minéralisé 082ENE012" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 49.5075 ;
+            schema:Longitude -118.986111
+        ] ;
+        schema:name "erml: ELLSWORTH, BEV, TUFF, MAL, JOHN, MOSH", "BC Mineral Occurrence 082ENE012" @en, "C-B Indice minéralisé 082ENE012" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cgi%3ACA-BC-BCGS-mineral-occurrences&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='082ENE012'"
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "image/png" ;
+        rdfs:label "png: ELLSWORTH, BEV, TUFF, MAL, JOHN, MOSH", "BC Mineral Occurrence 082ENE012" @en, "C-B Indice minéralisé 082ENE012" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 49.5075 ;
+            schema:Longitude -118.986111
+        ] ;
+        schema:name "png: ELLSWORTH, BEV, TUFF, MAL, JOHN, MOSH", "BC Mineral Occurrence 082ENE012" @en, "C-B Indice minéralisé 082ENE012" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=cgi%3ACA-BC-BCGS-mineral-occurrences&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-119.486111,49.0075,-118.486111,50.0075&WIDTH=400&HEIGHT=300&query_layers=cgi%3ACA-BC-BCGS-mineral-occurrences&maxFeatures=10&CQL_FILTER=identifier='082ENE012'"
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "text/csv" ;
+        rdfs:label "csv: ELLSWORTH, BEV, TUFF, MAL, JOHN, MOSH", "BC Mineral Occurrence 082ENE012" @en, "C-B Indice minéralisé 082ENE012" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 49.5075 ;
+            schema:Longitude -118.986111
+        ] ;
+        schema:name "csv: ELLSWORTH, BEV, TUFF, MAL, JOHN, MOSH", "BC Mineral Occurrence 082ENE012" @en, "C-B Indice minéralisé 082ENE012" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=cgi%3ACA-BC-BCGS-mineral-occurrences&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='082ENE012'"
+    ] .
+
+#partOf
+<id/MineralOccurrence/BC/082N%20%20037>
+    cgdn:partOf <id/MineralOccurrence/NRCan/30001361> ;
+    a cgdn:MineralOccurrence ;
+    rdfs:label "CGDN Mineral Occurrence BC 082N  037" @en, "RDGC Indice minéralisé BC 082N  037" @fr ;
+    schema:name "CGDN Mineral Occurrence BC 082N  037" @en, "RDGC Indice minéralisé BC 082N  037" @fr ;
+    schema:subjectOf [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "text/html" ;
+        rdfs:label "html: EX 90", "BC Mineral Occurrence 082N  037" @en, "C-B Indice minéralisé 082N  037" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 51.060556 ;
+            schema:Longitude -117.766111
+        ] ;
+        schema:name "html: EX 90", "BC Mineral Occurrence 082N  037" @en, "C-B Indice minéralisé 082N  037" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://minfile.gov.bc.ca/Summary.aspx?minfilno=082N++037"
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "application/gml+xml;subtype=erml" ;
+        rdfs:label "erml: EX 90", "BC Mineral Occurrence 082N  037" @en, "C-B Indice minéralisé 082N  037" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 51.060556 ;
+            schema:Longitude -117.766111
+        ] ;
+        schema:name "erml: EX 90", "BC Mineral Occurrence 082N  037" @en, "C-B Indice minéralisé 082N  037" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cgi%3ACA-BC-BCGS-mineral-occurrences&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='082N%20%20037'"
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "image/png" ;
+        rdfs:label "png: EX 90", "BC Mineral Occurrence 082N  037" @en, "C-B Indice minéralisé 082N  037" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 51.060556 ;
+            schema:Longitude -117.766111
+        ] ;
+        schema:name "png: EX 90", "BC Mineral Occurrence 082N  037" @en, "C-B Indice minéralisé 082N  037" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=cgi%3ACA-BC-BCGS-mineral-occurrences&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-118.266111,50.560556,-117.266111,51.560556&WIDTH=400&HEIGHT=300&query_layers=cgi%3ACA-BC-BCGS-mineral-occurrences&maxFeatures=10&CQL_FILTER=identifier='082N%20%20037'"
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "text/csv" ;
+        rdfs:label "csv: EX 90", "BC Mineral Occurrence 082N  037" @en, "C-B Indice minéralisé 082N  037" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 51.060556 ;
+            schema:Longitude -117.766111
+        ] ;
+        schema:name "csv: EX 90", "BC Mineral Occurrence 082N  037" @en, "C-B Indice minéralisé 082N  037" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=cgi%3ACA-BC-BCGS-mineral-occurrences&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='082N%20%20037'"
+    ] .
+
+#hasPart
+<id/MineralOccurrence/BC/092F%20%20015>
+    cgdn:hasPart <id/MineralOccurrence/NRCan/30001660>, <id/MineralOccurrence/NRCan/30001661> ;
+    a cgdn:MineralOccurrence ;
+    rdfs:label "CGDN Mineral Occurrence BC 092F  015" @en, "RDGC Indice minéralisé BC 092F  015" @fr ;
+    schema:name "CGDN Mineral Occurrence BC 092F  015" @en, "RDGC Indice minéralisé BC 092F  015" @fr ;
+    schema:subjectOf [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "text/html" ;
+        rdfs:label "html: HETTY GREEN (L.1105), BOUNCE, ROTSCHILDS, LIDA, VELVET, CANYON, CLEAR CREEK, WINTER, FOREMOST COPPER, DOUGLAS, WHITE, COPPER KING, FOREMOST, PAWNEE 2-3, CLARA, DEER", "BC Mineral Occurrence 092F  015" @en, "C-B Indice minéralisé 092F  015" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 49.243889 ;
+            schema:Longitude -125.592778
+        ] ;
+        schema:name "html: HETTY GREEN (L.1105), BOUNCE, ROTSCHILDS, LIDA, VELVET, CANYON, CLEAR CREEK, WINTER, FOREMOST COPPER, DOUGLAS, WHITE, COPPER KING, FOREMOST, PAWNEE 2-3, CLARA, DEER", "BC Mineral Occurrence 092F  015" @en, "C-B Indice minéralisé 092F  015" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://minfile.gov.bc.ca/Summary.aspx?minfilno=092F++015"
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "application/gml+xml;subtype=erml" ;
+        rdfs:label "erml: HETTY GREEN (L.1105), BOUNCE, ROTSCHILDS, LIDA, VELVET, CANYON, CLEAR CREEK, WINTER, FOREMOST COPPER, DOUGLAS, WHITE, COPPER KING, FOREMOST, PAWNEE 2-3, CLARA, DEER", "BC Mineral Occurrence 092F  015" @en, "C-B Indice minéralisé 092F  015" @fr  ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 49.243889 ;
+            schema:Longitude -125.592778
+        ] ;
+        schema:name "erml: HETTY GREEN (L.1105), BOUNCE, ROTSCHILDS, LIDA, VELVET, CANYON, CLEAR CREEK, WINTER, FOREMOST COPPER, DOUGLAS, WHITE, COPPER KING, FOREMOST, PAWNEE 2-3, CLARA, DEER", "BC Mineral Occurrence 092F  015" @en, "C-B Indice minéralisé 092F  015" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cgi%3ACA-BC-BCGS-mineral-occurrences&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='092F%20%20015'"
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "image/png" ;
+        rdfs:label "png: HETTY GREEN (L.1105), BOUNCE, ROTSCHILDS, LIDA, VELVET, CANYON, CLEAR CREEK, WINTER, FOREMOST COPPER, DOUGLAS, WHITE, COPPER KING, FOREMOST, PAWNEE 2-3, CLARA, DEER", "BC Mineral Occurrence 092F  015" @en, "C-B Indice minéralisé 092F  015" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 49.243889 ;
+            schema:Longitude -125.592778
+        ] ;
+        schema:name "png: HETTY GREEN (L.1105), BOUNCE, ROTSCHILDS, LIDA, VELVET, CANYON, CLEAR CREEK, WINTER, FOREMOST COPPER, DOUGLAS, WHITE, COPPER KING, FOREMOST, PAWNEE 2-3, CLARA, DEER", "BC Mineral Occurrence 092F  015" @en, "C-B Indice minéralisé 092F  015" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=cgi%3ACA-BC-BCGS-mineral-occurrences&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-126.092778,48.743889,-125.092778,49.743889&WIDTH=400&HEIGHT=300&query_layers=cgi%3ACA-BC-BCGS-mineral-occurrences&maxFeatures=10&CQL_FILTER=identifier='092F%20%20015'"
+    ], [
+        cgdn:concretizes <info/Infoset/BC/MineralOccurrence> ;
+        dct:format "text/csv" ;
+        rdfs:label "csv: HETTY GREEN (L.1105), BOUNCE, ROTSCHILDS, LIDA, VELVET, CANYON, CLEAR CREEK, WINTER, FOREMOST COPPER, DOUGLAS, WHITE, COPPER KING, FOREMOST, PAWNEE 2-3, CLARA, DEER", "BC Mineral Occurrence 092F  015" @en, "C-B Indice minéralisé 092F  015" @fr ;
+        schema:geo [
+            a schema:GeoCoordinates ;
+            schema:Latitude 49.243889 ;
+            schema:Longitude -125.592778
+        ] ;
+        schema:name "csv: HETTY GREEN (L.1105), BOUNCE, ROTSCHILDS, LIDA, VELVET, CANYON, CLEAR CREEK, WINTER, FOREMOST COPPER, DOUGLAS, WHITE, COPPER KING, FOREMOST, PAWNEE 2-3, CLARA, DEER", "BC Mineral Occurrence 092F  015" @en, "C-B Indice minéralisé 092F  015" @fr ;
+        schema:provider <https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> ;
+        schema:url "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=cgi%3ACA-BC-BCGS-mineral-occurrences&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='092F%20%20015'"
+    ] .
+
