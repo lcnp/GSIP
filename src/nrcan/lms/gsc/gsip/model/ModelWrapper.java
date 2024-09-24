@@ -267,6 +267,25 @@ public class ModelWrapper {
 			return s1.compareTo(s2);
 		}
 	}
+
+	/**
+	 * get a list of Dataset, relevant for a single provider
+	 * @param r
+	 * @param p
+	 * @return
+	 */
+	public List<Link> getDatasetForProvider(Resource r,Resource p,boolean isNir)
+	{
+		Set<Resource> datasetList = new HashSet<>();
+		getRepresentationByProvider(r, p, false).forEach(m -> datasetList.add(m));
+		return datasetList.stream().map(m-> new Link("",m.getURI(),"")).collect(Collectors.toList());
+	}
+
+	public  List<Link> getDatasetForProvider(Resource p,boolean isNir)
+	{
+		return getDatasetForProvider(contextResource,p,isNir);
+	}
+
 	/**
 	 * By default, it this returns SubjectOf
 	 * @param res

@@ -170,7 +170,9 @@ ${model.encode("JSON-LD")}
 								<div class="card-header" id="heading_${collapsableId}">
 								<h2 class="mb-0">
 									<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse_${collapsableId}" aria-expanded="true" aria-controls="collapse_${collapsableId}">
-									Source : ${model.getJoinedLabels(p, locale, true," | ")}<sub><i class="material-icons"> ${collapsableShow_arrow}</i>
+									Source : ${model.getJoinedLabels(p, locale, true," | ")}<sub><i class="material-icons"> ${collapsableShow_arrow}</i> <a href="">Dataset</a><#list model.getDatasetForProvider(p,true) as ds>Dataset:<a
+											href="${ds.getUrl()}?lang=${locale}"
+											title="${ds.getUrl()}">${ds.getResLabel()}</a> </#list>
 									</sub></button>
 								</h2>
 								</div>
@@ -202,10 +204,7 @@ ${model.encode("JSON-LD")}
 									</#list>
 									<tr><td colspan=1>
 									Formats :  ${links?join(" ")}
-									</td><td><#list model.getInfosetLinks(r) as infoset> <a
-											href="${infoset.getUrl()}?lang=${locale}"
-											title="${infoset.getUrl()}">&gt;&gt;${infoset.getResLabel()}</a>
-											</#list></td></tr>
+									</td></tr>
 								</#list> <#-- representation-->
 								</table>
 								</div> <#-- class representation -->

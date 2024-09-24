@@ -6,6 +6,9 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix cgdn: <id/onto/> .
 
+<https://nrcan.gc.ca/gsc> rdfs:label "Commission géologique du Canada"@fr,"Geological Survey of Canada"@en.
+
+
 <info/Infoset/NRCan/MineralOccurrence>
     a cgdn:Infoset;
     rdfs:label "CGDN NRCan mineral occurrence dataset"@en, "RDGC jeu de données d'indices minéralisés RNCan"@fr ;

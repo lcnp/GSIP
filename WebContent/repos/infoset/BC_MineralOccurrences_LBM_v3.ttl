@@ -6,6 +6,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix cgdn: <id/onto/> .
 
+<https://www2.gov.bc.ca/gov/content?id=279686BC782F47ECA7B257376391D210> rdfs:label "Commission géologique de la Colombie-Britannique"@fr,"British Columbia Geological Survey"@en.
 
 <info/Infoset/BC/MineralOccurrence>
     a cgdn:Infoset;
