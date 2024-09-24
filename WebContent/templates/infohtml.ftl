@@ -170,11 +170,11 @@ ${model.encode("JSON-LD")}
 								<div class="card-header" id="heading_${collapsableId}">
 								<h2 class="mb-0">
 									<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse_${collapsableId}" aria-expanded="true" aria-controls="collapse_${collapsableId}">
-									Source : ${model.getJoinedLabels(p, locale, true," | ")}<sub><i class="material-icons"> ${collapsableShow_arrow}</i> <a href="">Dataset</a><#list model.getDatasetForProvider(p,true) as ds>Dataset:<a
+									Source : ${model.getJoinedLabels(p, locale, true," | ")}<sub><i class="material-icons"> ${collapsableShow_arrow}</i>
+									</sub></button>
+								</h2>Dataset:<#list model.getDatasetForProvider(p,true) as ds><a
 											href="${ds.getUrl()}?lang=${locale}"
 											title="${ds.getUrl()}">${ds.getResLabel()}</a> </#list>
-									</sub></button>
-								</h2>
 								</div>
 								
 								<div id="collapse_${collapsableId}" class="collapse ${collapsableShow}" aria-labelledby="heading_${collapsableId}" data-parent="#accordionExample">

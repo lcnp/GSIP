@@ -274,16 +274,23 @@ public class ModelWrapper {
 	 * @param p
 	 * @return
 	 */
-	public List<Link> getDatasetForProvider(Resource r,Resource p,boolean isNir)
+	public List<Link> getDatasetForProvider(Resource r,Resource p,boolean isNir,String l)
 	{
-		Set<Resource> datasetList = new HashSet<>();
-		getRepresentationByProvider(r, p, false).forEach(m -> datasetList.add(m));
-		return datasetList.stream().map(m-> new Link("",m.getURI(),"")).collect(Collectors.toList());
+		
+		return getRepresentationByProvider(r, p, isNir).
+			stream().
+			map(m -> getConcretizations(m)).
+			flatMap(Set::stream).
+			distinct().
+			map(m-> new Link("",m.getURI(),getPreferredLabel(m, l, "N/A"))).
+			collect(Collectors.toList());
+		
+		
 	}
 
-	public  List<Link> getDatasetForProvider(Resource p,boolean isNir)
+	public  List<Link> getDatasetForProvider(Resource p,boolean isNir,String l)
 	{
-		return getDatasetForProvider(contextResource,p,isNir);
+		return getDatasetForProvider(contextResource,p,isNir,l);
 	}
 
 	/**
