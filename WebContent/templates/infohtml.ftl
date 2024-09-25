@@ -172,7 +172,7 @@ ${model.encode("JSON-LD")}
 									<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse_${collapsableId}" aria-expanded="true" aria-controls="collapse_${collapsableId}">
 									Source : ${model.getJoinedLabels(p, locale, true," | ")}<sub><i class="material-icons"> ${collapsableShow_arrow}</i>
 									</sub></button>
-								</h2>Dataset:<#list model.getDatasetForProvider(p,true) as ds><a
+								</h2>Dataset:<#list model.getDatasetForProvider(p,true,locale) as ds><a
 											href="${ds.getUrl()}?lang=${locale}"
 											title="${ds.getUrl()}">${ds.getResLabel()}</a> </#list>
 								</div>
