@@ -450,9 +450,7 @@ public class ModelWrapper {
 	 */
 	public List<Resource> getRepresentationByProvider(Resource provider,boolean isNir)
 	{
-		System.out.println("Looking for :"+provider.getURI());
-		for(Resource r: getRepresentations(isNir)) System.out.println(getProvider(r));
-		System.out.println("---------------");
+
 
 		return getRepresentations(isNir).stream().filter(m -> getProviders(m).contains(provider)).collect(Collectors.toList());
 	}
