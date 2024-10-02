@@ -70,7 +70,7 @@ In this simplified example, we kept the essential statements to describe the rel
    * dataset are represented as `blank nodes` delimited by [ and ] which are anonymous resources
    * dataset have providers (sources)
 
-image::img/concretizes082ENE001.png[Example of concretization]
+image::concretizes082ENE001.png[Example of concretization]
 
 
 This example says that the mineral occurrence `<id/MineralOccurrence/BC/082ENE001>` is the subject of a dataset in html located at  "http://minfile.gov.bc.ca/Summary.aspx?minfilno=082ENE001".  This dataset (the data represented in the HTML page) is part (partially concretizes) of a larger infoset `<info/Infoset/BC/MineralOccurrence>` that (completely) concretized by a dataset in ERML (one of the possible format) located at "http://apps.empr.gov.bc.ca/geoserver/cgi/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=cgi%3ACA-BC-BCGS-mineral-occurrences&outputFormat=gml32&SORTBY=identifier".
@@ -86,7 +86,7 @@ Landing pages are built by querying the registry and pulling the subset of data 
 
 Landing pages 
 
-image::img/landing_page_infoset.png[Example of landing page]
+image::landing_page_infoset.png[Example of landing page]
 
    * 1: information about the NIR
    * 2: A section providing all the dataset from a single provider: BC
@@ -97,7 +97,7 @@ image::img/landing_page_infoset.png[Example of landing page]
 
 === Infoset
 
-image::img/infoset.png[Example of landing page for an infoset]
+image::infoset.png[Example of landing page for an infoset]
 
 
 
