@@ -19,7 +19,12 @@ import org.apache.commons.io.IOUtils;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.DatasetFactory;
+import org.apache.jena.query.Query;
+import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.ReadWrite;
+import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdfconnection.RDFConnection;
@@ -183,6 +188,23 @@ public class EmbeddedStore extends TripleStoreImpl {
 			all.add(f);
 		}
 		return all;
+	}
+
+	@Override
+	public void executeSelect(String select,SolutionHandler h) {
+		Query qry = QueryFactory.create(select);
+    	QueryExecution qe = QueryExecutionFactory.create(qry, ds);
+    	ResultSet rs = qe.execSelect();
+		if (h.init())
+		{
+			while(rs.hasNext())
+			{
+				if (!h.read(rs.next())) break;
+			}
+		}
+
+		h.end();
+		rs.close();
 	}
 
 }
