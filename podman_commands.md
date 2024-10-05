@@ -80,5 +80,30 @@ eg:
 kill -9 3615
 ```
 
+== Cannot connect to Podman machine
+
+
+https://github.com/containers/podman/issues/20424
+
+```console
+podman machine list
+podman machine stop
+podman machine rm podman-machine-default
+podman machine init
+podman machine start
+```
+==  Temporary failure in name resolution
+
+
+```console
+wsl -d podman-machine-default
+sudo tee /etc/wsl.conf << EOF
+[network]
+generateResolvConf = false
+EOF
+sudo rm -rf /etc/resolv.conf
+echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf
+```
+
 
 
