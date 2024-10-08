@@ -197,7 +197,8 @@ ${model.encode("JSON-LD")}
 												<#case "application/x-turtle"><img class="img-fluid" title="${model.getLocText('Display in TTL (Turtle) format','Afficher en format TTL (Turtle)')}" alt="${model.getLocText('Display in TTL (Turtle) format','Afficher en format TTL (Turtle)')}" src="${host}/app/img/ttlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
 												<#case "text/html"><img class="img-fluid" title="${model.getLocText('Display web page''Afficher la page Web')}" alt="${model.getLocText('Display web page''Afficher la page Web')}" src="${host}/app/img/htmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
 												<#case "text/plain"><img class="img-fluid" title="${model.getLocText('Display in plain text format''Afficher en format texte')}" alt="${model.getLocText('Display in plain text format''Afficher en format texte')}t" src="${host}/app/img/txticon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "image/jpeg"><img class="img-fluid" title="${model.getLocText('Display in jpeg','Afficher en jpeg')}" alt="${model.getLocText('Display in jpeg','Afficher en jpeg')}" src="${host}/app/img/jpg-outline.png" style="max-width: 35px;padding: 10px 5px 0 5px"/><#break>
+												<#case "image/jpeg"><img class="img-fluid" title="${model.getLocText('Display in jpeg','Afficher en jpeg')}" alt="${model.getLocText('Display in jpeg','Afficher en jpeg')}" src="${url.getUrl()}" style="padding: 10px 5px 0 5px;border: 1px solid black;"/><#break>
+												<#case "image/png"><img class="img-fluid" title="${model.getLocText('Display in png','Afficher en png')}" alt="${model.getLocText('Display in png','Afficher en png')}" src="${url.getUrl()}" style="padding: 10px 5px 0 5px;border: 1px solid black;"/><#break>
 												<#case "application/vnd.geo+json"><img class="img-fluid" title="${model.getLocText('Display in GeoJSON format''Afficher en format GeoJSON')}" alt="${model.getLocText('Display in GeoJSON format''Afficher en format GeoJSON')}" src="${host}/app/img/geojsonicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
 												<#default><img class="img-fluid" title="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" alt="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" src="${host}/app/img/othericon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/></#switch></a></#assign>
 									<#assign links = links + [link]>
@@ -260,6 +261,7 @@ ${model.encode("JSON-LD")}
 								</div>
 							</div>
 						</div>
+						<#-- I'll keep this feature, so if a /id/ has a schema:image, it will do something with it -->
 						<#if image?has_content>
 						<div class="col-sm-12 col-md-4">
 							<a href="${image[0]}" target="_blank">
