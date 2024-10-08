@@ -104,7 +104,6 @@
 #sameAs
 <id/MineralOccurrence/BC/082ENE012>
     a cgdn:MineralOccurrence ;
-    schema:image <http://apps.empr.gov.bc.ca/geoserver/cgi/ows?request=GetMap&service=WMS&version=1.1.1&LAYERS=cgi%3ACA-BC-BCGS-mineral-occurrences&STYLES=&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&BBOX=-119.486111,49.0075,-118.486111,50.0075&WIDTH=400&HEIGHT=300&query_layers=cgi%3ACA-BC-BCGS-mineral-occurrences&maxFeatures=10&CQL_FILTER=identifier='082ENE012'>;
     rdfs:label "CGDN Mineral Occurrence BC 082ENE012" @en, "RDGC Indice minéralisé BC 082ENE012" @fr ;
     schema:name "CGDN Mineral Occurrence BC 082ENE012" @en, "RDGC Indice minéralisé BC 082ENE012" @fr ;
     schema:subjectOf [
