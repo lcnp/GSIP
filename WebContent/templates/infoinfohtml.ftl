@@ -177,7 +177,7 @@ ${model.encode("JSON-LD")}
 								<div class="representation">
 								<table width="100%">
 
-									<tr><td><b>${model.getJoinedLabels(r, locale, true," | ")}</a></td></tr>
+									<tr><td style="vertical-align:top"><b>${model.getJoinedLabels(r, locale, true," | ")}</b>
 									
 
 									<#assign links = []>
@@ -197,8 +197,8 @@ ${model.encode("JSON-LD")}
 												<#default><img class="img-fluid" title="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" alt="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" src="${host}/app/img/othericon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/></#switch></a></#assign>
 									<#assign links = links + [link]>
 									</#list>
-									<tr><td colspan=1>
-									Formats :  ${links?join(" ")}
+									
+									${links?join(" ")}
 									</td></tr>
 								</#list> <#-- representation-->
 								</table>

@@ -172,7 +172,7 @@ ${model.encode("JSON-LD")}
 									<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse_${collapsableId}" aria-expanded="true" aria-controls="collapse_${collapsableId}">
 									Source : ${model.getJoinedLabels(p, locale, true," | ")}<sub><i class="material-icons"> ${collapsableShow_arrow}</i>
 									</sub></button>
-								</h2>Dataset:<#list model.getDatasetForProvider(p,true,locale) as ds><a
+								</h2>&nbsp;&nbsp;Dataset:<#list model.getDatasetForProvider(p,true,locale) as ds><a
 											href="${ds.getUrl()}?lang=${locale}"
 											title="${ds.getUrl()}">${ds.getResLabel()}</a> </#list>
 								</div>
@@ -183,7 +183,7 @@ ${model.encode("JSON-LD")}
 								<div class="representation">
 								<table width="100%">
 
-									<tr><td><b>${model.getJoinedLabels(r, locale, true," | ")}</a></td></tr>
+									<tr><td style="vertical-align:top"><b>${model.getJoinedLabels(r, locale, true," | ")}</b>
 									
 
 									<#assign links = []>
@@ -203,8 +203,8 @@ ${model.encode("JSON-LD")}
 												<#default><img class="img-fluid" title="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" alt="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" src="${host}/app/img/othericon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/></#switch></a></#assign>
 									<#assign links = links + [link]>
 									</#list>
-									<tr><td colspan=1>
-									Formats :  ${links?join(" ")}
+									
+									${links?join(" ")}
 									</td></tr>
 								</#list> <#-- representation-->
 								</table>
