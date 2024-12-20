@@ -93,7 +93,7 @@ ${model.encode("JSON-LD")}
 				<h1>${model.getPreferredLabel("N/A")}</h1>
 				<blockquote class="blockquote container">
 					<div class="row">
-						<div class="col-sm-12 col-md-9">
+						<div class="col-sm-12 col-md-12">
 							<p class="mb-0">
 								<strong>Type: </strong>
 								<samp>${model.getTypeLabel()}</samp>
@@ -104,7 +104,7 @@ ${model.encode("JSON-LD")}
 									<a href="${model.getContextResourceUri()}">${model.getContextResourceUri()}</a>
 								</samp>
 							</p>
-							<p><small>${model.getLocText("(Unclassified information)","(Information non classée)")}</small></p>
+							<!--							<p><small>${model.getLocText("(Unclassified information)","(Information non classée)")}</small></p> -->
 						</div>
 						<div class="col-sm-12 col-md-3">
 							<a href="${model.getContextResourceUri()}?f=rdf"
@@ -172,45 +172,61 @@ ${model.encode("JSON-LD")}
 								</div>
 								
 								<div id="collapse_${collapsableId}" class="collapse ${collapsableShow}" aria-labelledby="heading_${collapsableId}" data-parent="#accordionExample">
-								<div class="card-body">
+								<div class="card-body" style="display: flex; flex-direction: column ; gap: 5px; " > 
+
+
 								<#list model.getRepresentationByProvider(p,false) as r>
-								<div class="representation">
-								<table width="100%">
+									<#if r?index == 0 > 
+									  <div   class="row" style="display: block ; flex: 1; " >  <!-- flex; gap: 10px; flex-basis: 100%;" >  -->
 
-									<tr><td style="vertical-align:top"><b>${model.getJoinedLabels(r, locale, true," | ")}</b>
+
+									  	<#assign myString = model.getJoinedLabels(r, locale, true," | ") > 
+									  	<#assign words = myString?split(" ") >
+ 										<#assign truncatedString = words[0..(words?size-3)]?join(" ") >
+											  
+										<p> ${truncatedString} <br> </p> 
+									   </div>
+									   <div class="row" style="display: flex; gap: 5px" >  <!-- this division is created once in the loop and is closed just after the end of the current #list loop in order to create a separate row division for the representation under the text.   -->
+					        			</#if>
 									
-
+								<div class="representation"  > 
+								
 									<#assign links = []>
 									<#list model.getUrls(r,true) as url>
+									<div id=urlIteration  >
 									<#assign link><a href="${url.getUrl()}"><#switch url.getLabel()>
-												<#case "application/rdf+xml"><img class="img-fluid" title="${model.getLocText('Display in RDF/XML format','Afficher en format RDF/XML')}" alt="${model.getLocText('Display in RDF/XML','Afficher en format RDF/XML')}" src="${host}/app/img/rdfxmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "text/xml"><img class="img-fluid" title="${model.getLocText('Display in XML format','Afficher en format XML')}" alt="${model.getLocText('Display in XML format','Afficher en format XML')}" src="${host}/app/img/xmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "application/gml+xml;subtype=erml"><img class="img-fluid" title="${model.getLocText('Display in ERML format','Afficher en format ERML')}" alt="${model.getLocText('Display in ERML format','Afficher en format ERML')}" src="${host}/app/img/ermlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "application/gml+xml"><img class="img-fluid" title="${model.getLocText('Display in GML/XML format','Afficher en format GML/XML')}" alt="${model.getLocText('Display in GML/XML format','Afficher en format GML/XML')}" src="${host}/app/img/gmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "application/ld+json"><img class="img-fluid" title="${model.getLocText('Display in JSON format','Afficher en format JSON')}" alt="${model.getLocText('Display in JSON format','Afficher en format JSON')}" src="${host}/app/img/jsonicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "application/x-turtle"><img class="img-fluid" title="${model.getLocText('Display in TTL (Turtle) format','Afficher en format TTL (Turtle)')}" alt="${model.getLocText('Display in TTL (Turtle) format','Afficher en format TTL (Turtle)')}" src="${host}/app/img/ttlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "text/html"><img class="img-fluid" title="${model.getLocText('Display web page''Afficher la page Web')}" alt="${model.getLocText('Display web page''Afficher la page Web')}" src="${host}/app/img/htmlicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "text/plain"><img class="img-fluid" title="${model.getLocText('Display in plain text format''Afficher en format texte')}" alt="${model.getLocText('Display in plain text format''Afficher en format texte')}t" src="${host}/app/img/txticon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#case "image/jpeg"><img class="img-fluid" title="${model.getLocText('Display in jpeg','Afficher en jpeg')}" alt="${model.getLocText('Display in jpeg','Afficher en jpeg')}" src="${url.getUrl()}" style="padding: 10px 5px 0 5px;border: 1px solid black;"/><#break>
-												<#case "image/png"><img class="img-fluid" title="${model.getLocText('Display in png','Afficher en png')}" alt="${model.getLocText('Display in png','Afficher en png')}" src="${url.getUrl()}" style="padding: 10px 5px 0 5px;border: 1px solid black;"/><#break>
-												<#case "application/vnd.geo+json"><img class="img-fluid" title="${model.getLocText('Display in GeoJSON format''Afficher en format GeoJSON')}" alt="${model.getLocText('Display in GeoJSON format''Afficher en format GeoJSON')}" src="${host}/app/img/geojsonicon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/><#break>
-												<#default><img class="img-fluid" title="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" alt="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" src="${host}/app/img/othericon.png" style="max-width: 35px; padding: 10px 5px 0 5px"/></#switch></a></#assign>
+												<#case "application/rdf+xml"><img class="img-fluid" title="${model.getLocText('Display in RDF/XML format','Afficher en format RDF/XML')}" alt="${model.getLocText('Display in RDF/XML','Afficher en format RDF/XML')}" src="${host}/app/img/rdfxmlicon.png" style="max-width: 60px;  width: 90px; padding: 10px 5px 0 5px"/><#break>
+												<#case "text/xml"><img class="img-fluid" title="${model.getLocText('Display in XML format','Afficher en format XML')}" alt="${model.getLocText('Display in XML format','Afficher en format XML')}" src="${host}/app/img/xmlicon.png" style="max-width: 60px; width: 90px; padding: 10px 5px 0 5px"/><#break>
+												<#case "application/gml+xml;subtype=erml"><img class="img-fluid" title="${model.getLocText('Display in ERML format','Afficher en format ERML')}" alt="${model.getLocText('Display in ERML format','Afficher en format ERML')}" src="${host}/app/img/ermlicon.png" style="max-width: 60px; width: 90px; padding: 10px 5px 0 5px"/><#break>
+												<#case "application/gml+xml"><img class="img-fluid" title="${model.getLocText('Display in GML/XML format','Afficher en format GML/XML')}" alt="${model.getLocText('Display in GML/XML format','Afficher en format GML/XML')}" src="${host}/app/img/gmlicon.png" style="max-width: 60px;  width: 90px; padding: 10px 5px 0 5px"/><#break>
+												<#case "application/ld+json"><img class="img-fluid" title="${model.getLocText('Display in JSON format','Afficher en format JSON')}" alt="${model.getLocText('Display in JSON format','Afficher en format JSON')}" src="${host}/app/img/jsonicon.png" style="max-width: 60px; width: 90px; padding: 10px 5px 0 5px"/><#break>
+												<#case "application/x-turtle"><img class="img-fluid" title="${model.getLocText('Display in TTL (Turtle) format','Afficher en format TTL (Turtle)')}" alt="${model.getLocText('Display in TTL (Turtle) format','Afficher en format TTL (Turtle)')}" src="${host}/app/img/ttlicon.png" style="max-width: 35px;  width: 90px; padding: 10px 5px 0 5px"/><#break>
+												<#case "text/html"><img class="img-fluid" title="${model.getLocText('Display web page''Afficher la page Web')}" alt="${model.getLocText('Display web page''Afficher la page Web')}" src="${host}/app/img/htmlicon.png" style="max-width: 60px;  width: 90px; padding: 10px 5px 0 5px"/><#break>
+												<#case "text/plain"><img class="img-fluid" title="${model.getLocText('Display in plain text format''Afficher en format texte')}" alt="${model.getLocText('Display in plain text format''Afficher en format texte')}t" src="${host}/app/img/txticon.png" style="max-width: 60px;  width: 90px; padding: 10px 5px 0 5px"/><#break>
+												<#case "image/jpeg"><img class="img-fluid" title="${model.getLocText('Display in jpeg','Afficher en jpeg')}" alt="${model.getLocText('Display in jpeg','Afficher en jpeg')}" src="${url.getUrl()}" style=" max-width: 60px ;width: 90px; padding: 10px 5px 0 5px;border: 1px solid black;"/><#break>
+												<#case "image/png"><img class="img-fluid" title="${model.getLocText('Display in png','Afficher en png')}" alt="${model.getLocText('Display in png','Afficher en png')}"  src="${url.getUrl()}" style=" width: 120px; padding: 10px 5px 0 5px;border: 1px solid black;"/><#break>
+												<#case "application/vnd.geo+json"><img class="img-fluid" title="${model.getLocText('Display in GeoJSON format''Afficher en format GeoJSON')}" alt="${model.getLocText('Display in GeoJSON format''Afficher en format GeoJSON')}" src="${host}/app/img/geojsonicon.png" style="max-width: 60px;  width: 90px; padding: 10px 5px 0 5px"/><#break>
+												<#default><img class="img-fluid" title="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" alt="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" src="${host}/app/img/othericon.png" style="max-width: 60px;  width: 90px; padding: 10px 5px 0 5px"/></#switch></a></#assign>
 									<#assign links = links + [link]>
 									</#list>
 									
-									${links?join(" ")}
-									</td></tr>
+									 ${links?join(" ")} 
+									</div>
+								</div>
 								</#list> <#-- representation-->
-								</table>
-								</div> <#-- class representation -->
-
-								</div>
-								</div>
-							</div>
-							<#assign collapsableId = collapsableId + 1> 
 								
+									 <#-- end listing formats -->	
+								</div> <#-- class representation -->
+									
+								
+								</div>
+
+								<!-- </div>  -->
+							<#assign collapsableId = collapsableId + 1> 
+							<!--	<p>  end of provider iteration juste before its /list  </p>  -->
 							</#list>
-							</div>
+							
+							 </div> <!-- this ends the division started as a second row division in the if block 	-->
 
 							<br/>
 							<h3>${model.getLocText("Related Features","Entités reliées")}</h3>
