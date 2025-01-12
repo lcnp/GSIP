@@ -153,9 +153,15 @@ ${model.encode("JSON-LD")}
 							<#assign collapsableShow = ''>
 							<#assign collapsableShow_arrow = 'arrow_drop_down'>
 							<div class="accordion" id="accordionExample">
+							<#-- get a list of resources and load them into a hash based on label -->
+							<#assign providers = []>
+							<#list model.getAllProviders(true) as p1>
+								<#assign providers=providers+[{"name":model.getPreferredLabel(p1,l,"N/A"),"provider":p1}]>
+							</#list>
 							
-							<#list model.getAllProviders(true) as p>
-							
+							<#--<#list model.getAllProviders(true) as p>-->
+							<#list providers?sort_by("name") as prov>
+							<#assign p = prov.provider>
 
 							<#if collapsableId == 0>
 								<#assign collapsableShow = 'show'>
@@ -179,7 +185,13 @@ ${model.encode("JSON-LD")}
 								
 								<div id="collapse_${collapsableId}" class="collapse ${collapsableShow}" aria-labelledby="heading_${collapsableId}" data-parent="#accordionExample">
 								<div class="card-body">
-								<#list model.getRepresentationByProvider(p,true) as r>
+								<#-- move the representation in a hash to be sorted -->
+								<#assign representations = []>
+									<#list model.getRepresentationByProvider(p,true) as rep>
+										<#assign representations=representations + [{"name":model.getJoinedLabels(rep, locale, true," | "),"representation":rep}]>
+									</#list>
+								<#list representations?sort_by("name") as rp>
+								<#assign r = rp.representation>
 								<div class="representation">
 								<table width="100%">
 
