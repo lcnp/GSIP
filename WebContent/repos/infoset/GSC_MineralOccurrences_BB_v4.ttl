@@ -208,6 +208,7 @@
 
 #noRelation
 <id/MineralOccurrence/NRCan/30001840>
+    rdfs:seeAlso <id/MineralOccurrence/BC/082ENE001>;
     a cgdn:MineralOccurrence ;
     rdfs:label "CGDN Mineral Occurrence NRCan 30001840" @en, "RDGC Indice minéralisé RNCan 30001840" @fr ;
     schema:name "CGDN Mineral Occurrence NRCan 30001840" @en, "RDGC Indice minéralisé RNCan 30001840" @fr ;

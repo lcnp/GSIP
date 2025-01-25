@@ -105,5 +105,14 @@ sudo rm -rf /etc/resolv.conf
 echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf
 ```
 
+# Test cases
 
+http://localhost:8080/gsip/id/MineralOccurrence/BC/082ENE012
+
+
+# Podman on windows
+
+to start a stopped podman machine
+
+`podman machine start`
 
