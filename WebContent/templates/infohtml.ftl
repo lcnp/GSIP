@@ -129,11 +129,11 @@ ${model.encode("JSON-LD")}
                                                                 src="${host}/app/img/ttlicon.png"
                                                                 style="max-width: 35px; padding: 10px 5px 0 5px" /></a>
 
-                                                        <a href="${model.getNonInfoUri()}LOD_Node/CAN_Hydro_LOD_Node"
+                                                   <!--  not desired icon    <a href="${model.getNonInfoUri()}LOD_Node/CAN_Hydro_LOD_Node"
                                                                 target="_blank"> <img class="img_fluid"
                                                                 title="${model.getLocText('This node','Ce noeud')}" alt="${model.getLocText('Access this node','Accéder à ce noeud')}"
                                                                 src="${host}/app/img/node.png"
-                                                                style="max-width: 35px; padding: 10px 5px 0 5px" /></a>
+								style="max-width: 35px; padding: 10px 5px 0 5px" /></a> -->
                                                 </div>
                                         </div>
                                 </blockquote>
@@ -178,9 +178,10 @@ ${model.encode("JSON-LD")}
                                                                                 <a
                                                                                         href="${ds.getUrl()}?lang=${locale}"
                                                                                         title="${ds.getUrl()}"> Dataset: ${ds.getResLabel()}</a> </#list>
-                                                                        </div>
+									<a> End div source title and dataset</a>
+                                                                        </div>  
+								<a> End div card-header</a>
                                                                 </div>
-
                                                                 <div id="collapse_${collapsableId}" class="collapse ${collapsableShow}" aria-labelledby="heading_${collapsableId}" data-parent="#accordionExample">
                                                                 <div class="card-body">
                                                                         <#assign items =model.getRepresentationByProvider(p,true)>
@@ -190,9 +191,9 @@ ${model.encode("JSON-LD")}
                                                                         <#assign theLable = parts[1]?trim>
 									<p>	${theLable} </p>
 				                           <!-- <table width="100%" style="border_collpase:collapse" >
-								   <tr> -->
+								   <tr> --> <div class="representation"  style="display:flex;gap: 10px;">
+
                                                            <#list model.getRepresentationByProvider(p,true) as r>
-							   <div class="representation"  style="display:flex;gap: 10px;">
 
 								   <!--	<td style="padding: 10px" > -->	<!--	<tr><td style="vertical-align:top"> -->
 												<!--	<div style="display:flex" width="100%" > 	-->
@@ -202,16 +203,16 @@ ${model.encode("JSON-LD")}
                                                                         <#assign link><a href="${url.getUrl()}"><#switch url.getLabel()>
 												<#case "application/rdf+xml"><img class="img-fluid" title="${model.getLocText('Display in RDF/XML format','Afficher en format RDF/XML')}" alt="${model.getLocText('Display in RDF/XML','Afficher en format RDF/XML')}" src="${host}/app/img/rdfxmlicon.png" style="max-width: 60px; width: 90px;padding: 10px 5px 0 5px"/><#break>
 												<#case "text/xml"><img class="img-fluid" title="${model.getLocText('Display in XML format','Afficher en format XML')}" alt="${model.getLocText('Display in XML format','Afficher en format XML')}" src="${host}/app/img/xmlicon.png" style="max-width: 60px;width: 12px; padding: 10px 5px 0 5px"/><#break>
-												<#case "application/gml+xml;subtype=erml"><img class="img-fluid" title="${model.getLocText('Display in ERML format','Afficher en format ERML')}" alt="${model.getLocText('Display in ERML format','Afficher en format ERML')}" src="${host}/app/img/ermlicon.png" style="max-width: 60px; width: 90px;padding: 10px 5px 0 5px"/><#break>
+												<#case "application/gml+xml;subtype=erml"><img class="img-fluid" title="${model.getLocText('Display in ERML format','Afficher en format ERML')}" alt="${model.getLocText('Display in ERML format','Afficher en format ERML')}" src="${host}/app/img/ERML_logo.png" style="max-width: 60px; width: 90px;padding: 10px 5px 0 5px"/><#break>
 												<#case "application/gml+xml"><img class="img-fluid" title="${model.getLocText('Display in GML/XML format','Afficher en format GML/XML')}" alt="${model.getLocText('Display in GML/XML format','Afficher en format GML/XML')}" src="${host}/app/img/gmlicon.png" style="max-width: 60px;width: 90px; padding: 10px 5px 0 5px"/><#break>
 												<#case "application/ld+json"><img class="img-fluid" title="${model.getLocText('Display in JSON format','Afficher en format JSON')}" alt="${model.getLocText('Display in JSON format','Afficher en format JSON')}" src="${host}/app/img/jsonicon.png" style="max-width: 60px;width: 90px; padding: 10px 5px 0 5px"/><#break>
 												<#case "application/x-turtle"><img class="img-fluid" title="${model.getLocText('Display in TTL (Turtle) format','Afficher en format TTL (Turtle)')}" alt="${model.getLocText('Display in TTL (Turtle) format','Afficher en format TTL (Turtle)')}" src="${host}/app/img/ttlicon.png" style="max-width: 70px; width: 60px; padding: 10px 5px 0 5px"/><#break>
-												<#case "text/html"><img class="img-fluid" title="${model.getLocText('Display web page''Afficher la page Web')}" alt="${model.getLocText('Display web page''Afficher la page Web')}" src="${host}/app/img/htmlicon.png" style="max-width: 60px; width: 90px;padding: 10px 5px 0 5px" /><#break>
+												<#case "text/html"><img class="img-fluid" title="${model.getLocText('Display web page''Afficher la page Web')}" alt="${model.getLocText('Display web page''Afficher la page Web')}" src="${host}/app/img/HTML_logo.png" style="max-width: 60px; width: 90px;padding: 10px 5px 0 5px" /><#break>
 												<#case "text/plain"><img class="img-fluid" title="${model.getLocText('Display in plain text format''Afficher en format texte')}" alt="${model.getLocText('Display in plain text format''Afficher en format texte')}t" src="${host}/app/img/txticon.png" style="max-width: 70px; width: 60px;padding: 10px 5px 0 5px"/><#break>
 												<#case "image/jpeg"><img class="img-fluid" title="${model.getLocText('Display in jpeg','Afficher en jpeg')}" alt="${model.getLocText('Display in jpeg','Afficher en jpeg')}" src="${url.getUrl()}" style="max-width: 60px;width: 90px; padding: 10px 5px 0 5px;border: 1px solid black;"/><#break>
-												<#case "image/png"><img class="img-fluid" title="${model.getLocText('Display in png','Afficher en png')}" alt="${model.getLocText('Display in png','Afficher en png')}" src="${host}/app/img/pngicon.png"  style="max-width: 60px;width: 90px; padding: 10px 5px 0 5px;transform: scale(1);"/> <!--border: 1px solid black;"/> --> <#break>
+												<#case "image/png"><img class="img-fluid" title="${model.getLocText('Display in png','Afficher en png')}" alt="${model.getLocText('Display in png','Afficher en png')}" src="${host}/app/img/PNG_logo.png"  style="max-width: 60px;width: 90px; padding: 10px 5px 0 5px;transform: scale(1);"/> <!--border: 1px solid black;"/> --> <#break>
 												<#case "application/vnd.geo+json"><img class="img-fluid" title="${model.getLocText('Display in GeoJSON format''Afficher en format GeoJSON')}" alt="${model.getLocText('Display in GeoJSON format''Afficher en format GeoJSON')}" src="${host}/app/img/geojsonicon.png" style="max-width: 60px; width: 90px;padding: 10px 5px 0 5px"/><#break>
-												<#default><img class="img-fluid" title="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" alt="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" src="${host}/app/img/othericon.png" style="max-width: 60px; width: 90px;padding: 10px 5px 0 5px"/></#switch></a>
+												<#default><img class="img-fluid" title="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" alt="${model.getLocText('Display in','Afficher en format ')} ${url.getLabel()} ${model.getLocText('format','')}" src="${host}/app/img/CSV_logo.png" style="max-width: 60px; width: 90px;padding: 10px 5px 0 5px"/></#switch></a>
                                                                         </#assign>
                                                                         <#assign links = links + [link]>
                                                                         </#list>
@@ -223,14 +224,21 @@ ${model.encode("JSON-LD")}
                                                                         </#list> <!-- </div> < end of division for the label and formats clickable icones -->
 <#-- representation-->
                                                                                <!--	</td>  -->
-                                                                </div> <#-- class representation -->
+									       <!-- here was the old representation div close -->
+									       <a> end class representation </a>
+							   	</div> <#-- class representation -->
+								 <a> end class card body  </a>
 
-                                                                </div>
-                                                                </div>
-                                                        </div>
+								</div> <#-- class card body -->
+							 <a> end class collapse_id  </a>
+							</div><#-- class collapse_id --> 
+							<a> end card division </a>
+							</div> <#-- end card division --> 
                                                         <#assign collapsableId = collapsableId + 1>
-
-                                                        </#list>
+							<#--  trying  additional  /div  jan22 -->  <a> end collapse class starting the list of sources  </a> 
+				                         <a> end a tbd div: **it is end of parent of accordion div !! </a> 
+							 </div>  
+							 </#list>  <!-- should be end of list of providers -->
 							</div>  <!-- </tr></table> -->
 
                                                         <br/>
