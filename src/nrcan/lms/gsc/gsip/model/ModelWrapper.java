@@ -79,7 +79,7 @@ public class ModelWrapper {
 		this.contextResource = m.getResource(contextResource);
 		// if locale is null, it's english, otherwise french is is starts with 'f'
 		this.locale = locale == null?"en":(locale.toLowerCase().startsWith("f")?"fr":"en");
-		Logger.getAnonymousLogger().log(Level.WARNING,"Language " + this.locale);
+		//Logger.getAnonymousLogger().log(Level.WARNING,"Language " + this.locale);
 	}
 	
 	
@@ -644,7 +644,9 @@ public class ModelWrapper {
 			Property p = statement.getPredicate();
 			String ns = p.getNameSpace();
 		 // skip RDFS, RDF, OWL and DCT
-			if (RDFS.getURI().equals(ns)) continue;
+			if (RDFS.getURI().equals(ns))
+			    if (!"seeAlso".equals(p.getLocalName())) continue;
+			  // we skip only if a RDFS property is _not_ seeAlso
 			if (RDF.getURI().equals(ns)) continue;
 			if (OWL.getURI().equals(ns)) continue;
 			if (SCHEMA.getURI().equals(ns)) continue;
