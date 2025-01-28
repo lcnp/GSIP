@@ -87,6 +87,7 @@ ${model.encode("JSON-LD")}
 	</nav>
 	</header>
 
+
 	<main role="main" class="container">
 		<div class="row">
 			<div class="col-sm-12">
@@ -175,7 +176,20 @@ ${model.encode("JSON-LD")}
 								<div class="card-body" style="display: flex; flex-direction: column ; gap: 5px; " > 
 
 
-								<#list model.getRepresentationByProvider(p,false) as r>
+
+			   <!-- sort the representations -->
+								   <#assign representations = [] >
+								  <#list model.getRepresentationByProvider(p,true) as rep>
+								  <#assign representations=representations + [{"name":model.getJoinedLabels(rep, locale, true, " | "),"representation":rep}]>
+								  </#list>
+						  	   <#list representations?sort_by("name") as rp>
+								  <#assign r = rp.representation>
+
+
+
+
+
+							<#--	<#list model.getRepresentationByProvider(p,false) as r> -->
 									<#if r?index == 0 > 
 									  <div   class="row" style="display: block ; flex: 1; " >  <!-- flex; gap: 10px; flex-basis: 100%;" >  -->
 
