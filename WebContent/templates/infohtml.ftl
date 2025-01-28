@@ -94,10 +94,10 @@ ${model.encode("JSON-LD")}
                                 <blockquote class="blockquote container">
                                         <div class="row">
 						<div class="col-sm-12 col-md-12">
-                                                        <p class="mb-0">
+                                                     <!--   <p class="mb-0">
                                                                 <strong>Type: </strong>
                                                                 <samp>${model.getTypeLabel()}</samp>
-                                                        </p>
+						     </p> -->
                                                         <p class="mb-0">
                                                                 <strong>${model.getLocText("Identifier:","Identifiant:")} </strong>
                                                                 <samp>
@@ -146,7 +146,7 @@ ${model.encode("JSON-LD")}
                                                 <div class="col-sm-12 col-md-12">
                                                         </#if>
                                                         <!--<small>(unclassified - non classifié)</small>-->
-                                                        <h3>${model.getLocText("Feature Descriptions","Descriptions de l'entité")}</h3>
+							<!--   <h3>${model.getLocText("Feature Descriptions","Descriptions de l'entité")}</h3> -->
                                                         <!--<i class="material-icons">arrow_right</i><i class="material-icons">arrow_drop_down</i>-->
 
                                                         <#assign collapsableId = 0>
@@ -154,19 +154,28 @@ ${model.encode("JSON-LD")}
                                                         <#assign collapsableShow_arrow = 'arrow_drop_down'>
                                                         <div class="accordion" id="accordionExample">
 
-                                                        <#list model.getAllProviders(true) as p>
+							   <!-- sort the providers by name -->
+							   <#assign providers = []>
+							   <#list model.getAllProviders(true) as p1>
+							   <#assign providers=providers+[{"name":model.getPreferredLabel(p1,l,"N/A"),"provider":p1}]>
+							   </#list>
+							   <!-- end sorting providers -->
+
+							   <#--  <#list model.getAllProviders(true) as p> -->
+							<#list providers?sort_by("name") as prov>
+							   <#assign p = prov.provider>
 
 
-                                                        <#if collapsableId == 0>
+                                                         <#if collapsableId == 0>
                                                                 <#assign collapsableShow = 'show'>
                                                                 <#assign collapsableShow_arrow = 'arrow_drop_down'>
-                                                        <#else>
+                                                         <#else>
                                                                 <#assign collapsableShow = ''>
                                                                 <#assign collapsableShow_arrow = 'arrow_right'>
-                                                        </#if>
+                                                         </#if>
 
 
-                                                        <div class="card">
+                                                         <div class="card">
                                                                 <div class="card-header" id="heading_${collapsableId}" > <!-- style="display:flex;justify-content: space-between;"  >  -->
                                                                         <div style="display:flex;align-items:center;justify-content: space-between;">
                                                                 <h2 class="mb-0"  >
@@ -178,12 +187,12 @@ ${model.encode("JSON-LD")}
                                                                                 <a
                                                                                         href="${ds.getUrl()}?lang=${locale}"
                                                                                         title="${ds.getUrl()}"> Dataset: ${ds.getResLabel()}</a> </#list>
-									<a> End div source title and dataset</a>
+									<!-- <a> End div source title and dataset</a> -->
                                                                         </div>  
-								<a> End div card-header</a>
+								<!-- <a> End div card-header</a> -->
                                                                 </div>
                                                                 <div id="collapse_${collapsableId}" class="collapse ${collapsableShow}" aria-labelledby="heading_${collapsableId}" data-parent="#accordionExample">
-                                                                <div class="card-body">
+                                                                        <div class="card-body">
                                                                         <#assign items =model.getRepresentationByProvider(p,true)>
                                                                        <#assign firstItem = items?first>
                                                                         <#assign myString = model.getJoinedLabels(firstItem, locale, true," | ")>
@@ -191,12 +200,23 @@ ${model.encode("JSON-LD")}
                                                                         <#assign theLable = parts[1]?trim>
 									<p>	${theLable} </p>
 				                           <!-- <table width="100%" style="border_collpase:collapse" >
-								   <tr> --> <div class="representation"  style="display:flex;gap: 10px;">
+								   <tr> -->  <a> <b> Data formats </b> </a> 
 
-                                                           <#list model.getRepresentationByProvider(p,true) as r>
+							                <div class="representation"  style="display:flex;gap: 10px;">
+
+								   <!-- sort the representations -->
+								   <#assign representations = [] >
+								  <#list model.getRepresentationByProvider(p,true) as rep>
+								  <#assign representations=representations + [{"name":model.getJoinedLabels(rep, locale, true, " | "),"representation":rep}]>
+								  </#list>
+						  	   <#list representations?sort_by("name") as rp>
+								  <#assign r = rp.representation>
+ 
+
+								  <#--  <#list model.getRepresentationByProvider(p,true) as r> -->
 
 								   <!--	<td style="padding: 10px" > -->	<!--	<tr><td style="vertical-align:top"> -->
-												<!--	<div style="display:flex" width="100%" > 	-->
+												<!--	<div style="display:flex" width="100%" > -->
 
                                                                         <#assign links = []>
                                                                         <#list model.getUrls(r,true) as url>
@@ -222,32 +242,36 @@ ${model.encode("JSON-LD")}
 
                                                                         <!-- </td></tr> -->
                                                                         </#list> <!-- </div> < end of division for the label and formats clickable icones -->
-<#-- representation-->
+                                                                                <#-- representation-->
                                                                                <!--	</td>  -->
 									       <!-- here was the old representation div close -->
-									       <a> end class representation </a>
+									       <!-- <a> end class representation </a> --> 
 							   	</div> <#-- class representation -->
-								 <a> end class card body  </a>
+								 <!-- <a> end class card body  </a> -->
 
 								</div> <#-- class card body -->
-							 <a> end class collapse_id  </a>
+							 <!-- <a> end class collapse_id  </a> -->
 							</div><#-- class collapse_id --> 
-							<a> end card division </a>
-							</div> <#-- end card division --> 
+							<!-- <a> end card division </a> -->
+							</div> 
+                                                        
                                                         <#assign collapsableId = collapsableId + 1>
-							<#--  trying  additional  /div  jan22 -->  <a> end collapse class starting the list of sources  </a> 
-				                         <a> end a tbd div: **it is end of parent of accordion div !! </a> 
-							 </div>  
+							
+                                                         <!-- <a> end collapse class starting the list of sources  </a> -->
+							
 							 </#list>  <!-- should be end of list of providers -->
-							</div>  <!-- </tr></table> -->
+							 </div>   <!--  end of sm12 div and it is moved to after end provider list  -->
+                                                         </div> <!-- added to end div row after the end of providers list -->
+                                                         
+							</div>  <!-- should be end of the container div --> 
 
-                                                        <br/>
+                                                        
                                                         <h3>${model.getLocText("Related Features","Entités reliées")}</h3>
                                                         <ul class="nav nav-tabs" role="tablist">
                                                                 <li class="nav-item"><a class="nav-link active"
                                                                         href="#g_type" role="tab" data-toggle="tab">${model.getLocText("Grouped by relations","Groupées par relations")}</a></li>
                                                                 <li class="nav-item"><a class="nav-link" href="#g_res"
-                                                                        role="tab" data-toggle="tab">${model.getLocText("Grouped by features","Groupées par entitées")}</a></li>
+                                                                        role="tab" data-toggle="tab">${model.getLocText("Grouped by features","Groupées par entités")}</a></li>
                                                         </ul>
                                                         <div class="tab-content">
                                                                 <div role="tabpanel" class="tab-pane active" id="g_type">
