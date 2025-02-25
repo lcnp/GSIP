@@ -279,11 +279,16 @@ ${model.encode("JSON-LD")}
                                                                         <#assign grp = model.getRelevantLinkByProperty()>
                                                                         <#list grp?keys as p>
                                                                                 <li><strong>${p}:</strong>
+                                                                                </br>
+                                                                                <ul>
                                                                                 <#list grp[p] as link>
-                                                                                | <a
+                                                                                <li>
+                                                                                <a
                                                                                         href="${link.getUrl()}?lang=${locale}"
                                                                                         title="${link.getUrl()}">${link.getResLabel()}</a>
+                                                                                 </li>        
                                                                                 </#list>
+                                                                                </ul>
 
                                                                                 </li>
                                                                         </#list>
@@ -295,7 +300,7 @@ ${model.encode("JSON-LD")}
                                                                         <#list res?keys as r>
                                                                                 <li>
                                                                                 <#list res[r] as l>
-                                                                                | <a
+                                                                                 <a
                                                                                         href="${l.getUrl()}?lang=${locale}"
                                                                                         title="${l.getUrl()}">${l.getResLabel()}</a> : <strong>${l.getLabel()}</strong>
                                                                                 </#list>
