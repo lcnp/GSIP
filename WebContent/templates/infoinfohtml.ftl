@@ -87,7 +87,6 @@ ${model.encode("JSON-LD")}
 	</nav>
 	</header>
 
-
 	<main role="main" class="container">
 		<div class="row">
 			<div class="col-sm-12">
@@ -174,23 +173,25 @@ ${model.encode("JSON-LD")}
 								
 								<div id="collapse_${collapsableId}" class="collapse ${collapsableShow}" aria-labelledby="heading_${collapsableId}" data-parent="#accordionExample">
 								<div class="card-body" style="display: flex; flex-direction: column ; gap: 5px; " > 
+					 <!-- sort the representation -->
+  								 <#assign representations = [] >
 
-
-
-			   <!-- sort the representations -->
-								   <#assign representations = [] >
-								  <#list model.getRepresentationByProvider(p,true) as rep>
-								  <#assign representations=representations + [{"name":model.getJoinedLabels(rep, locale, true, " | "),"representation":rep}]>
-								  </#list>
-						  	   <#list representations?sort_by("name") as rp>
-								  <#assign r = rp.representation>
+								<#list model.getRepresentationByProvider(p,false) as rep>
 
 
 
 
+								 <#assign representations=representations + [{"name":model.getJoinedLabels(rep, locale, true, " | "),"representation":rep}]>
+								 </#list>
+								 <#list representations?sort_by("name") as rp>
+								 <#assign r = rp.representation>
 
-							<#--	<#list model.getRepresentationByProvider(p,false) as r> -->
-									<#if r?index == 0 > 
+
+
+
+
+
+									<#if rp?index == 0 > 
 									  <div   class="row" style="display: block ; flex: 1; " >  <!-- flex; gap: 10px; flex-basis: 100%;" >  -->
 
 
@@ -200,7 +201,7 @@ ${model.encode("JSON-LD")}
 											  
 										<p> ${truncatedString} <br> </p> 
 									   </div>
-									   <div class="row" style="display: flex; gap: 5px" >  <!-- this division is created once in the loop and is closed just after the end of the current #list loop in order to create a separate row division for the representation under the text.   -->
+									   <div class="row" style="display: flex; gap: 5px" >  <!-- this division is created once in the loop and is closed just after the end of the current list loop in order to create a separate row division for the representation under the text.   -->
 					        			</#if>
 									
 								<div class="representation"  > 
