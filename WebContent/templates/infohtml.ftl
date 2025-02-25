@@ -198,7 +198,11 @@ ${model.encode("JSON-LD")}
                                                                         <#assign myString = model.getJoinedLabels(firstItem, locale, true," | ")>
                                                                         <#assign parts = myString?split(":")>
                                                                         <#assign theLable = parts[1]?trim>
-									<p>	${theLable} </p>
+                                                                        <#assign labels = theLable?split(" | ")>
+                                                                        <#list labels as part>
+                                                                        ${part} <br>
+                                                                        </#list>
+                                                                        									
 				                           <!-- <table width="100%" style="border_collpase:collapse" >
 								   <tr> -->  <a> <b> Data formats </b> </a> 
 
