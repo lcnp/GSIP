@@ -257,13 +257,16 @@ ${model.encode("JSON-LD")}
 									<#assign grp = model.getRelevantLinkByProperty()>
 									<#list grp?keys as p>
 										<li><strong>${p}:</strong>
-										<#list grp[p] as link>
-										| <a
+										
+										<#list grp[p] as link> 
+										</br>
+										 <a
 											href="${link.getUrl()}?lang=${locale}"
 											title="${link.getUrl()}">${link.getResLabel()}</a>
 										</#list>
-
+										
 										</li>
+										</br>
 									</#list>
 									</ul>
 								</div>
@@ -308,14 +311,33 @@ ${model.encode("JSON-LD")}
 				style="max-height: 35px;" />
 		</div>
 	</footer>--->
-	<br/>
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted"><img class="img-fluid" alt="Government of Canada logo"
-				src="${host}/app/img/GOCcolouren.png"
-				style="max-height: 35px;" /></span>
+	<!-- <br/>
+						<footer class="footer">
+							<div class="container">
+								<span class="text-muted"><img class="img-fluid" alt="Government of Canada logo"
+								src="${host}/app/img/GOCcolouren.png"
+								style="max-height: 35px;" /></span>
+							</div>
+    </footer>  -->
+
+    <footer class="mastfoot fixed-bottom" >
+      <div class="container d-flex justify-content-evenly align-items-center" >
+        <span class="text-muted"  style="border: 2px solid black; "> <img class="img-fluid" alt="NGSC logo"
+         src="${host}/app/img/NGSClogo.png"
+         style="max-height: 60px; " />
+                                
+        </span>
+        
+        <span class="text-muted" style="padding: 10px;"><img class="img-fluid" alt="Government of Canada logo"
+                                src="${host}/app/img/CdnFlagBanner.svg"
+                                style="max-height: 40px; " />
+        </span>
+        
       </div>
     </footer>
+
+
+
 
 
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
