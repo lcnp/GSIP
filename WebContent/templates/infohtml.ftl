@@ -341,13 +341,22 @@ ${model.encode("JSON-LD")}
                 </div>
         </footer>--->
         <br/>
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted"><img class="img-fluid" alt="Government of Canada logo"
-                                src="${host}/app/img/GOCcolouren.png"
-                                style="max-height: 35px;" /></span>
+    <footer class="mastfoot fixed-bottom" >
+      <div class="container d-flex justify-content-evenly align-items-center" >
+        <span class="text-muted"  style="border: 2px solid black; "> <img class="img-fluid" alt="NGSC logo"
+         src="${host}/app/img/NGSClogo.png"
+         style="max-height: 60px; " />
+                                
+        </span>
+        
+        <span class="text-muted" style="padding: 10px;"><img class="img-fluid" alt="Government of Canada logo"
+                                src="${host}/app/img/CdnFlagBanner.svg"
+                                style="max-height: 40px; " />
+        </span>
+        
       </div>
     </footer>
+    
 
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"
