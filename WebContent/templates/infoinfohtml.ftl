@@ -81,13 +81,13 @@ ${model.encode("JSON-LD")}
 <body>
 	<header>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-		<img src="${host}/app/img/${model.getLocText('ngsc-logo-en.png','ngsc-logo-fr.png')}"
-			alt="" /> <a class="navbar-brand" href="#" style="padding-left: 4px;">${model.getLocText("CGDN: Canadian Geoscience Data Network","RDGC: Réseau de données géoscientifiques canadien")}</a>
+		<img src="${host}/app/img/${model.getLocText('cgdn_logo_white.png','cgdn_logo_white.png')}"
+			alt="" style="max-height:65px;" /> <a class="navbar-brand" href="#" style="padding-left: 12px;">${model.getLocText("CGDN: Canadian Geoscience Data Network","RDGC: Réseau de données géoscientifiques canadien")}</a>
 			<a class="btn-nav mr-auto" href="?lang=${model.getLocText('fr','en')}">${model.getLocText("Français","English")}</a>
 	</nav>
 	</header>
 
-	<main role="main" class="container">
+	<main role="main" class="container" style="padding-top: 10px">
 		<div class="row">
 			<div class="col-sm-12">
 				<h1>${model.getPreferredLabel("N/A")}</h1>
@@ -300,7 +300,8 @@ ${model.encode("JSON-LD")}
 				</div>
 			</div>
 		</div>
-		<a href="https://www.nrcan.gc.ca/terms-and-conditions/10847" target="_blank"><small>[Terms and conditions of use]</small></a>  <a href="https://www.rncan.gc.ca/avis/10848" target="_blank"><small>[Conditions régissant l'utilisation]</small></a>
+		<!-- <a href="https://www.nrcan.gc.ca/terms-and-conditions/10847" target="_blank"><small>[Terms and conditions of use]</small></a>  <a href="https://www.rncan.gc.ca/avis/10848" target="_blank"><small>[Conditions régissant l'utilisation]</small></a> -->
+		<a href="${host}/app/CGDN-Terms-ConditionsNoComments2025-03-11.htm" target="_blank"><small>[Terms and conditions of use]</small></a>  <a href="${host}/app/CGDN-Terms-ConditionsNoComments2025-03-11.htm" target="_blank"><small>[Conditions régissant l'utilisation]</small></a>
 		
 	</main>
 
