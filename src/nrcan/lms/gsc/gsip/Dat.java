@@ -45,7 +45,7 @@ public class Dat {
         String baseUri = Configuration.getInstance().getParameterAsString("GSIP_BASEURI", "http://localhost:8080/gsip");
         String persistentUri = Configuration.getInstance().getParameterAsString("persistentUri", "https://geoconnex.ca");
         
-        String searchUri = uriInfo.getRequestUri().toString().replace(baseUri, persistentUri); 
+        String searchUri = uriInfo.getAbsolutePath().toString().replace(baseUri, persistentUri); 
         Logger.getAnonymousLogger().log(Level.INFO, "Converted URI" + searchUri);
         // create a SPARQL query to get local uri to redirect to
         ReadUltimateUrl handler = new ReadUltimateUrl();
