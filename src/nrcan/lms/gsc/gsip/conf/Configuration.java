@@ -271,7 +271,20 @@ public class Configuration {
 	public MediaType getMimeFromFormat(String f)
 	{
 		String media =  formatToMime.get(f); 
+		try {
+			// try to see if it's a valid media type
+			MediaType.valueOf(media);
+		} catch (IllegalArgumentException e)
+		{
+			// not a valid media type, return text/plain
+			media = MediaType.TEXT_PLAIN;
+		}
 		return MediaType.valueOf(media);
+	}
+
+	public MediaType getMimeFromFormat(String f, String defaultFormat)
+	{
+		return getMimeFromFormat(f==null || f.isEmpty()?defaultFormat:f);
 	}
 	
 

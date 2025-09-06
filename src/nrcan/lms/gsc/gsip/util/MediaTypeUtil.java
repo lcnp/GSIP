@@ -19,7 +19,7 @@ public class MediaTypeUtil  {
 	public static List<QuantifiedMedia> getMediaTypesOrdered(String mediaTypes)
 	{
 		String[] medias = mediaTypes.split(",");
-		List mediaList = new ArrayList<QuantifiedMedia>();
+		List<QuantifiedMedia> mediaList = new ArrayList<>();
 		for(String m:medias)
 		{
 			QuantifiedMedia q = new QuantifiedMedia(m);
@@ -28,6 +28,16 @@ public class MediaTypeUtil  {
 		
 		mediaList.sort(new MediaCompare());
 		return mediaList;
+	}
+
+	// returns the first non-null format from a list of formats, if none found, returns header
+	public static String getFormat(String header,String... formats)
+	{
+		for(String f:formats)
+		{
+			if (f != null && f.trim().length() > 0) return f;
+		}
+		return header;
 	}
 	
 	public static InfoOutputFormat getOutputFormat(String format, String accepted)

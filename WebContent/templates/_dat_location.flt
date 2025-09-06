@@ -1,0 +1,10 @@
+# find the ultimate URL of a /dat/
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX schema: <https://schema.org/>
+SELECT ?u
+WHERE {
+    <${resource?replace(' ','%20')}> ?p ?o. 
+    ?o schema:url ?u.
+}
+LIMIT 1
