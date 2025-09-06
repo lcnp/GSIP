@@ -55,10 +55,15 @@ public class ModelWrapper {
 	private String locale = "en";
 	private Resource contextResource;
 	public static final String SCHEMAORG = "https://schema.org/";
+	public static final String GXC = "https://geoconnex.ca/id/cls/"; 
+	public static final String GXP = "https://geoconnex.ca/id/prp/";
 	// I cannot use the real properties under Geosconnex here, they are converted to local
-	public static final Property concretizedBy =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/onto/", "concretizedBy" );
-	public static final Property concretizes =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/onto/", "concretizes" );
-	public static final Property partOf =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/onto/", "partOf" );
+	//public static final Property concretizedBy =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/onto/", "concretizedBy" );
+	//public static final Property concretizes =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/onto/", "concretizes" );
+	public static final Property ENCODEDBY =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/prp/", "encodedBy" );
+	public static final Property ENCODES =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/prp/", "encodes" );
+    public static final Property SUBJECT_OF =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/prp/", "subjectOf" );
+	public static final Property PARTOF =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/prp/", "partOf" );
 	
 	// this is not not a very good design for long term, but this codebase might not be maintained in the long term
 
@@ -279,7 +284,7 @@ public class ModelWrapper {
 		
 		return getRepresentationByProvider(r, p, isNir).
 			stream().
-			map(m -> getConcretizations(m)).
+			map(m -> getEncodes(m)).
 			flatMap(Set::stream).
 			distinct().
 			map(m-> new Link("",m.getURI(),getPreferredLabel(m, l, "N/A"))).
@@ -329,7 +334,7 @@ public class ModelWrapper {
 	{
 		//System.out.println("looking dataset for " + ds.getURI());
 		//Resource ds = model.getResource(dataset);
-		Set<Resource> infosets = getConcretizations(ds);
+		Set<Resource> infosets = getEncodes(ds);
 		//System.out.println("we have " + infosets.size() + " infosets");
 		List<Link> links = new ArrayList<>();
 		for(Resource r:infosets)
@@ -345,7 +350,7 @@ public class ModelWrapper {
 	 * Add the concretizations of a resource to an existing list of datasets
 	 * see issue #12.
 	 */
-	private Set<Resource> getConcretizations(Resource dataset)
+	private Set<Resource> getEncodes(Resource dataset)
 	{
 		// we assume 
 		Set<Resource> infosets = new HashSet<Resource>();
@@ -353,7 +358,7 @@ public class ModelWrapper {
 		// I check if it has a concretize to find an Info
 	
 			
-			StmtIterator concretizesItr = dataset.listProperties(concretizes);
+			StmtIterator concretizesItr = dataset.listProperties(ENCODES);
 			while(concretizesItr.hasNext())
 			{
 				
@@ -412,7 +417,7 @@ public class ModelWrapper {
 	 */
 	private Property getDsProperty(boolean isNir)
 	{
-		return isNir?SCHEMA.subjectOf:concretizedBy;
+		return isNir?SUBJECT_OF:ENCODEDBY;
 	}
 
 	private String dumpStatement(Statement stmt)
@@ -648,7 +653,8 @@ public class ModelWrapper {
 			if (RDF.getURI().equals(ns)) continue;
 			if (OWL.getURI().equals(ns)) continue;
 			if (SCHEMA.getURI().equals(ns)) continue;
-			if (sameResource(p, concretizedBy)) continue;
+			if (GXP.equals(ns)) continue;
+			if (sameResource(p, ENCODEDBY)) continue;
 			//if (DCTerms.getURI().equals(ns)) continue;
 			// if we're here, we're good
 			// the object must be a resource
