@@ -57,6 +57,7 @@ public class ModelWrapper {
 	public static final String SCHEMAORG = "https://schema.org/";
 	public static final String GXC = "https://geoconnex.ca/id/cls/"; 
 	public static final String GXP = "https://geoconnex.ca/id/prp/";
+	public static final String LOCAL_GXP = System.getenv("GSIP_BASEURI")+"/id/prp/";
 	// I cannot use the real properties under Geosconnex here, they are converted to local
 	//public static final Property concretizedBy =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/onto/", "concretizedBy" );
 	//public static final Property concretizes =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/onto/", "concretizes" );
@@ -648,12 +649,13 @@ public class ModelWrapper {
 			Statement statement = i.next();
 			Property p = statement.getPredicate();
 			String ns = p.getNameSpace();
+			//System.out.println("Testing " + ns + ":" + p.getLocalName() + " compared to " + GXP);
 		 // skip RDFS, RDF, OWL and DCT
 			if (RDFS.getURI().equals(ns)) continue;
 			if (RDF.getURI().equals(ns)) continue;
 			if (OWL.getURI().equals(ns)) continue;
 			if (SCHEMA.getURI().equals(ns)) continue;
-			if (GXP.equals(ns)) continue;
+			if (LOCAL_GXP.equals(ns)) continue;
 			if (sameResource(p, ENCODEDBY)) continue;
 			//if (DCTerms.getURI().equals(ns)) continue;
 			// if we're here, we're good
