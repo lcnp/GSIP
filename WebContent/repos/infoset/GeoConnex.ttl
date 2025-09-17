@@ -17,6 +17,7 @@ gxo:geoconnex
     schema:name "GeoConnex Ontology"@en, "GeoConnex.ca Ontologie"@fr  ;
     rdfs:comment "GeoConnex ontology for representing entities in Linked SDI."@en, "Ontologie GeoConnex.ca pour la représentation des entités dans Linked SDI."@fr;
     gxp:encodedBy [
+        a gxc:FICs ;
         dct:format "text/turtle";
         dct:conformsTo "http://www.w3.org/2002/07/owl" ; 
         rdfs:label "GeoConnex.ca Ontology in ttl"@en, "GeoConnex.ca Ontologie en ttl"@fr ;
@@ -25,6 +26,7 @@ gxo:geoconnex
         schema:url <https://geoconnex.ca/ont/geoconnex.ttl>
     ];
     gxp:encodedBy [
+        a gxc:FICs ;
         dct:format "application/rdf+xml";
         dct:conformsTo "http://www.w3.org/2002/07/owl" ; 
         rdfs:label "GeoConnex.ca Ontology in ttl"@en, "GeoConnex.ca Ontologie en ttl"@fr ;
@@ -40,6 +42,7 @@ rdfs:label "Mineral Occurrence"@en,"Indice minéralisé"@fr;
 rdfs:comment "GeoConnex Mineral Occurrence class. May be a single mineral occurrence (equivalent to ERML definition of mineral occurrence) or an aggregate of mineral occurrences."@en,
 "Classe GeoConnex d'un indice minéralisé (équivalent à la définition d'un indice minéralisé de ERML) ou un agrégat d'occurrences minérales."@fr;
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: Mineral Occurrence", "Mineral Occurrence in ttl" @en, "Indice minéralisé en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -48,6 +51,7 @@ gxp:subjectOf [
         schema:url <https://xx>
  ];
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: Mineral Occurrence", "Mineral Occurrence in rdf" @en, "Indice minéralisé en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -64,6 +68,7 @@ rdfs:label "Info"@en, "Info"@fr;
 rdfs:comment "GeoConnex Information Content Entity class. Instances are abstract information content."@en,
 "Classe GeoConnex d'information. Les instances sont une information abstraite."@fr;
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: Info", "Info in ttl" @en, "Info en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -72,6 +77,7 @@ gxp:subjectOf [
         schema:url <https://xx>
  ];
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: Info", "Info in rdf" @en, "Info en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -88,6 +94,7 @@ rdfs:label "Infoset"@en, "Infoset"@fr;
 rdfs:comment "GeoConnex Infoset class. A collection of abstract information content (UICs)."@en,
 "Classe GeoConnex d'un Ensemble d'information. Une collection d'information abstraite (UICs)."@fr;
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: Infoset", "Infoset in ttl" @en, "Infoset en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -96,6 +103,7 @@ gxp:subjectOf [
         schema:url <https://xx>
  ];
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: Infoset", "Infoset in rdf" @en, "Infoset en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -113,6 +121,7 @@ rdfs:label "Data"@en, "Data"@fr;
 rdfs:comment "GeoConnex Information Form Entity (data) class. Instances are formatted information (data)."@en,
 "Classe GeoConnex d'informations formatées (data). Les instances sont des informations formatées (data)."@fr;
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: Information Form", "Information Form in ttl" @en, "Information Form en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -121,6 +130,7 @@ gxp:subjectOf [
         schema:url <https://xx>
  ];
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: Information Form", "Information Form in rdf" @en, "Information Form en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -138,6 +148,7 @@ rdfs:label "Dataset"@en, "Dataset"@fr;
 rdfs:comment "GeoConnex Dataset class. A collection of data (FICs): formatted information content."@en,
 "Classe GeoConnex d'un Ensemble de Données. Une collection de données (FICs)."@fr;
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: Dataset", "Dataset in ttl" @en, "Dataset en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -146,6 +157,7 @@ gxp:subjectOf [
         schema:url <https://xx>
  ];
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: Dataset", "Dataset in rdf" @en, "Dataset en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -162,6 +174,7 @@ rdfs:label "Representation"@en, "Représentation"@fr;
 rdfs:comment "GeoConnex Representation class. Instances are representations such as data files."@en,
 "Classe GeoConnex de Représentation. Les instances sont des représentations telles que des fichiers de données."@fr;
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: Representation", "Representation in ttl" @en, "Représentation en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -170,6 +183,7 @@ gxp:subjectOf [
         schema:url <https://xx>
 ];
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: Representation", "Representation in rdf" @en, "Représentation en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -189,14 +203,16 @@ gxp:subjectOf
         owl:unionOf ( gxc:UIC gxc:FIC gxc:IQE)
     ] ;
     gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: 'subject of' relation", "'subject of' relation in ttl" @en, "'sujet de' relation en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
-        schema:name "ttl: 'part of' relation", "'subject of' relation in ttl" @en, "'sujet de' relation en ttl" @fr ;
+        schema:name "ttl: 'subject of' relation", "'subject of' relation in ttl" @en, "'sujet de' relation en ttl" @fr ;
         schema:provider <https://nrcan.gc.ca/gsc> ;
         schema:url <https://xx>
     ];
     gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: 'subject of' relation", "'subject of' relation in rdf" @en, "'sujet de' relation en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -217,6 +233,7 @@ gxp:about
         owl:unionOf ( gxc:UIC gxc:FIC gxc:IQE)
     ] ;
     gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: 'about' relation", "'about' relation in ttl" @en, "'concernant' relation en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -225,6 +242,7 @@ gxp:about
         schema:url <https://xx>
     ];
     gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: 'about' relation", "'about' relation in rdf" @en, "'concernant' relation en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -240,6 +258,7 @@ gxp:partOf
     rdfs:comment "GeoConnex part of relation: between a part and a whole, e.g. a mineral occurrence (whole) divided into smaller pieces (parts), so each piece is part of the whole."@en,
     "Partie d'une relation GeoConnex: entre une partie et son tout, ex: un indice minéralisé (tout) divisé en elements plus petits (parties), de sorte que chaque elements sont une partie de l'ensemble."@fr;
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: 'part of' relation", "'part of' relation in ttl" @en, "'partie d'une' relation en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -248,6 +267,7 @@ gxp:subjectOf [
         schema:url <https://xx>
  ];
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: 'part of' relation", "'part of' relation in rdf" @en, "'partie d'une' relation en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -265,6 +285,7 @@ gxp:hasPart
     rdfs:comment "GeoConnex has part relation: between a whole and a part, e.g. a mineral occurrence (whole) divided into smaller pieces (parts), so the whole has parts that are the pieces."@en,
     "Relation GeoConnex 'a comme partie': entre un tout et une partie,  ex: un indice minéralisé (tout) divisé en elements plus petits (parties), de sorte que chaque elements sont une partie de l'ensemble."@fr;
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: 'has part' relation", "'has part' relation in ttl" @en, "relation 'a comme partie' en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -273,6 +294,7 @@ gxp:subjectOf [
         schema:url <https://xx>
  ];
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: 'has part' relation", "'has part' relation in rdf" @en, "relation 'a comme partie' en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -290,6 +312,7 @@ gxp:concretizes
     rdfs:comment "GeoConnex concretizes relation: holds between a representation and instances of info or data."@en,
     "Relation GeoConnex 'contrétise': lien entre une représentation et les instances d'une information ou d'une données."@fr;
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: 'concretizes' relation", "'concretizes' relation in ttl" @en, "relation 'contrétise' en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -298,6 +321,7 @@ gxp:subjectOf [
         schema:url <https://xx>
  ];
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: 'concretizes' relation", "'concretizes' relation in rdf" @en, "relation 'contrétise' en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -315,6 +339,7 @@ gxp:concretizedBy
     rdfs:comment "GeoConnex concretizedBy relation: holds between instances of info or data and a representation."@en,
     "Relation GeoConnex contrétisé par: lien entre les instances d'une information ou d'une données et une représentation."@fr;
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: 'concretized by' relation", "'concretized by' relation in ttl" @en, "relation 'contrétisé par' en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -323,6 +348,7 @@ gxp:subjectOf [
         schema:url <https://xx>
  ];
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: 'concretized by' relation", "'concretized by' relation in rdf" @en, "relation 'contrétisé par' en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -339,6 +365,7 @@ gxp:encodes
     rdfs:comment "GeoConnex encodes relation: holds between instances of data and info. Data can partially or fully encode info."@en,
     "Relation GeoConnex encode: lien entre les instances d'une information et d'une données."@fr;
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: 'encodes' relation", "'encodes' relation in ttl" @en, "relation 'encode' en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -347,6 +374,7 @@ gxp:subjectOf [
         schema:url <https://xx>
  ];
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: 'encodes' relation", "'encodes' relation in rdf" @en, "relation 'encode' en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -364,6 +392,7 @@ gxp:encodedBy
     rdfs:comment "GeoConnex encoded by relation: holds between instances of info and data."@en,
     "Relation GeoConnex codé par: lien entre les instances d'une données et d'une information."@fr;
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "text/turtle" ;
         rdfs:label "ttl: 'encoded by' relation", "'encoded by' relation in ttl" @en, "relation 'codé par' en ttl" @fr ;
         gxp:encodes gxo:geoconnex ;
@@ -372,6 +401,7 @@ gxp:subjectOf [
         schema:url <https://xx>
  ];
 gxp:subjectOf [
+        a gxc:FIC ;
         dct:format "application/rdf+xml" ;
         rdfs:label "rdf: 'encoded by' relation", "'encoded by' relation in rdf" @en, "relation 'codé par' en rdf" @fr ;
         gxp:encodes gxo:geoconnex ;
