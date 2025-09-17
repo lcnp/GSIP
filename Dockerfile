@@ -3,6 +3,11 @@ FROM docker.io/maven:3.8.6-openjdk-11-slim AS build
 COPY src /usr/src/gsip/src
 COPY WebContent /usr/src/gsip/WebContent
 COPY pom.xml /usr/src/gsip
+ADD nrcan-root.cer /usr/local/share/ca-certificates/NRCAN-RootCA.crt
+RUN update-ca-certificates
+RUN keytool -importcert -file /usr/local/share/ca-certificates/NRCAN-RootCA.crt -keystore \
+    "${JAVA_HOME}/lib/security/cacerts" -alias httpcat -storepass \
+    changeit --noprompt
 RUN mvn -f /usr/src/gsip/pom.xml package
 
 #tomcat 10
