@@ -110,7 +110,7 @@
     schema:provider <https://nrcan.gc.ca/gsc> ;
     schema:concretizedBy [
         a gxc:IQE ;
-        gxp:preferred true^xsd:boolean;
+        gxp:preferred "true"^^xsd:boolean;
         rdfs:label "Latest: Anticlimax A"@en, "NRCan Mineral Occurrence 30001473" @en, "Dernier: RNCan Indice minéralisé 30001473" @fr ;
         schema:name "Latest: Anticlimax A"@en, "NRCan Mineral Occurrence 30001473" @en, "Dernier: RNCan Indice minéralisé 30001473" @fr ;
         schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001473'"
