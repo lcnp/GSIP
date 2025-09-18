@@ -21,6 +21,7 @@ import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
@@ -29,6 +30,7 @@ import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
+import org.apache.jena.util.PrintUtil;
 import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.OWL;
 import org.apache.jena.vocabulary.RDF;
@@ -65,7 +67,7 @@ public class ModelWrapper {
 	public static final Property ENCODES =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/prp/", "encodes" );
     public static final Property SUBJECT_OF =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/prp/", "subjectOf" );
 	public static final Property PARTOF =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/prp/", "partOf" );
-	
+	public static final Property CONCRETIZEDBY = ResourceFactory.createProperty(SCHEMAORG,"concretizedBy");
 	// this is not not a very good design for long term, but this codebase might not be maintained in the long term
 
 	//TODO. I should get the default baseUri from context, not hardcoded
@@ -314,6 +316,7 @@ public class ModelWrapper {
 	 */
 	private List<Resource> getRepresentations(Resource res,Property p)
 	{
+		// new sept25 Ontology, some of the representation might be /dat/
 		//Logger.getAnonymousLogger().log(Level.INFO,"subjectOf "+ res.getURI());
 		StmtIterator statements = res.listProperties(p);
 		List<Resource> subjectOf = new ArrayList<Resource>();
@@ -330,6 +333,94 @@ public class ModelWrapper {
 
 	}
 
+	/**
+	 * Create a  node that ressemble a regular blank node
+	 * 
+	 * @param dat
+	 * @return
+	 */
+	public Resource createPseudoSubject(Resource dat)
+	{
+		Model model = ModelFactory.createDefaultModel();
+		Resource bnode = model.createResource(dat);
+		for (dat.listProperties(); dat.listProperties().hasNext();)
+		{
+			Statement s = dat.listProperties().next();
+			// we just keep the format and the provider
+			if(s.getPredicate().equals(DCTerms.format) || s.getPredicate().equals(SCHEMA.provider))
+				bnode.addProperty(s.getPredicate(), s.getObject());
+				
+		}
+		// now we get preferred concretization
+		Resource prefered = getPreferedConcretization(dat);
+		if (prefered != null)
+		// we add all the propertied to the bnode
+			for (prefered.listProperties(); prefered.listProperties().hasNext();)
+			{
+				Statement s = prefered.listProperties().next();
+				// we just keep the format and the provider
+					bnode.addProperty(s.getPredicate(), s.getObject());
+			}
+			System.out.println(ModelUtil.modelToString(model, Lang.TURTLE));
+			return bnode;
+	}
+
+	/**
+	 * check if the resource has a predicate gxp:preferred true
+	 * @param r
+	 * @return
+	 */
+	public boolean isPreferred(Resource r)
+	{
+		// loop in all the statements of r
+		StmtIterator i = r.listProperties(ResourceFactory.createProperty(LOCAL_GXP,"preferred"));
+		while(i.hasNext())
+		{
+			Statement s = i.next();
+			if (s.getObject().isLiteral() && s.getBoolean())
+				return true;
+		}	
+		return false;
+	}
+
+	/**
+	 * loop in all the concretization, we return the first that is preffered, or the last one.
+	 * might be null
+	 * @param dat
+	 * @return
+	 */
+	private Resource getPreferedConcretization(Resource dat)
+	{
+		Resource prefered = null;
+		StmtIterator i = dat.listProperties(CONCRETIZEDBY);
+		while(i.hasNext())
+		{
+			prefered = i.next().getResource();
+			if (isPreferred(prefered))
+				return prefered;
+		}
+		return prefered;
+
+	}
+	/**
+	 * Check if a resource is a /dat/ resource. This is done by looking for a concretizedBy property
+	 * @param r
+	 * @return true if it's a /dat/ resource
+	 */
+	public boolean isDatResource(Resource r)
+	{
+		if (r != null)
+		{
+			StmtIterator i = r.listProperties(CONCRETIZEDBY);
+			while(i.hasNext())
+			{
+				return true;
+			}
+			return false;
+		}
+		else return false;
+
+	}
 
 	public List<Link> getInfosetLinks(Resource ds)
 	{

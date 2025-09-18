@@ -179,10 +179,16 @@ ${model.encode("JSON-LD")}
 								<#list model.getRepresentationByProvider(p,false) as rep>
 
 
+<#-- list is all representations and load them in a record {name:<name>,representation:<rep>} -->
 
+<#if model.isDatResource(rep)>
+	<#assign rep = model.createPseudoSubject(rep)>
+</#if>
 
 								 <#assign representations=representations + [{"name":model.getJoinedLabels(rep, locale, true, " | "),"representation":rep}]>
+
 								 </#list>
+<#-- make a sort list of records based on the name -->
 								 <#list representations?sort_by("name") as rp>
 								 <#assign r = rp.representation>
 
