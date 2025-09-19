@@ -347,10 +347,12 @@ public class ModelWrapper {
 		Logger.getAnonymousLogger().log(Level.INFO,"Model created");
 		Resource bnode = model.createResource(dat);
 		Logger.getAnonymousLogger().log(Level.INFO,"Resource created");
-		for (dat.listProperties(); dat.listProperties().hasNext();)
+		StmtIterator it = dat.listProperties();
+		while (it.hasNext())
 		{
-			Statement s = dat.listProperties().next();
-			Logger.getAnonymousLogger().log(Level.INFO,"statement" + s.getPredicate().getURI());
+			
+			Statement s = it.next();
+			Logger.getAnonymousLogger().log(Level.INFO,"statement " + s.getPredicate().getURI());
 			// we just keep the format and the provider
 			if(s.getPredicate().equals(DCTerms.format) || s.getPredicate().equals(SCHEMA.provider))
 				bnode.addProperty(s.getPredicate(), s.getObject());
