@@ -176,18 +176,22 @@ ${model.encode("JSON-LD")}
 					 <!-- sort the representation -->
   								 <#assign representations = [] >
 
-								<#list model.getRepresentationByProvider(p,false) as rep>
+<#list model.getRepresentationByProvider(p,false) as rep>
 
 
 <#-- list is all representations and load them in a record {name:<name>,representation:<rep>} -->
 
 <#if model.isDatResource(rep)>
-	<#assign rep = model.createPseudoSubject(rep)>
+	<#assign reaLrep = model.createPseudoSubject(rep)>
+	<#else>
+	<#assign reaLrep = rep>
 </#if>
 
-								 <#assign representations=representations + [{"name":model.getJoinedLabels(rep, locale, true, " | "),"representation":rep}]>
+<#if realRep?has_content>
+		<#assign representations=representations + [{"name":model.getJoinedLabels(realRep, locale, true, " | "),"representation":realRep}]>
+</#if>
+</#list>
 
-								 </#list>
 <#-- make a sort list of records based on the name -->
 								 <#list representations?sort_by("name") as rp>
 								 <#assign r = rp.representation>

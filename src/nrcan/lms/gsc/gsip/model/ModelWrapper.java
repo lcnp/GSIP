@@ -341,16 +341,22 @@ public class ModelWrapper {
 	 */
 	public Resource createPseudoSubject(Resource dat)
 	{
+		if (dat == null) return null;
+		Logger.getAnonymousLogger().log(Level.INFO,"getting pseudo object for" + dat.getURI());
 		Model model = ModelFactory.createDefaultModel();
+		Logger.getAnonymousLogger().log(Level.INFO,"Model created");
 		Resource bnode = model.createResource(dat);
+		Logger.getAnonymousLogger().log(Level.INFO,"Resource created");
 		for (dat.listProperties(); dat.listProperties().hasNext();)
 		{
 			Statement s = dat.listProperties().next();
+			Logger.getAnonymousLogger().log(Level.INFO,"statement" + s.getPredicate().getURI());
 			// we just keep the format and the provider
 			if(s.getPredicate().equals(DCTerms.format) || s.getPredicate().equals(SCHEMA.provider))
 				bnode.addProperty(s.getPredicate(), s.getObject());
 				
 		}
+		Logger.getAnonymousLogger().log(Level.INFO,"transfered to new bnode");
 		// now we get preferred concretization
 		Resource prefered = getPreferedConcretization(dat);
 		if (prefered != null)
@@ -409,8 +415,11 @@ public class ModelWrapper {
 	 */
 	public boolean isDatResource(Resource r)
 	{
+		
 		if (r != null)
 		{
+			Logger.getAnonymousLogger().log(Level.INFO, "looking if dat for" + r.getURI());
+			// just need to find one concretizedBy
 			StmtIterator i = r.listProperties(CONCRETIZEDBY);
 			while(i.hasNext())
 			{
