@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- infoinfo page -->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -176,15 +177,16 @@ ${model.encode("JSON-LD")}
 					 <!-- sort the representation -->
   								 <#assign representations = [] >
 
+
 <#list model.getRepresentationByProvider(p,false) as rep>
 
 
 <#-- list is all representations and load them in a record {name:<name>,representation:<rep>} -->
 
 <#if model.isDatResource(rep)>
-	<#assign reaLrep = model.createPseudoSubject(rep)>
+	<#assign realRep = model.createPseudoSubject(rep)> 
 	<#else>
-	<#assign reaLrep = rep>
+	<#assign realRep = rep> 
 </#if>
 
 <#if realRep?has_content>

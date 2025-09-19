@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- info page -->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
