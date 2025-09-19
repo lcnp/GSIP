@@ -354,7 +354,7 @@ public class ModelWrapper {
 				bnode.addProperty(s.getPredicate(), s.getObject());
 				
 		}
-		Logger.getAnonymousLogger().log(Level.INFO,"transfered to new bnode");
+		//Logger.getAnonymousLogger().log(Level.INFO,"transfered to new bnode");
 		// now we get preferred concretization
 		Resource prefered = getPreferedConcretization(dat);
 		if (prefered != null)
@@ -562,7 +562,7 @@ public class ModelWrapper {
 	public List<Resource> getRepresentationByProvider(Resource provider,boolean isNir)
 	{
 
-		Logger.getAnonymousLogger().log(Level.INFO,"Getting representations for " + provider.getURI());
+		//Logger.getAnonymousLogger().log(Level.INFO,"Getting representations for " + provider.getURI());
 		return getRepresentations(isNir).stream().filter(m -> getProviders(m).contains(provider)).collect(Collectors.toList());
 	}
 
@@ -761,7 +761,17 @@ public class ModelWrapper {
 			if (RDF.getURI().equals(ns)) continue;
 			if (OWL.getURI().equals(ns)) continue;
 			if (SCHEMA.getURI().equals(ns)) continue;
-			if (LOCAL_GXP.equals(ns)) continue;
+			
+			if (LOCAL_GXP.equals(ns))
+			{  // we don't want concretizeBy, concretizes
+				String lc = p.getLocalName();
+				  if ("concretizedBy".equals(lc)) continue;
+				  if ("concretizes".equals(lc)) continue;
+				  if ("subjectOf".equals(lc)) continue;
+				  if ("encodes".equals(lc)) continue;
+				  if ("encodedBy".equals(lc)) continue;
+				  if ("about".equals(lc)) continue;
+			}
 			if (sameResource(p, ENCODEDBY)) continue;
 			//if (DCTerms.getURI().equals(ns)) continue;
 			// if we're here, we're good
