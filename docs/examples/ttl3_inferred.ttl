@@ -1,0 +1,1058 @@
+@prefix dc:     <http://purl.org/dc/elements/1.1/> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix gxc:    <http://localhost:8080/gsip/id/cls/> .
+@prefix gxo:    <http://localhost:8080/gsip/info/ont/> .
+@prefix gxp:    <http://localhost:8080/gsip/id/prp/> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix owl2:   <http://www.w3.org/2006/12/owl2#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+gxc:IQE  rdf:type            owl:Thing , rdfs:Resource , owl:Class , rdfs:Class;
+        rdfs:comment         "Classe GeoConnex de Représentation. Les instances sont des représentations telles que des fichiers de données."@fr , "GeoConnex Representation class. Instances are representations such as data files."@en;
+        rdfs:label           "Representation"@en , "Représentation"@fr;
+        rdfs:subClassOf      gxc:IQE , owl:Thing , _:b0 , _:b1 , rdfs:Resource;
+        gxp:subjectOf        _:b2 , _:b3;
+        owl:disjointWith     gxc:FIC , gxc:UIC;
+        owl:equivalentClass  gxc:IQE;
+        owl:sameAs           gxc:IQE .
+
+rdfs:label  rdf:type        rdfs:Resource , rdf:Property;
+        rdfs:range          rdfs:Resource , rdfs:Literal;
+        rdfs:subPropertyOf  rdfs:label .
+
+rdf:rest  rdf:type              rdfs:Resource , owl:FunctionalProperty , rdf:Property;
+        rdfs:domain             rdfs:Resource , rdf:List;
+        rdfs:range              rdfs:Resource , rdf:List;
+        rdfs:subPropertyOf      rdf:rest;
+        owl:equivalentProperty  rdf:rest .
+
+rdfs:Class  rdf:type         owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdfs:Class , rdfs:Resource;
+        owl:equivalentClass  rdfs:Class .
+
+owl:Nothing  rdf:type        rdfs:Resource , rdfs:Class , owl:Class;
+        rdfs:subClassOf      owl:Nothing , rdfs:Resource , owl:Thing;
+        owl:equivalentClass  owl:Nothing .
+
+_:b4    rdf:type           _:b5 , gxc:FIC , _:b1 , _:b0 , rdfs:Resource , _:b6 , owl:Thing;
+        rdfs:label         "Dataset in rdf"@en , "rdf: Dataset" , "Dataset en rdf"@fr;
+        gxp:about          gxc:FICs;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  _:b7 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b8 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , gxo:geoconnex;
+        owl:sameAs         _:b4;
+        schema:name        "Dataset in rdf"@en , "Dataset en rdf"@fr , "rdf: Dataset";
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+_:b9    rdf:type           _:b1 , rdfs:Resource , _:b0 , owl:Thing , gxc:FIC , _:b6 , _:b5;
+        rdfs:label         "rdf: 'has part' relation" , "'has part' relation in rdf"@en , "relation 'a comme partie' en rdf"@fr;
+        gxp:about          gxp:hasPart;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , gxo:geoconnex , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b8 , _:b7;
+        owl:sameAs         _:b9;
+        schema:name        "'has part' relation in rdf"@en , "rdf: 'has part' relation" , "relation 'a comme partie' en rdf"@fr;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+schema:concretizedBy  rdf:type  rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  schema:concretizedBy .
+
+rdfs:Literal  rdf:type       owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdfs:Literal , rdfs:Resource;
+        owl:equivalentClass  rdfs:Literal .
+
+xsd:duration  rdf:type    rdfs:Class , rdfs:Datatype , owl:Class , rdfs:Resource;
+        owl:disjointWith  xsd:int , xsd:nonNegativeInteger , xsd:dateTime , xsd:unsignedShort , xsd:float , xsd:nonPositiveInteger , xsd:integer , xsd:short , xsd:boolean , xsd:long , xsd:unsignedByte , xsd:time , xsd:unsignedInt , xsd:date , xsd:decimal , xsd:string , xsd:unsignedLong , xsd:byte .
+
+xsd:gYear  rdf:type  rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+schema:name  rdf:type       rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  schema:name .
+
+_:b10   rdf:type           _:b1 , gxc:FIC , rdfs:Resource , _:b6 , _:b0 , owl:Thing , _:b5;
+        rdfs:label         "rdf: 'subject of' relation" , "'subject of' relation in rdf"@en , "'sujet de' relation en rdf"@fr;
+        gxp:about          gxp:subjectOf;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  _:b8 , _:b7 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , gxo:geoconnex , <http://localhost:8080/gsip/info/mo/nrcan-rncan>;
+        owl:sameAs         _:b10;
+        schema:name        "rdf: 'subject of' relation" , "'sujet de' relation en rdf"@fr , "'subject of' relation in rdf"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+_:b11   rdf:type           _:b0 , gxc:FIC , _:b5 , _:b1 , _:b6 , owl:Thing , rdfs:Resource;
+        rdfs:label         "'sujet de' relation en ttl"@fr , "'subject of' relation in ttl"@en , "ttl: 'subject of' relation";
+        gxp:about          gxp:subjectOf;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  _:b8 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b7 , gxo:geoconnex;
+        owl:sameAs         _:b11;
+        schema:name        "ttl: 'subject of' relation" , "'sujet de' relation en ttl"@fr , "'subject of' relation in ttl"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+gxp:haspart  rdf:type       rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  gxp:haspart .
+
+owl:Property  rdf:type       owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      owl:Property , rdfs:Resource;
+        owl:equivalentClass  owl:Property .
+
+xsd:date  rdf:type        rdfs:Class , rdfs:Resource , owl:Class , rdfs:Datatype;
+        owl:disjointWith  xsd:time , xsd:byte , xsd:short , xsd:unsignedInt , xsd:nonPositiveInteger , xsd:boolean , xsd:nonNegativeInteger , xsd:decimal , xsd:int , xsd:string , xsd:long , xsd:integer , xsd:float , xsd:unsignedByte , xsd:duration , xsd:unsignedShort , xsd:dateTime , xsd:unsignedLong .
+
+_:b12   rdf:type           owl:Thing , _:b6 , _:b1 , rdfs:Resource , gxc:FIC , _:b5 , _:b0;
+        rdfs:label         "Mineral Occurrence in ttl"@en , "ttl: Mineral Occurrence" , "Indice minéralisé en ttl"@fr;
+        gxp:about          gxc:mo;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  gxo:geoconnex , _:b7 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b8;
+        owl:sameAs         _:b12;
+        schema:name        "ttl: Mineral Occurrence" , "Mineral Occurrence in ttl"@en , "Indice minéralisé en ttl"@fr;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+_:b13   rdf:type           gxc:FIC , _:b1 , _:b5 , _:b6 , _:b0 , rdfs:Resource , owl:Thing;
+        rdfs:label         "ttl: 'concretized by' relation" , "'concretized by' relation in ttl"@en , "relation 'contrétisé par' en ttl"@fr;
+        gxp:about          gxp:concretizedBy;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  _:b8 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b7 , gxo:geoconnex , <http://localhost:8080/gsip/info/mo/cgdn-rdgc>;
+        owl:sameAs         _:b13;
+        schema:name        "relation 'contrétisé par' en ttl"@fr , "'concretized by' relation in ttl"@en , "ttl: 'concretized by' relation";
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+owl:Class  rdf:type          owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      owl:Class , rdfs:Resource , rdfs:Class;
+        owl:equivalentClass  owl:Class .
+
+_:b14   rdf:type           gxc:FICs , rdfs:Resource , _:b0 , _:b5 , _:b1 , gxc:FIC , owl:Thing , _:b6;
+        rdfs:label         "GeoConnex.ca Ontology in ttl"@en , "GeoConnex.ca Ontologie en ttl"@fr;
+        gxp:encodes        gxo:geoconnex;
+        dct:conformsTo     "http://www.w3.org/2002/07/owl";
+        dct:format         "text/turtle";
+        owl:differentFrom  _:b8 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , gxo:geoconnex , _:b7 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc>;
+        owl:sameAs         _:b14;
+        schema:name        "GeoConnex.ca Ontologie en ttl"@fr , "GeoConnex.ca Ontology in ttl"@en;
+        schema:provider    <https://nrcaontn.gc.ca/gsc>;
+        schema:url         <http://localhost:8080/gsip/ont/geoconnex.ttl> .
+
+xsd:integer  rdf:type        owl:Class , rdfs:Datatype , rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf      xsd:integer , xsd:decimal;
+        owl:disjointWith     xsd:duration , xsd:boolean , xsd:float , xsd:string , xsd:date , xsd:dateTime , xsd:time;
+        owl:equivalentClass  xsd:integer .
+
+_:b15   rdf:type           _:b5 , _:b0 , owl:Thing , _:b6 , rdfs:Resource , gxc:FIC , _:b1;
+        rdfs:label         "NRCan Mineral Occurrence 30001473"@en , "csv: Anticlimax A; Crazy Fox; MD"@en , "RNCan Indice minéralisé 30001473"@fr;
+        gxp:about          <http://localhost:8080/gsip/id/mo/0003847526>;
+        gxp:encodes        <http://localhost:8080/gsip/info/mo/nrcan-rncan>;
+        dct:format         "text/csv";
+        owl:differentFrom  _:b8 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b7 , gxo:geoconnex;
+        owl:sameAs         _:b15;
+        schema:name        "csv: Anticlimax A; Crazy Fox; MD"@en , "NRCan Mineral Occurrence 30001473"@en , "RNCan Indice minéralisé 30001473"@fr;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001473'" .
+
+gxc:UICs  rdf:type           owl:Class , rdfs:Resource , owl:Thing , rdfs:Class;
+        rdfs:comment         "GeoConnex Infoset class. A collection of abstract information content (UICs)."@en , "Classe GeoConnex d'un Ensemble d'information. Une collection d'information abstraite (UICs)."@fr;
+        rdfs:label           "Infoset"@fr , "Infoset"@en;
+        rdfs:subClassOf      gxc:UIC , gxc:UICs , _:b0 , _:b5 , rdfs:Resource , _:b1 , _:b6 , owl:Thing;
+        gxp:subjectOf        _:b16 , _:b17;
+        owl:equivalentClass  gxc:UICs;
+        owl:sameAs           gxc:UICs .
+
+gxp:concretizedBy  rdf:type  rdf:Property , owl:ObjectProperty , owl:Thing , rdfs:Resource;
+        rdfs:comment        "Relation GeoConnex contrétisé par: lien entre les instances d'une information ou d'une données et une représentation."@fr , "GeoConnex concretizedBy relation: holds between instances of info or data and a representation."@en;
+        rdfs:domain         owl:Thing , rdfs:Resource , _:b5 , _:b6;
+        rdfs:label          "concretizedBy"@en;
+        rdfs:range          gxc:IQE , _:b1 , rdfs:Resource , _:b0 , owl:Thing;
+        rdfs:subPropertyOf  gxp:concretizedBy;
+        gxp:subjectOf       _:b13 , _:b18;
+        owl:inverseOf       gxp:concretizes;
+        owl:sameAs          gxp:concretizedBy .
+
+owl:onProperty  rdf:type    rdfs:Resource , rdf:Property;
+        rdfs:domain         rdfs:Class , owl:Class , rdfs:Resource , owl:Restriction;
+        rdfs:range          rdfs:Resource , owl:Property;
+        rdfs:subPropertyOf  owl:onProperty .
+
+xsd:int  rdf:type            owl:Class , rdfs:Datatype , rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf      xsd:int , xsd:integer , xsd:long;
+        owl:disjointWith     xsd:float , xsd:duration , xsd:dateTime , xsd:time , xsd:date , xsd:boolean , xsd:string;
+        owl:equivalentClass  xsd:int .
+
+rdfs:isDefinedBy  rdf:type      rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf      rdfs:isDefinedBy , rdfs:seeAlso;
+        owl:equivalentProperty  rdfs:isDefinedBy .
+
+rdf:Statement  rdf:type      owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdf:Statement , rdfs:Resource;
+        owl:equivalentClass  rdf:Statement .
+
+_:b8    rdf:type           rdfs:Resource , _:b0 , gxc:IQE , owl:Thing , _:b1;
+        rdfs:label         "NRCan Mineral Occurrence 30001473"@en , "Backup: Anticlimax A"@en , "Sauvegarde: RNCan Indice minéralisé 30001473"@fr;
+        owl:differentFrom  _:b19 , _:b20 , _:b2 , _:b21 , _:b16 , _:b18 , _:b22 , _:b14 , _:b23 , _:b3 , _:b10 , _:b13 , _:b24 , _:b11 , _:b25 , _:b26 , _:b27 , <http://localhost:8080/gsip/dat/mo/0003847526/nrcan-rncan/csv> , _:b28 , _:b29 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b30 , _:b15 , _:b31 , _:b32 , _:b33 , _:b34 , gxo:geoconnex , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b9 , _:b12 , _:b35 , _:b17 , _:b36 , _:b37 , _:b38 , _:b39 , _:b40 , _:b41 , _:b42 , _:b4 , _:b43;
+        owl:sameAs         _:b8;
+        schema:name        "Sauvegarde: RNCan Indice minéralisé 30001473"@fr , "NRCan Mineral Occurrence 30001473"@en , "Backup: Anticlimax A"@en;
+        schema:url         "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001473'" .
+
+_:b2    rdf:type           _:b5 , owl:Thing , _:b1 , rdfs:Resource , gxc:FIC , _:b0 , _:b6;
+        rdfs:label         "Representation in rdf"@en , "Représentation en rdf"@fr , "rdf: Representation";
+        gxp:about          gxc:IQE;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  _:b7 , _:b8 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , gxo:geoconnex , <http://localhost:8080/gsip/info/mo/cgdn-rdgc>;
+        owl:sameAs         _:b2;
+        schema:name        "rdf: Representation" , "Représentation en rdf"@fr , "Representation in rdf"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+owl:versionInfo  rdf:type  owl:AnnotationProperty .
+
+gxp:about  rdf:type         rdfs:Resource , rdf:Property , owl:Thing , owl:TransitiveProperty , owl:ObjectProperty;
+        rdfs:comment        "GeoConnex concernant la relation : entre une entité représentationnelle et la chose décrite par cette entité, par exemple entre un contenu d’information non formaté ou formaté, ou une représentation (par exemple, un enregistrement de base de données, un fichier PDF ou une page web) et une occurrence minérale."@fr , "GeoConnex about relation: between a representational entity and the thing being described by the entity, e.g. between unformatted or formatted information content or a representation (e.g. a database record, pdf file, or web page) and a mineral occurrence."@en;
+        rdfs:domain         _:b0 , owl:Thing , _:b1 , rdfs:Resource;
+        rdfs:label          "concernant"@fr , "about"@en;
+        rdfs:range          rdfs:Resource , owl:Thing;
+        rdfs:subPropertyOf  gxp:about;
+        gxp:subjectOf       _:b29 , _:b21;
+        owl:inverseOf       gxp:subjectOf;
+        owl:sameAs          gxp:about .
+
+xsd:short  rdf:type          owl:Class , rdfs:Resource , rdfs:Class , rdfs:Datatype;
+        rdfs:subClassOf      xsd:integer , xsd:long , xsd:int , xsd:short;
+        owl:disjointWith     xsd:float , xsd:boolean , xsd:string , xsd:date , xsd:dateTime , xsd:duration , xsd:time;
+        owl:equivalentClass  xsd:short .
+
+xsd:long  rdf:type           rdfs:Resource , owl:Class , rdfs:Class , rdfs:Datatype;
+        rdfs:subClassOf      xsd:long , xsd:integer;
+        owl:disjointWith     xsd:time , xsd:string , xsd:float , xsd:date , xsd:boolean , xsd:duration , xsd:dateTime;
+        owl:equivalentClass  xsd:long .
+
+rdf:predicate  rdf:type         rdfs:Resource , rdf:Property;
+        rdfs:domain             rdfs:Resource , rdf:Statement;
+        rdfs:subPropertyOf      rdf:predicate;
+        owl:equivalentProperty  rdf:predicate .
+
+schema:url  rdf:type        rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  schema:url .
+
+<http://localhost:8080/gsip/info/mo/cgdn-rdgc>
+        rdf:type           _:b5 , _:b1 , gxc:UICs , rdfs:Resource , _:b6 , gxc:UIC , owl:Thing , _:b0;
+        rdfs:label         "RDGC jeu de données d'indices minéralisés"@fr , "CGDN Mineral Occurrence datasets"@en;
+        gxp:haspart        <http://localhost:8080/gsip/info/mo/nu> , <http://localhost:8080/gsip/info/mo/nt> , <http://localhost:8080/gsip/info/mo/mb> , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , <http://localhost:8080/gsip/info/mo/nb> , <http://localhost:8080/gsip/info/mo/nl> , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , <http://localhost:8080/gsip/info/mo/sk> , <http://localhost:8080/gsip/info/mo/yk> , <http://localhost:8080/gsip/info/mo/ab> , <http://localhost:8080/gsip/info/mo/qc> , <http://localhost:8080/gsip/info/mo/ns> , <http://localhost:8080/gsip/info/mo/bc> , <http://localhost:8080/gsip/info/mo/on>;
+        owl:differentFrom  _:b18 , _:b28 , _:b37 , _:b38 , _:b8 , _:b24 , _:b43 , _:b4 , _:b16 , _:b32 , _:b30 , _:b13 , _:b22 , _:b9 , _:b31 , _:b3 , <http://localhost:8080/gsip/dat/mo/0003847526/nrcan-rncan/csv> , _:b11 , _:b19 , _:b40 , _:b21 , _:b27 , _:b20 , _:b14 , _:b7 , _:b10 , _:b17 , _:b39 , _:b35 , _:b29 , _:b42 , _:b15 , _:b33 , _:b26 , _:b23 , _:b25 , _:b2 , _:b41 , _:b12 , _:b34 , _:b36;
+        owl:sameAs         <http://localhost:8080/gsip/info/mo/cgdn-rdgc>;
+        schema:name        "RDGC jeu de données d'indices minéralisés"@fr , "CGDN Mineral Occurrence datasets"@en .
+
+_:b32   rdf:type           gxc:FIC , _:b5 , rdfs:Resource , owl:Thing , _:b6 , _:b1 , _:b0;
+        rdfs:label         "png national: Anticlimax A; Crazy Fox; MD"@en , "RNCan Indice minéralisé 30001473"@fr , "NRCan Mineral Occurrence 30001473"@en;
+        gxp:about          <http://localhost:8080/gsip/id/mo/0003847526>;
+        gxp:encodes        <http://localhost:8080/gsip/info/mo/nrcan-rncan>;
+        dct:format         "image/png";
+        owl:differentFrom  gxo:geoconnex , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b8 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b7;
+        owl:sameAs         _:b32;
+        schema:name        "png national: Anticlimax A; Crazy Fox; MD"@en , "NRCan Mineral Occurrence 30001473"@en , "RNCan Indice minéralisé 30001473"@fr;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='30001473'" .
+
+_:b5    rdf:type             rdfs:Resource , owl:Class , rdfs:Class;
+        rdfs:subClassOf      _:b5 , rdfs:Resource , owl:Thing;
+        owl:equivalentClass  _:b5;
+        owl:unionOf          [ rdf:type   rdfs:Resource , rdf:List;
+                               rdf:first  gxc:UIC;
+                               rdf:rest   [ rdf:type   rdfs:Resource , rdf:List;
+                                            rdf:first  gxc:FIC;
+                                            rdf:rest   ()
+                                          ]
+                             ] .
+
+rdfs:comment  rdf:type      rdfs:Resource , rdf:Property;
+        rdfs:range          rdfs:Resource , rdfs:Literal;
+        rdfs:subPropertyOf  rdfs:comment .
+
+rdf:Bag  rdf:type            owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdf:Bag , rdfs:Container , rdfs:Resource;
+        owl:equivalentClass  rdf:Bag .
+
+_:b16   rdf:type           _:b0 , _:b5 , _:b6 , _:b1 , owl:Thing , rdfs:Resource , gxc:FIC;
+        rdfs:label         "Infoset in rdf"@en , "rdf: Infoset" , "Infoset en rdf"@fr;
+        gxp:about          gxc:UICs;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b8 , gxo:geoconnex , _:b7;
+        owl:sameAs         _:b16;
+        schema:name        "Infoset in rdf"@en , "Infoset en rdf"@fr , "rdf: Infoset";
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+xsd:boolean  rdf:type        owl:Class , rdfs:Class , rdfs:Resource , rdfs:Datatype;
+        rdfs:subClassOf      xsd:boolean , rdfs:Resource;
+        owl:disjointWith     xsd:decimal , xsd:integer , xsd:nonNegativeInteger , xsd:short , xsd:dateTime , xsd:unsignedLong , xsd:date , xsd:long , xsd:duration , xsd:unsignedInt , xsd:time , xsd:unsignedByte , xsd:float , xsd:string , xsd:nonPositiveInteger , xsd:int , xsd:byte , xsd:unsignedShort;
+        owl:equivalentClass  xsd:boolean .
+
+gxc:FIC  rdf:type            owl:Class , owl:Thing , rdfs:Resource , rdfs:Class;
+        rdfs:comment         "GeoConnex Information Form Entity (data) class. Instances are formatted information (data)."@en , "Classe GeoConnex d'informations formatées (data). Les instances sont des informations formatées (data)."@fr;
+        rdfs:label           "Data"@fr , "Data"@en;
+        rdfs:subClassOf      owl:Thing , gxc:FIC , _:b0 , _:b5 , rdfs:Resource , _:b6 , _:b1;
+        gxp:subjectOf        _:b43 , _:b40;
+        owl:disjointWith     gxc:IQE , gxc:UIC;
+        owl:equivalentClass  gxc:FIC;
+        owl:sameAs           gxc:FIC .
+
+_:b36   rdf:type           gxc:FIC , rdfs:Resource , _:b6 , _:b5 , _:b0 , owl:Thing , _:b1;
+        rdfs:label         "rdf: Mineral Occurrence" , "Mineral Occurrence in rdf"@en , "Indice minéralisé en rdf"@fr;
+        gxp:about          gxc:mo;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  _:b7 , gxo:geoconnex , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b8;
+        owl:sameAs         _:b36;
+        schema:name        "Indice minéralisé en rdf"@fr , "Mineral Occurrence in rdf"@en , "rdf: Mineral Occurrence";
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+gxp:concretizes  rdf:type   rdf:Property , owl:ObjectProperty , owl:Thing , rdfs:Resource;
+        rdfs:comment        "Relation GeoConnex 'contrétise': lien entre une représentation et les instances d'une information ou d'une données."@fr , "GeoConnex concretizes relation: holds between a representation and instances of info or data."@en;
+        rdfs:domain         gxc:IQE , rdfs:Resource , _:b0 , _:b1 , owl:Thing;
+        rdfs:label          "concrétise"@fr , "concretizes"@en;
+        rdfs:range          rdfs:Resource , _:b6 , owl:Thing , _:b5;
+        rdfs:subPropertyOf  gxp:concretizes;
+        gxp:subjectOf       _:b31 , _:b37;
+        owl:inverseOf       gxp:concretizedBy;
+        owl:sameAs          gxp:concretizes .
+
+owl:SymmetricProperty
+        rdf:type         rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf  owl:ObjectProperty .
+
+xsd:decimal  rdf:type     rdfs:Class , rdfs:Resource , rdfs:Datatype , owl:Class;
+        owl:disjointWith  xsd:time , xsd:duration , xsd:boolean , xsd:string , xsd:float , xsd:dateTime , xsd:date .
+
+_:b41   rdf:type           _:b0 , rdfs:Resource , owl:Thing , _:b6 , _:b1 , gxc:FIC , _:b5 , gxc:FICs;
+        rdfs:label         "CGDN NRCan Mineral Occurrence dataset in PNG"@en , "RDGC jeu de données d'indices minéralisés RNCan en PNG"@fr;
+        gxp:encodes        <http://localhost:8080/gsip/info/mo/nrcan-rncan>;
+        dct:format         "image/png";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b7 , _:b8 , gxo:geoconnex , <http://localhost:8080/gsip/info/mo/cgdn-rdgc>;
+        owl:sameAs         _:b41;
+        schema:name        "CGDN NRCan Mineral Occurrence dataset in PNG"@en , "RDGC jeu de données d'indices minéralisés RNCan en PNG"@fr;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AmineraloccurrenceView" .
+
+gxp:partOf  rdf:type        rdf:Property , owl:Thing , owl:ObjectProperty , owl:TransitiveProperty , rdfs:Resource;
+        rdfs:comment        "GeoConnex part of relation: between a part and a whole, e.g. a mineral occurrence (whole) divided into smaller pieces (parts), so each piece is part of the whole."@en , "Partie d'une relation GeoConnex: entre une partie et son tout, ex: un indice minéralisé (tout) divisé en elements plus petits (parties), de sorte que chaque elements sont une partie de l'ensemble."@fr;
+        rdfs:domain         owl:Thing , rdfs:Resource;
+        rdfs:label          "partie de"@fr , "part of"@en;
+        rdfs:range          owl:Thing , rdfs:Resource;
+        rdfs:subPropertyOf  gxp:partOf;
+        gxp:subjectOf       _:b34 , _:b24;
+        owl:inverseOf       gxp:hasPart;
+        owl:sameAs          gxp:partOf .
+
+rdf:object  rdf:type            rdfs:Resource , rdf:Property;
+        rdfs:domain             rdfs:Resource , rdf:Statement;
+        rdfs:subPropertyOf      rdf:object;
+        owl:equivalentProperty  rdf:object .
+
+owl:Thing  rdf:type          rdfs:Resource , rdfs:Class , owl:Class;
+        rdfs:subClassOf      rdfs:Resource , owl:Thing;
+        owl:equivalentClass  owl:Thing .
+
+gxc:FICs  rdf:type           rdfs:Resource , owl:Class , rdfs:Class , owl:Thing;
+        rdfs:comment         "GeoConnex Dataset class. A collection of data (FICs): formatted information content."@en , "Classe GeoConnex d'un Ensemble de Données. Une collection de données (FICs)."@fr;
+        rdfs:label           "Dataset"@fr , "Dataset"@en;
+        rdfs:subClassOf      gxc:FICs , _:b1 , rdfs:Resource , gxc:FIC , _:b0 , _:b6 , owl:Thing , _:b5;
+        gxp:subjectOf        _:b4 , _:b33;
+        owl:equivalentClass  gxc:FICs;
+        owl:sameAs           gxc:FICs .
+
+owl:inverseOf  rdf:type     rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  owl:inverseOf .
+
+xsd:float  rdf:type       rdfs:Resource , rdfs:Class , rdfs:Datatype , owl:Class;
+        owl:disjointWith  xsd:time , xsd:unsignedByte , xsd:date , xsd:unsignedLong , xsd:string , xsd:unsignedInt , xsd:unsignedShort , xsd:decimal , xsd:nonNegativeInteger , xsd:boolean , xsd:nonPositiveInteger , xsd:dateTime , xsd:int , xsd:long , xsd:short , xsd:integer , xsd:duration , xsd:byte .
+
+dct:conformsTo  rdf:type    rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  dct:conformsTo .
+
+rdfs:subClassOf  rdf:type   rdfs:Resource , rdf:Property;
+        rdfs:domain         rdfs:Resource , rdfs:Class;
+        rdfs:range          rdfs:Resource , rdfs:Class;
+        rdfs:subPropertyOf  rdfs:subClassOf .
+
+schema:Latitude  rdf:type   rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  schema:Latitude .
+
+_:b18   rdf:type           owl:Thing , gxc:FIC , _:b0 , _:b5 , _:b6 , rdfs:Resource , _:b1;
+        rdfs:label         "rdf: 'concretized by' relation" , "'concretized by' relation in rdf"@en , "relation 'contrétisé par' en rdf"@fr;
+        gxp:about          gxp:concretizedBy;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  _:b8 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , gxo:geoconnex , _:b7;
+        owl:sameAs         _:b18;
+        schema:name        "relation 'contrétisé par' en rdf"@fr , "'concretized by' relation in rdf"@en , "rdf: 'concretized by' relation";
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+xsd:unsignedByte  rdf:type   owl:Class , rdfs:Class , rdfs:Resource , rdfs:Datatype;
+        rdfs:subClassOf      xsd:nonNegativeInteger , xsd:long , xsd:unsignedShort , xsd:unsignedLong , xsd:short , xsd:integer , xsd:byte , xsd:unsignedByte , xsd:unsignedInt , xsd:int;
+        owl:disjointWith     xsd:duration , xsd:string , xsd:boolean , xsd:date , xsd:dateTime , xsd:float , xsd:time;
+        owl:equivalentClass  xsd:unsignedByte .
+
+<http://localhost:8080/gsip/dat/mo/0003847526/nrcan-rncan/csv>
+        rdf:type              _:b0 , _:b6 , _:b1 , gxc:FIC , _:b5 , owl:Thing , rdfs:Resource;
+        rdfs:label            "/data/ csv encoding for mo/0003847526 by nrcan-rncan.gc"@en , "encodage /data/ csv pour mo/0003847526 par rncan-nrcan.gc"@fr;
+        gxp:about             <http://localhost:8080/gsip/id/mo/0003847526>;
+        gxp:encodes           <http://localhost:8080/gsip/info/mo/nrcan-rncan>;
+        dct:format            "text/csv";
+        owl:differentFrom     <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , gxo:geoconnex , _:b8 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b7;
+        owl:sameAs            <http://localhost:8080/gsip/dat/mo/0003847526/nrcan-rncan/csv>;
+        schema:concretizedBy  _:b8 , _:b7;
+        schema:provider       <https://nrcan.gc.ca/gsc> .
+
+_:b7    rdf:type           rdfs:Resource , _:b1 , _:b0 , gxc:IQE , owl:Thing;
+        rdfs:label         "Dernier: RNCan Indice minéralisé 30001473"@fr , "NRCan Mineral Occurrence 30001473"@en , "Latest: Anticlimax A"@en;
+        gxp:preferred      true;
+        owl:differentFrom  _:b28 , _:b30 , _:b36 , _:b41 , _:b13 , _:b18 , _:b9 , _:b10 , _:b27 , <http://localhost:8080/gsip/dat/mo/0003847526/nrcan-rncan/csv> , _:b37 , _:b20 , _:b29 , _:b35 , _:b32 , _:b17 , _:b42 , _:b23 , _:b24 , _:b34 , _:b15 , _:b14 , _:b31 , _:b4 , gxo:geoconnex , _:b11 , _:b25 , _:b2 , _:b39 , _:b16 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b38 , _:b40 , _:b3 , _:b12 , _:b33 , _:b26 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b43 , _:b22 , _:b19 , _:b21;
+        owl:sameAs         _:b7;
+        schema:name        "Latest: Anticlimax A"@en , "NRCan Mineral Occurrence 30001473"@en , "Dernier: RNCan Indice minéralisé 30001473"@fr;
+        schema:url         "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001473'" .
+
+rdf:type  rdf:type          rdfs:Resource , rdf:Property;
+        rdfs:range          rdfs:Resource , rdfs:Class;
+        rdfs:subPropertyOf  rdf:type .
+
+_:b20   rdf:type           gxc:FIC , _:b1 , _:b6 , _:b5 , owl:Thing , rdfs:Resource , _:b0;
+        rdfs:label         "rdf: 'encodes' relation" , "relation 'encode' en rdf"@fr , "'encodes' relation in rdf"@en;
+        gxp:about          gxp:encodes;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  _:b8 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b7 , gxo:geoconnex;
+        owl:sameAs         _:b20;
+        schema:name        "rdf: 'encodes' relation" , "relation 'encode' en rdf"@fr , "'encodes' relation in rdf"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+xsd:gDay  rdf:type  rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+rdf:Alt  rdf:type            owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdf:Alt , rdfs:Container , rdfs:Resource;
+        owl:equivalentClass  rdf:Alt .
+
+owl:Ontology  rdf:type       owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      owl:Ontology , rdfs:Resource;
+        owl:equivalentClass  owl:Ontology .
+
+_:b43   rdf:type           rdfs:Resource , gxc:FIC , _:b1 , _:b5 , owl:Thing , _:b6 , _:b0;
+        rdfs:label         "Information Form in ttl"@en , "ttl: Information Form" , "Information Form en ttl"@fr;
+        gxp:about          gxc:FIC;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/nrcan-rncan> , gxo:geoconnex , _:b7 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b8;
+        owl:sameAs         _:b43;
+        schema:name        "Information Form in ttl"@en , "Information Form en ttl"@fr , "ttl: Information Form";
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+owl:DatatypeProperty  rdf:type  owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdf:Property , rdfs:Resource , owl:DatatypeProperty;
+        owl:equivalentClass  owl:DatatypeProperty .
+
+_:b29   rdf:type           gxc:FIC , rdfs:Resource , _:b1 , _:b5 , owl:Thing , _:b0 , _:b6;
+        rdfs:label         "rdf: 'about' relation" , "'about' relation in rdf"@en , "'concernant' relation en rdf"@fr;
+        gxp:about          gxp:about;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b7 , _:b8 , gxo:geoconnex , <http://localhost:8080/gsip/info/mo/cgdn-rdgc>;
+        owl:sameAs         _:b29;
+        schema:name        "'about' relation in rdf"@en , "rdf: 'about' relation" , "'concernant' relation en rdf"@fr;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+gxp:encodedBy  rdf:type     rdfs:Resource , owl:ObjectProperty , rdf:Property , owl:Thing;
+        rdfs:comment        "GeoConnex encoded by relation: holds between instances of info and data."@en , "Relation GeoConnex codé par: lien entre les instances d'une données et d'une information."@fr;
+        rdfs:domain         _:b6 , _:b0 , owl:Thing , rdfs:Resource , _:b5 , _:b1 , gxc:UIC;
+        rdfs:label          "encodedBy"@en;
+        rdfs:range          _:b1 , _:b5 , _:b0 , _:b6 , owl:Thing , gxc:FIC , rdfs:Resource;
+        rdfs:subPropertyOf  gxp:encodedBy;
+        gxp:subjectOf       _:b25 , _:b27;
+        owl:inverseOf       gxp:encodes;
+        owl:sameAs          gxp:encodedBy .
+
+_:b28   rdf:type           rdfs:Resource , owl:Thing , gxc:FIC , _:b0 , _:b1 , _:b6 , _:b5;
+        rdfs:label         "'encodes' relation in ttl"@en , "relation 'encode' en ttl"@fr , "ttl: 'encodes' relation";
+        gxp:about          gxp:encodes;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  _:b8 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b7 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , gxo:geoconnex;
+        owl:sameAs         _:b28;
+        schema:name        "'encodes' relation in ttl"@en , "relation 'encode' en ttl"@fr , "ttl: 'encodes' relation";
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+schema:GeoCoordinates
+        rdf:type             owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdfs:Resource , schema:GeoCoordinates;
+        owl:equivalentClass  schema:GeoCoordinates .
+
+owl:incompatibleWith  rdf:type  rdfs:Resource , rdf:Property;
+        rdfs:domain         rdfs:Resource , owl:Ontology;
+        rdfs:range          rdfs:Resource , owl:Ontology;
+        rdfs:subPropertyOf  owl:incompatibleWith .
+
+owl:intersectionOf  rdf:type  rdfs:Resource , rdf:Property;
+        rdfs:domain         rdfs:Class , rdfs:Resource , owl:Class;
+        rdfs:subPropertyOf  owl:intersectionOf .
+
+gxp:partof  rdf:type        rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  gxp:partof .
+
+_:b37   rdf:type           gxc:FIC , _:b5 , rdfs:Resource , owl:Thing , _:b0 , _:b6 , _:b1;
+        rdfs:label         "relation 'contrétise' en ttl"@fr , "ttl: 'concretizes' relation" , "'concretizes' relation in ttl"@en;
+        gxp:about          gxp:concretizes;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b8 , gxo:geoconnex , _:b7 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc>;
+        owl:sameAs         _:b37;
+        schema:name        "ttl: 'concretizes' relation" , "'concretizes' relation in ttl"@en , "relation 'contrétise' en ttl"@fr;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+_:b26   rdf:type           gxc:FIC , owl:Thing , _:b5 , _:b6 , _:b0 , rdfs:Resource , _:b1;
+        rdfs:label         "Info in rdf"@en , "rdf: Info" , "Info en rdf"@fr;
+        gxp:about          gxc:UIC;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b8 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , gxo:geoconnex , _:b7;
+        owl:sameAs         _:b26;
+        schema:name        "Info en rdf"@fr , "rdf: Info" , "Info in rdf"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+owl:priorVersion  rdf:type  rdfs:Resource , rdf:Property;
+        rdfs:domain         rdfs:Resource , owl:Ontology;
+        rdfs:range          rdfs:Resource , owl:Ontology;
+        rdfs:subPropertyOf  owl:priorVersion .
+
+xsd:hexBinary  rdf:type  rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+xsd:negativeInteger  rdf:type  rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+owl:oneOf  rdf:type         rdfs:Resource , rdf:Property;
+        rdfs:domain         rdfs:Class , rdfs:Resource , owl:Class;
+        rdfs:subPropertyOf  owl:oneOf .
+
+_:b34   rdf:type           _:b5 , rdfs:Resource , owl:Thing , _:b6 , _:b0 , _:b1 , gxc:FIC;
+        rdfs:label         "'part of' relation in rdf"@en , "'partie d'une' relation en rdf"@fr , "rdf: 'part of' relation";
+        gxp:about          gxp:partOf;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  _:b7 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , gxo:geoconnex , _:b8 , <http://localhost:8080/gsip/info/mo/nrcan-rncan>;
+        owl:sameAs         _:b34;
+        schema:name        "'part of' relation in rdf"@en , "rdf: 'part of' relation" , "'partie d'une' relation en rdf"@fr;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+_:b31   rdf:type           owl:Thing , _:b1 , rdfs:Resource , _:b0 , _:b5 , gxc:FIC , _:b6;
+        rdfs:label         "relation 'contrétise' en rdf"@fr , "rdf: 'concretizes' relation" , "'concretizes' relation in rdf"@en;
+        gxp:about          gxp:concretizes;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  _:b8 , gxo:geoconnex , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b7;
+        owl:sameAs         _:b31;
+        schema:name        "'concretizes' relation in rdf"@en , "rdf: 'concretizes' relation" , "relation 'contrétise' en rdf"@fr;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+_:b17   rdf:type           owl:Thing , _:b6 , _:b5 , rdfs:Resource , gxc:FIC , _:b0 , _:b1;
+        rdfs:label         "Infoset in ttl"@en , "Infoset en ttl"@fr , "ttl: Infoset";
+        gxp:about          gxc:UICs;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  gxo:geoconnex , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b7 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b8;
+        owl:sameAs         _:b17;
+        schema:name        "ttl: Infoset" , "Infoset en ttl"@fr , "Infoset in ttl"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+_:b19   rdf:type           rdfs:Resource , owl:Thing , _:b6 , _:b1 , _:b0 , gxc:FIC , _:b5;
+        rdfs:label         "Info en ttl"@fr , "ttl: Info" , "Info in ttl"@en;
+        gxp:about          gxc:UIC;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  _:b7 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , gxo:geoconnex , _:b8;
+        owl:sameAs         _:b19;
+        schema:name        "ttl: Info" , "Info in ttl"@en , "Info en ttl"@fr;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+gxo:geoconnex  rdf:type    gxc:UIC , _:b0 , _:b1 , owl:Thing , owl:Ontology , _:b6 , _:b5 , rdfs:Resource;
+        rdfs:comment       "GeoConnex ontology for representing entities in Linked SDI."@en , "Ontologie GeoConnex.ca pour la représentation des entités dans Linked SDI."@fr;
+        rdfs:label         "GeoConnex Ontology"@en , "GeoConnex.ca Ontologie"@fr;
+        gxp:encodedBy      _:b25 , _:b37 , _:b13 , _:b12 , _:b3 , _:b38 , _:b21 , _:b40 , _:b34 , _:b33 , _:b31 , _:b20 , _:b19 , _:b2 , _:b23 , _:b17 , _:b4 , _:b36 , _:b29 , _:b9 , _:b10 , _:b27 , _:b24 , _:b11 , _:b16 , _:b18 , _:b14 , _:b43 , _:b26 , _:b28;
+        owl:differentFrom  _:b36 , _:b13 , _:b40 , _:b23 , _:b16 , _:b12 , _:b18 , _:b43 , _:b10 , _:b37 , _:b34 , _:b33 , <http://localhost:8080/gsip/dat/mo/0003847526/nrcan-rncan/csv> , _:b41 , _:b25 , _:b7 , _:b30 , _:b31 , _:b20 , _:b21 , _:b28 , _:b8 , _:b26 , _:b2 , _:b19 , _:b42 , _:b14 , _:b22 , _:b17 , _:b32 , _:b35 , _:b29 , _:b27 , _:b9 , _:b38 , _:b11 , _:b4 , _:b24 , _:b3 , _:b39 , _:b15;
+        owl:sameAs         gxo:geoconnex;
+        schema:name        "GeoConnex.ca Ontologie"@fr , "GeoConnex Ontology"@en .
+
+rdf:first  rdf:type             rdfs:Resource , owl:FunctionalProperty , rdf:Property;
+        rdfs:domain             rdfs:Resource , rdf:List;
+        rdfs:subPropertyOf      rdf:first;
+        owl:equivalentProperty  rdf:first .
+
+rdf:Property  rdf:type       owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdf:Property , rdfs:Resource;
+        owl:equivalentClass  rdf:Property .
+
+owl:ObjectProperty  rdf:type  owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdf:Property , rdfs:Resource , owl:ObjectProperty;
+        owl:equivalentClass  owl:ObjectProperty .
+
+owl:equivalentProperty
+        rdf:type            rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  owl:equivalentProperty .
+
+gxp:subjectOf  rdf:type     owl:TransitiveProperty , rdfs:Resource , owl:ObjectProperty , owl:Thing , rdf:Property;
+        rdfs:comment        "Sujet de relation GeoConnex : entre une chose et une entité représentationnelle, par exemple entre une occurrence minérale et son contenu d’information non formaté ou formaté, ou sa représentation (par exemple, un enregistrement de base de données, un fichier PDF ou une page web)."@fr , "GeoConnex subject of relation: between a thing and a representational entity, e.g. between a mineral occurrence and its unformatted or formatted information content or its representation (e.g. a database record, pdf file, or web page)."@en;
+        rdfs:domain         owl:Thing , rdfs:Resource;
+        rdfs:label          "subject of"@en , "sujet de"@fr;
+        rdfs:range          _:b0 , _:b1 , owl:Thing , rdfs:Resource;
+        rdfs:subPropertyOf  gxp:subjectOf;
+        gxp:subjectOf       _:b10 , _:b11;
+        owl:inverseOf       gxp:about;
+        owl:sameAs          gxp:subjectOf .
+
+<https://nrcan.gc.ca/gsc>
+        rdfs:label  "Natural Resources Canada - Geological Survey of Canada"@en , "Ressources naturelles Canada - Commission géologique du Canada"@fr .
+
+owl:TransitiveProperty
+        rdf:type             owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      owl:ObjectProperty , rdfs:Resource , owl:TransitiveProperty;
+        owl:equivalentClass  owl:TransitiveProperty .
+
+schema:provider  rdf:type   rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  schema:provider .
+
+owl:imports  rdf:type       rdfs:Resource , rdf:Property , owl:OntologyProperty;
+        rdfs:domain         rdfs:Resource , owl:Ontology;
+        rdfs:range          rdfs:Resource , owl:Ontology;
+        rdfs:subPropertyOf  owl:imports .
+
+rdf:List  rdf:type           owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdf:List , rdfs:Resource;
+        owl:equivalentClass  rdf:List .
+
+xsd:time  rdf:type        owl:Class , rdfs:Class , rdfs:Resource , rdfs:Datatype;
+        owl:disjointWith  xsd:integer , xsd:duration , xsd:nonPositiveInteger , xsd:unsignedLong , xsd:int , xsd:long , xsd:unsignedShort , xsd:unsignedByte , xsd:float , xsd:decimal , xsd:unsignedInt , xsd:date , xsd:byte , xsd:short , xsd:nonNegativeInteger , xsd:string , xsd:boolean , xsd:dateTime .
+
+_:b35   rdf:type           _:b1 , rdfs:Resource , _:b0 , _:b6 , gxc:FIC , _:b5 , gxc:FICs , owl:Thing;
+        rdfs:label         "CGDN NRCan Mineral Occurrence dataset in CSV"@en , "RDGC jeu de données d'indices minéralisés RNCan en CSV"@fr;
+        gxp:encodes        <http://localhost:8080/gsip/info/mo/nrcan-rncan>;
+        dct:conformsTo     "http://xmlns.earthresourceml.org/earthresourceml-lite/2.0";
+        dct:format         "text/csv";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b7 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , gxo:geoconnex , _:b8;
+        owl:sameAs         _:b35;
+        schema:name        "RDGC jeu de données d'indices minéralisés RNCan en CSV"@fr , "CGDN NRCan Mineral Occurrence dataset in CSV"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&SORTBY=identifier" .
+
+dct:format  rdf:type        rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  dct:format .
+
+_:b0    rdf:type             rdfs:Resource , owl:Class , rdfs:Class;
+        rdfs:subClassOf      _:b0 , rdfs:Resource , owl:Thing;
+        owl:equivalentClass  _:b0;
+        owl:unionOf          [ rdf:type   rdfs:Resource , rdf:List;
+                               rdf:first  gxc:UIC;
+                               rdf:rest   [ rdf:type   rdfs:Resource , rdf:List;
+                                            rdf:first  gxc:FIC;
+                                            rdf:rest   [ rdf:type   rdfs:Resource , rdf:List;
+                                                         rdf:first  gxc:IQE;
+                                                         rdf:rest   ()
+                                                       ]
+                                          ]
+                             ] .
+
+rdfs:Datatype  rdf:type      owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdfs:Datatype , rdfs:Class , rdfs:Resource;
+        owl:equivalentClass  rdfs:Datatype .
+
+_:b6    rdf:type             rdfs:Resource , owl:Class , rdfs:Class;
+        rdfs:subClassOf      _:b6 , rdfs:Resource , owl:Thing;
+        owl:equivalentClass  _:b6;
+        owl:unionOf          [ rdf:type   rdfs:Resource , rdf:List;
+                               rdf:first  gxc:UIC;
+                               rdf:rest   [ rdf:type   rdfs:Resource , rdf:List;
+                                            rdf:first  gxc:FIC;
+                                            rdf:rest   ()
+                                          ]
+                             ] .
+
+rdf:subject  rdf:type           rdfs:Resource , rdf:Property;
+        rdfs:domain             rdfs:Resource , rdf:Statement;
+        rdfs:subPropertyOf      rdf:subject;
+        owl:equivalentProperty  rdf:subject .
+
+rdfs:seeAlso  rdf:type          rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf      rdfs:seeAlso;
+        owl:equivalentProperty  rdfs:seeAlso .
+
+rdfs:ContainerMembershipProperty
+        rdf:type             owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdfs:ContainerMembershipProperty , rdf:Property , rdfs:Resource;
+        owl:equivalentClass  rdfs:ContainerMembershipProperty .
+
+rdfs:domain  rdf:type       rdfs:Resource , rdf:Property;
+        rdfs:domain         rdfs:Resource , rdf:Property;
+        rdfs:range          rdfs:Resource , rdfs:Class;
+        rdfs:subPropertyOf  rdfs:domain .
+
+xsd:unsignedLong  rdf:type   rdfs:Resource , owl:Class , rdfs:Class , rdfs:Datatype;
+        rdfs:subClassOf      xsd:long , xsd:nonNegativeInteger , xsd:integer , xsd:unsignedLong;
+        owl:disjointWith     xsd:date , xsd:duration , xsd:string , xsd:time , xsd:boolean , xsd:dateTime , xsd:float;
+        owl:equivalentClass  xsd:unsignedLong .
+
+gxp:encodes  rdf:type       owl:Thing , rdf:Property , rdfs:Resource , owl:ObjectProperty;
+        rdfs:comment        "Relation GeoConnex encode: lien entre les instances d'une information et d'une données."@fr , "GeoConnex encodes relation: holds between instances of data and info. Data can partially or fully encode info."@en;
+        rdfs:domain         _:b5 , owl:Thing , _:b6 , rdfs:Resource , _:b0 , _:b1 , gxc:FIC;
+        rdfs:label          "encodes"@en;
+        rdfs:range          _:b0 , _:b6 , gxc:UIC , owl:Thing , _:b1 , rdfs:Resource , _:b5;
+        rdfs:subPropertyOf  gxp:encodes;
+        gxp:subjectOf       _:b28 , _:b20;
+        owl:inverseOf       gxp:encodedBy;
+        owl:sameAs          gxp:encodes .
+
+owl:OntologyProperty  rdf:type  rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf  rdf:Property .
+
+rdfs:subPropertyOf  rdf:type  rdfs:Resource , rdf:Property;
+        rdfs:domain         rdfs:Resource , rdf:Property;
+        rdfs:range          rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  rdfs:subPropertyOf .
+
+_:b25   rdf:type           _:b0 , gxc:FIC , _:b1 , _:b6 , _:b5 , owl:Thing , rdfs:Resource;
+        rdfs:label         "'encoded by' relation in rdf"@en , "rdf: 'encoded by' relation" , "relation 'codé par' en rdf"@fr;
+        gxp:about          gxp:encodedBy;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b7 , _:b8 , gxo:geoconnex;
+        owl:sameAs         _:b25;
+        schema:name        "relation 'codé par' en rdf"@fr , "rdf: 'encoded by' relation" , "'encoded by' relation in rdf"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+xsd:base64Binary  rdf:type  rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+rdfs:Resource  rdf:type      owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdfs:Resource;
+        owl:equivalentClass  rdfs:Resource .
+
+owl:InverseFunctionalProperty
+        rdf:type         rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  owl:ObjectProperty .
+
+xsd:nonNegativeInteger
+        rdf:type             rdfs:Datatype , rdfs:Resource , rdfs:Class , owl:Class;
+        rdfs:subClassOf      xsd:integer , xsd:nonNegativeInteger;
+        owl:disjointWith     xsd:time , xsd:boolean , xsd:dateTime , xsd:string , xsd:float , xsd:date , xsd:duration;
+        owl:equivalentClass  xsd:nonNegativeInteger .
+
+owl:equivalentClass  rdf:type  rdfs:Resource , rdf:Property;
+        rdfs:domain         rdfs:Class , rdfs:Resource , owl:Class;
+        rdfs:range          rdfs:Class , rdfs:Resource , owl:Class;
+        rdfs:subPropertyOf  owl:equivalentClass .
+
+_:b27   rdf:type           _:b5 , gxc:FIC , _:b1 , rdfs:Resource , owl:Thing , _:b0 , _:b6;
+        rdfs:label         "ttl: 'encoded by' relation" , "relation 'codé par' en ttl"@fr , "'encoded by' relation in ttl"@en;
+        gxp:about          gxp:encodedBy;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  gxo:geoconnex , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b7 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b8;
+        owl:sameAs         _:b27;
+        schema:name        "relation 'codé par' en ttl"@fr , "ttl: 'encoded by' relation" , "'encoded by' relation in ttl"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+<http://localhost:8080/gsip/id/mo/0003847526>
+        rdf:type       rdfs:Resource , owl:Thing , gxc:mo;
+        rdfs:label     "CGDN Mineral Occurrence 0003847526"@en , "RDGC Indice minéralisé 0003847526"@fr;
+        gxp:subjectOf  _:b32 , _:b39 , _:b15 , _:b30 , <http://localhost:8080/gsip/dat/mo/0003847526/nrcan-rncan/csv> , _:b22;
+        owl:sameAs     <http://localhost:8080/gsip/id/mo/0003847526>;
+        schema:geo     [ rdf:type          rdfs:Resource , schema:GeoCoordinates;
+                         schema:Latitude   51.590556;
+                         schema:Longitude  -120.295833
+                       ];
+        schema:name    "CGDN Mineral Occurrence 0003847526"@en , "RDGC Indice minéralisé  0003847526"@fr .
+
+_:b33   rdf:type           _:b0 , owl:Thing , _:b6 , rdfs:Resource , _:b1 , gxc:FIC , _:b5;
+        rdfs:label         "ttl: Dataset" , "Dataset en ttl"@fr , "Dataset in ttl"@en;
+        gxp:about          gxc:FICs;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  _:b8 , gxo:geoconnex , _:b7 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , <http://localhost:8080/gsip/info/mo/cgdn-rdgc>;
+        owl:sameAs         _:b33;
+        schema:name        "Dataset en ttl"@fr , "ttl: Dataset" , "Dataset in ttl"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+xsd:string  rdf:type      rdfs:Class , rdfs:Datatype , owl:Class , rdfs:Resource;
+        owl:disjointWith  xsd:unsignedLong , xsd:int , xsd:unsignedInt , xsd:date , xsd:unsignedShort , xsd:decimal , xsd:unsignedByte , xsd:duration , xsd:byte , xsd:short , xsd:nonPositiveInteger , xsd:nonNegativeInteger , xsd:long , xsd:boolean , xsd:time , xsd:float , xsd:dateTime , xsd:integer .
+
+_:b3    rdf:type           owl:Thing , rdfs:Resource , gxc:FIC , _:b5 , _:b6 , _:b1 , _:b0;
+        rdfs:label         "ttl: Representation" , "Representation in ttl"@en , "Représentation en ttl"@fr;
+        gxp:about          gxc:IQE;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b7 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , gxo:geoconnex , _:b8;
+        owl:sameAs         _:b3;
+        schema:name        "Représentation en ttl"@fr , "ttl: Representation" , "Representation in ttl"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+xsd:gMonth  rdf:type  rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+rdf:XMLLiteral  rdf:type     owl:Class , rdfs:Resource , rdfs:Class , rdfs:Datatype;
+        rdfs:subClassOf      rdfs:Resource , rdf:XMLLiteral;
+        owl:equivalentClass  rdf:XMLLiteral .
+
+xsd:double  rdf:type  rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+xsd:positiveInteger  rdf:type  rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+xsd:anyURI  rdf:type  rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+owl:backwardCompatibleWith
+        rdf:type            rdfs:Resource , rdf:Property;
+        rdfs:domain         rdfs:Resource , owl:Ontology;
+        rdfs:range          rdfs:Resource , owl:Ontology;
+        rdfs:subPropertyOf  owl:backwardCompatibleWith .
+
+owl:sameAs  rdf:type        owl:ObjectProperty , rdf:Property , rdfs:Resource , owl:SymmetricProperty;
+        rdfs:subPropertyOf  owl:sameAs .
+
+_:b24   rdf:type           _:b0 , _:b5 , rdfs:Resource , _:b1 , _:b6 , owl:Thing , gxc:FIC;
+        rdfs:label         "ttl: 'part of' relation" , "'part of' relation in ttl"@en , "'partie d'une' relation en ttl"@fr;
+        gxp:about          gxp:partOf;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  gxo:geoconnex , _:b7 , _:b8 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , <http://localhost:8080/gsip/info/mo/nrcan-rncan>;
+        owl:sameAs         _:b24;
+        schema:name        "'part of' relation in ttl"@en , "'partie d'une' relation en ttl"@fr , "ttl: 'part of' relation";
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+gxp:preferred  rdf:type     rdfs:Resource , rdf:Property , owl:DatatypeProperty;
+        rdfs:range          rdfs:Resource , xsd:boolean;
+        rdfs:subPropertyOf  gxp:preferred .
+
+owl:FunctionalProperty
+        rdf:type         rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf  rdf:Property .
+
+rdfs:range  rdf:type        rdfs:Resource , rdf:Property;
+        rdfs:domain         rdfs:Resource , rdf:Property;
+        rdfs:range          rdfs:Resource , rdfs:Class;
+        rdfs:subPropertyOf  rdfs:range .
+
+owl:AnnotationProperty
+        rdf:type  rdfs:Resource , rdfs:Class .
+
+schema:geo  rdf:type        rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  schema:geo .
+
+_:b39   rdf:type           _:b0 , gxc:FIC , rdfs:Resource , owl:Thing , _:b5 , _:b6 , _:b1;
+        rdfs:label         "RNCan Indice minéralisé 30001473"@fr , "NRCan Mineral Occurrence 30001473"@en , "png: Anticlimax A; Crazy Fox; MD"@en;
+        gxp:about          <http://localhost:8080/gsip/id/mo/0003847526>;
+        gxp:encodes        <http://localhost:8080/gsip/info/mo/nrcan-rncan>;
+        dct:format         "image/png";
+        owl:differentFrom  gxo:geoconnex , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b8 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b7;
+        owl:sameAs         _:b39;
+        schema:name        "NRCan Mineral Occurrence 30001473"@en , "RNCan Indice minéralisé 30001473"@fr , "png: Anticlimax A; Crazy Fox; MD"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=51.090556,-120.795833,52.090556,-119.795833&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='30001473'" .
+
+_:b21   rdf:type           _:b5 , gxc:FIC , _:b6 , owl:Thing , _:b0 , _:b1 , rdfs:Resource;
+        rdfs:label         "'about' relation in ttl"@en , "ttl: 'about' relation" , "'concernant' relation en ttl"@fr;
+        gxp:about          gxp:about;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b8 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , gxo:geoconnex , _:b7;
+        owl:sameAs         _:b21;
+        schema:name        "'about' relation in ttl"@en , "ttl: 'about' relation" , "'concernant' relation en ttl"@fr;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+_:b42   rdf:type           _:b6 , _:b0 , rdfs:Resource , _:b5 , gxc:FIC , _:b1 , gxc:FICs , owl:Thing;
+        rdfs:label         "RDGC jeu de données d'indices minéralisés RNCan en ERML"@fr , "CGDN NRCan Mineral Occurrence dataset in ERML"@en;
+        gxp:encodes        <http://localhost:8080/gsip/info/mo/nrcan-rncan>;
+        dct:conformsTo     "http://xmlns.earthresourceml.org/earthresourceml-lite/2.0";
+        dct:format         "application/gml+xml;subtype=erml";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b7 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , gxo:geoconnex , _:b8;
+        owl:sameAs         _:b42;
+        schema:name        "CGDN NRCan Mineral Occurrence dataset in ERML"@en , "RDGC jeu de données d'indices minéralisés RNCan en ERML"@fr;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&SORTBY=identifier" .
+
+schema:Longitude  rdf:type  rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  schema:Longitude .
+
+rdf:Seq  rdf:type            owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdf:Seq , rdfs:Container , rdfs:Resource;
+        owl:equivalentClass  rdf:Seq .
+
+gxp:hasPart  rdf:type       rdfs:Resource , owl:ObjectProperty , owl:TransitiveProperty , rdf:Property , owl:Thing;
+        rdfs:comment        "GeoConnex has part relation: between a whole and a part, e.g. a mineral occurrence (whole) divided into smaller pieces (parts), so the whole has parts that are the pieces."@en , "Relation GeoConnex 'a comme partie': entre un tout et une partie,  ex: un indice minéralisé (tout) divisé en elements plus petits (parties), de sorte que chaque elements sont une partie de l'ensemble."@fr;
+        rdfs:domain         rdfs:Resource , owl:Thing;
+        rdfs:label          "has part"@en , "a comme partie"@fr;
+        rdfs:range          rdfs:Resource , owl:Thing;
+        rdfs:subPropertyOf  gxp:hasPart;
+        gxp:subjectOf       _:b9 , _:b23;
+        owl:inverseOf       gxp:partOf;
+        owl:sameAs          gxp:hasPart .
+
+gxc:mo  rdf:type             owl:Class , rdfs:Resource , owl:Thing , rdfs:Class;
+        rdfs:comment         "GeoConnex Mineral Occurrence class. May be a single mineral occurrence (equivalent to ERML definition of mineral occurrence) or an aggregate of mineral occurrences."@en , "Classe GeoConnex d'un indice minéralisé (équivalent à la définition d'un indice minéralisé de ERML) ou un agrégat d'occurrences minérales."@fr;
+        rdfs:label           "Indice minéralisé"@fr , "Mineral Occurrence"@en;
+        rdfs:subClassOf      rdfs:Resource , gxc:mo , owl:Thing;
+        gxp:subjectOf        _:b12 , _:b36;
+        owl:equivalentClass  gxc:mo;
+        owl:sameAs           gxc:mo .
+
+xsd:byte  rdf:type           rdfs:Resource , rdfs:Datatype , rdfs:Class , owl:Class;
+        rdfs:subClassOf      xsd:int , xsd:long , xsd:integer , xsd:short , xsd:byte;
+        owl:disjointWith     xsd:string , xsd:date , xsd:duration , xsd:float , xsd:dateTime , xsd:boolean , xsd:time;
+        owl:equivalentClass  xsd:byte .
+
+xsd:unsignedInt  rdf:type    rdfs:Class , rdfs:Resource , owl:Class , rdfs:Datatype;
+        rdfs:subClassOf      xsd:unsignedInt , xsd:unsignedLong , xsd:long , xsd:int , xsd:integer , xsd:nonNegativeInteger;
+        owl:disjointWith     xsd:duration , xsd:date , xsd:time , xsd:float , xsd:dateTime , xsd:string , xsd:boolean;
+        owl:equivalentClass  xsd:unsignedInt .
+
+owl:unionOf  rdf:type       rdfs:Resource , rdf:Property;
+        rdfs:subPropertyOf  owl:unionOf .
+
+_:b22   rdf:type           owl:Thing , _:b0 , _:b5 , rdfs:Resource , gxc:FIC , _:b6 , _:b1;
+        rdfs:label         "RNCan Indice minéralisé 30001473"@fr , "html: Anticlimax A; Crazy Fox; MD"@en , "NRCan Mineral Occurrence 30001473"@en;
+        gxp:about          <http://localhost:8080/gsip/id/mo/0003847526>;
+        gxp:encodes        <http://localhost:8080/gsip/info/mo/nrcan-rncan>;
+        dct:format         "text/html";
+        owl:differentFrom  _:b8 , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , gxo:geoconnex , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b7;
+        owl:sameAs         _:b22;
+        schema:name        "RNCan Indice minéralisé 30001473"@fr , "html: Anticlimax A; Crazy Fox; MD"@en , "NRCan Mineral Occurrence 30001473"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         "https://geoconnex.ca/htmldoc/mo/nrcan-rncan/30001473" .
+
+_:b23   rdf:type           owl:Thing , _:b1 , _:b5 , gxc:FIC , _:b6 , _:b0 , rdfs:Resource;
+        rdfs:label         "relation 'a comme partie' en ttl"@fr , "'has part' relation in ttl"@en , "ttl: 'has part' relation";
+        gxp:about          gxp:hasPart;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "text/turtle";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b7 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , gxo:geoconnex , _:b8;
+        owl:sameAs         _:b23;
+        schema:name        "ttl: 'has part' relation" , "relation 'a comme partie' en ttl"@fr , "'has part' relation in ttl"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+owl:differentFrom  rdf:type  owl:ObjectProperty , rdf:Property , rdfs:Resource , owl:SymmetricProperty;
+        rdfs:subPropertyOf  owl:differentFrom .
+
+xsd:dateTime  rdf:type    rdfs:Datatype , owl:Class , rdfs:Resource , rdfs:Class;
+        owl:disjointWith  xsd:nonPositiveInteger , xsd:int , xsd:time , xsd:unsignedByte , xsd:nonNegativeInteger , xsd:string , xsd:decimal , xsd:short , xsd:unsignedInt , xsd:duration , xsd:integer , xsd:date , xsd:unsignedLong , xsd:unsignedShort , xsd:boolean , xsd:float , xsd:byte , xsd:long .
+
+_:b1    rdf:type             rdfs:Resource , owl:Class , rdfs:Class;
+        rdfs:subClassOf      _:b1 , rdfs:Resource , owl:Thing;
+        owl:equivalentClass  _:b1;
+        owl:unionOf          [ rdf:type   rdfs:Resource , rdf:List;
+                               rdf:first  gxc:UIC;
+                               rdf:rest   [ rdf:type   rdfs:Resource , rdf:List;
+                                            rdf:first  gxc:FIC;
+                                            rdf:rest   [ rdf:type   rdfs:Resource , rdf:List;
+                                                         rdf:first  gxc:IQE;
+                                                         rdf:rest   ()
+                                                       ]
+                                          ]
+                             ] .
+
+_:b38   rdf:type           _:b5 , _:b1 , gxc:FIC , owl:Thing , rdfs:Resource , _:b0 , _:b6 , gxc:FICs;
+        rdfs:label         "GeoConnex.ca Ontology in ttl"@en , "GeoConnex.ca Ontologie en ttl"@fr;
+        gxp:encodes        gxo:geoconnex;
+        dct:conformsTo     "http://www.w3.org/2002/07/owl";
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b7 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , gxo:geoconnex , _:b8;
+        owl:sameAs         _:b38;
+        schema:name        "GeoConnex.ca Ontology in ttl"@en , "GeoConnex.ca Ontologie en ttl"@fr;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <http://localhost:8080/gsip/ont/geoconnex.rdf> .
+
+owl:disjointWith  rdf:type  rdfs:Resource , owl:ObjectProperty , owl:SymmetricProperty , rdf:Property;
+        rdfs:domain         rdfs:Class , owl:Class , rdfs:Resource;
+        rdfs:range          rdfs:Resource , owl:Class , rdfs:Class;
+        rdfs:subPropertyOf  owl:disjointWith .
+
+xsd:unsignedShort  rdf:type  rdfs:Datatype , rdfs:Resource , rdfs:Class , owl:Class;
+        rdfs:subClassOf      xsd:int , xsd:nonNegativeInteger , xsd:short , xsd:integer , xsd:unsignedInt , xsd:long , xsd:unsignedShort , xsd:unsignedLong;
+        owl:disjointWith     xsd:date , xsd:string , xsd:dateTime , xsd:boolean , xsd:duration , xsd:float , xsd:time;
+        owl:equivalentClass  xsd:unsignedShort .
+
+xsd:gYearMonth  rdf:type  rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+<http://localhost:8080/gsip/info/mo/nrcan-rncan>
+        rdf:type           _:b5 , rdfs:Resource , _:b0 , _:b1 , gxc:UIC , owl:Thing , gxc:UICs , _:b6;
+        rdfs:label         "CGDN NRCan Mineral Occurrence datasets"@en , "RDGC jeu de données d'indices minéralisés RNCan"@fr;
+        rdfs:seeAlso       <http://localhost:8080/gsip/info/mo/ns> , <http://localhost:8080/gsip/info/mo/ab> , <http://localhost:8080/gsip/info/mo/on> , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , <http://localhost:8080/gsip/info/mo/nu> , <http://localhost:8080/gsip/info/mo/nb> , <http://localhost:8080/gsip/info/mo/qc> , <http://localhost:8080/gsip/info/mo/nt> , <http://localhost:8080/gsip/info/mo/bc> , <http://localhost:8080/gsip/info/mo/nl> , <http://localhost:8080/gsip/info/mo/mb> , <http://localhost:8080/gsip/info/mo/sk> , <http://localhost:8080/gsip/info/mo/yk>;
+        gxp:encodedBy      _:b35 , _:b42 , _:b32 , <http://localhost:8080/gsip/dat/mo/0003847526/nrcan-rncan/csv> , _:b22 , _:b39 , _:b15 , _:b41 , _:b30;
+        gxp:partof         <http://localhost:8080/gsip/info/mo/cgdn-rdgc>;
+        owl:differentFrom  _:b23 , _:b37 , <http://localhost:8080/gsip/dat/mo/0003847526/nrcan-rncan/csv> , _:b17 , _:b36 , _:b19 , _:b3 , _:b20 , _:b15 , _:b35 , _:b22 , _:b4 , _:b12 , _:b43 , _:b33 , _:b28 , _:b29 , _:b18 , _:b24 , _:b16 , _:b14 , _:b13 , _:b34 , _:b40 , _:b38 , _:b7 , _:b10 , _:b2 , _:b9 , _:b41 , _:b27 , _:b31 , _:b11 , _:b32 , _:b26 , _:b8 , _:b42 , _:b21 , _:b25 , _:b39 , _:b30;
+        owl:sameAs         <http://localhost:8080/gsip/info/mo/nrcan-rncan>;
+        schema:name        "CGDN NRCan Mineral Occurrence datasets"@en , "RDGC jeu de données d'indices minéralisés RNCan"@fr .
+
+rdfs:Container  rdf:type     owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      rdfs:Container , rdfs:Resource;
+        owl:equivalentClass  rdfs:Container .
+
+rdf:nil  rdf:type  rdfs:Resource , rdf:List .
+
+owl:Restriction  rdf:type    owl:Class , rdfs:Resource , rdfs:Class;
+        rdfs:subClassOf      owl:Restriction , rdfs:Resource , owl:Class;
+        owl:equivalentClass  owl:Restriction .
+
+gxc:UIC  rdf:type            owl:Class , rdfs:Class , rdfs:Resource , owl:Thing;
+        rdfs:comment         "Classe GeoConnex d'information. Les instances sont une information abstraite."@fr , "GeoConnex Information Content Entity class. Instances are abstract information content."@en;
+        rdfs:label           "Info"@fr , "Info"@en;
+        rdfs:subClassOf      _:b6 , owl:Thing , gxc:UIC , _:b5 , rdfs:Resource , _:b0 , _:b1;
+        gxp:subjectOf        _:b19 , _:b26;
+        owl:disjointWith     gxc:IQE , gxc:FIC;
+        owl:equivalentClass  gxc:UIC;
+        owl:sameAs           gxc:UIC .
+
+xsd:gMonthDay  rdf:type  rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+_:b40   rdf:type           _:b0 , _:b5 , gxc:FIC , rdfs:Resource , _:b6 , owl:Thing , _:b1;
+        rdfs:label         "rdf: Information Form" , "Information Form en rdf"@fr , "Information Form in rdf"@en;
+        gxp:about          gxc:FIC;
+        gxp:encodes        gxo:geoconnex;
+        dct:format         "application/rdf+xml";
+        owl:differentFrom  gxo:geoconnex , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b8 , _:b7;
+        owl:sameAs         _:b40;
+        schema:name        "Information Form in rdf"@en , "Information Form en rdf"@fr , "rdf: Information Form";
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         <https://xx> .
+
+_:b30   rdf:type           _:b6 , _:b1 , owl:Thing , _:b0 , rdfs:Resource , gxc:FIC , _:b5;
+        rdfs:label         "RNCan Indice minéralisé 30001473"@fr , "erml: Anticlimax A; Crazy Fox; MD"@en , "NRCan Mineral Occurrence 30001473"@en;
+        gxp:about          <http://localhost:8080/gsip/id/mo/0003847526>;
+        gxp:encodes        <http://localhost:8080/gsip/info/mo/nrcan-rncan>;
+        dct:format         "application/gml+xml;subtype=erml";
+        owl:differentFrom  gxo:geoconnex , <http://localhost:8080/gsip/info/mo/cgdn-rdgc> , _:b8 , <http://localhost:8080/gsip/info/mo/nrcan-rncan> , _:b7;
+        owl:sameAs         _:b30;
+        schema:name        "RNCan Indice minéralisé 30001473"@fr , "erml: Anticlimax A; Crazy Fox; MD"@en , "NRCan Mineral Occurrence 30001473"@en;
+        schema:provider    <https://nrcan.gc.ca/gsc>;
+        schema:url         "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='30001473'" .
+
+xsd:nonPositiveInteger
+        rdf:type          rdfs:Class , rdfs:Datatype , rdfs:Resource , owl:Class;
+        owl:disjointWith  xsd:dateTime , xsd:boolean , xsd:date , xsd:string , xsd:duration , xsd:time , xsd:float .
