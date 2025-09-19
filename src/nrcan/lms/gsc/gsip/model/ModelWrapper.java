@@ -87,7 +87,7 @@ public class ModelWrapper {
 		this.contextResource = m.getResource(contextResource);
 		// if locale is null, it's english, otherwise french is is starts with 'f'
 		this.locale = locale == null?"en":(locale.toLowerCase().startsWith("f")?"fr":"en");
-		Logger.getAnonymousLogger().log(Level.WARNING,"Language " + this.locale);
+		//Logger.getAnonymousLogger().log(Level.WARNING,"Language " + this.locale);
 	}
 	
 	
@@ -342,17 +342,13 @@ public class ModelWrapper {
 	public Resource createPseudoSubject(Resource dat)
 	{
 		if (dat == null) return null;
-		Logger.getAnonymousLogger().log(Level.INFO,"getting pseudo object for" + dat.getURI());
 		Model model = ModelFactory.createDefaultModel();
-		Logger.getAnonymousLogger().log(Level.INFO,"Model created");
 		Resource bnode = model.createResource(dat);
-		Logger.getAnonymousLogger().log(Level.INFO,"Resource created");
 		StmtIterator it = dat.listProperties();
 		while (it.hasNext())
 		{
 			
 			Statement s = it.next();
-			Logger.getAnonymousLogger().log(Level.INFO,"statement " + s.getPredicate().getURI());
 			// we just keep the format and the provider
 			if(s.getPredicate().equals(DCTerms.format) || s.getPredicate().equals(SCHEMA.provider))
 				bnode.addProperty(s.getPredicate(), s.getObject());
@@ -362,14 +358,19 @@ public class ModelWrapper {
 		// now we get preferred concretization
 		Resource prefered = getPreferedConcretization(dat);
 		if (prefered != null)
-		// we add all the propertied to the bnode
-			for (prefered.listProperties(); prefered.listProperties().hasNext();)
+		{
+		StmtIterator pet = prefered.listProperties();
+			// we add all the propertied to the bnode
+			while ( pet.hasNext())
 			{
-				Statement s = prefered.listProperties().next();
+				Statement s = pet.next();
 				// we just keep the format and the provider
 					bnode.addProperty(s.getPredicate(), s.getObject());
 			}
-			System.out.println(ModelUtil.modelToString(model, Lang.TURTLE));
+		}
+			
+			
+			//System.out.println(ModelUtil.modelToString(model, Lang.TURTLE));
 			return bnode;
 	}
 
@@ -420,7 +421,7 @@ public class ModelWrapper {
 		
 		if (r != null)
 		{
-			Logger.getAnonymousLogger().log(Level.INFO, "looking if dat for" + r.getURI());
+			//Logger.getAnonymousLogger().log(Level.INFO, "looking if dat for" + r.getURI());
 			// just need to find one concretizedBy
 			StmtIterator i = r.listProperties(CONCRETIZEDBY);
 			while(i.hasNext())
@@ -506,7 +507,8 @@ public class ModelWrapper {
 	 */
 	public List<Resource> getAllProviders(Resource res,boolean isNir)
 	{
-		
+
+		//Logger.getAnonymousLogger().log(Level.INFO,"Get all the providers for "+ res.getURI());
 		return getRepresentations(res,getDsProperty(isNir)).stream().map(r -> getProviders(r)).flatMap(List::stream).distinct().collect(Collectors.toList());
 		
 	}
@@ -520,6 +522,7 @@ public class ModelWrapper {
 	 */
 	private Property getDsProperty(boolean isNir)
 	{
+		//return SUBJECT_OF;
 		return isNir?SUBJECT_OF:ENCODEDBY;
 	}
 
@@ -559,7 +562,7 @@ public class ModelWrapper {
 	public List<Resource> getRepresentationByProvider(Resource provider,boolean isNir)
 	{
 
-
+		Logger.getAnonymousLogger().log(Level.INFO,"Getting representations for " + provider.getURI());
 		return getRepresentations(isNir).stream().filter(m -> getProviders(m).contains(provider)).collect(Collectors.toList());
 	}
 
@@ -639,8 +642,9 @@ public class ModelWrapper {
 	 */
 	public String getFormatOverride(String r,String mime)
 	{
+
 		Configuration c = Manager.getInstance().getConfiguration();		
-			String format = c.getFormatFromMimeType(mime);
+		String format = c.getFormatFromMimeType(mime);
 			if (format != null)
 				try {
 					return appendFormat(r,"f",format);
