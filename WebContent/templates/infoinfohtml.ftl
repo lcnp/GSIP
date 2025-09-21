@@ -183,7 +183,10 @@ ${model.encode("JSON-LD")}
 
 <#-- list is all representations and load them in a record {name:<name>,representation:<rep>} -->
 
+	<#if !model.isType(rep,model.toLocalUri("https://geoconnex.ca/id/cls/FICs"))> <#continue> </#if>  <#-- skip if no type -->
+
 <#if model.isDatResource(rep)>
+
 	<#assign realRep = model.createPseudoSubject(rep)> 
 	<#else>
 	<#assign realRep = rep> 

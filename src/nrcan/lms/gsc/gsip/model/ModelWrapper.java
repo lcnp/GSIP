@@ -80,6 +80,16 @@ public class ModelWrapper {
 		model.write(System.out,"TURTLE");
 		**/
 	}
+
+	public  String toLocalUri(String uri)
+	{
+		if (uri == null) return null;
+		String persistantBaseUri =Manager.getInstance().getConfiguration().getParameterAsString("persistentUri","http://localhost:8080/gsip");
+		if (uri.startsWith(persistantBaseUri))
+			return uri.replace(persistantBaseUri, System.getenv("GSIP_BASEURI"));
+		else
+			return uri;
+	}
 	
 	public ModelWrapper(Model m,String contextResource,String locale)
 	{
@@ -1107,6 +1117,18 @@ public class ModelWrapper {
 			return c.toString();
 		else
 			return "N/A";
+	}
+
+	public boolean isType(String rType)
+	{
+		return isType(this.contextResource,rType);
+	}
+	
+	public boolean isType(Resource r,String rType)
+	{
+
+		return (model.contains(r, RDF.type, ResourceFactory.createResource(rType)));
+
 	}
 	
 	public void close()
