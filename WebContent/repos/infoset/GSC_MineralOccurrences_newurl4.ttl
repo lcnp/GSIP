@@ -12,7 +12,8 @@
     a gxc:UICs;
     rdfs:label "CGDN Mineral Occurrence datasets"@en, "RDGC jeu de données d'indices minéralisés"@fr ;
     schema:name "CGDN Mineral Occurrence datasets"@en, "RDGC jeu de données d'indices minéralisés"@fr  ;
-    gxp:haspart <info/mo/bc>,<info/mo/ab>,<info/mo/sk>,<info/mo/mb>,<info/mo/on>,<info/mo/qc>,<info/mo/nb>,<info/mo/ns>,<info/mo/nl>,<info/mo/nu>,<info/mo/nt>,<info/mo/yk>,<info/mo/nrcan-rncan>,<info/mo/cgdn-rdgc>.
+    gxp:haspart <info/mo/bc>,<info/mo/ab>,<info/mo/sk>,<info/mo/mb>,<info/mo/on>,<info/mo/qc>,<info/mo/nb>,<info/mo/ns>,<info/mo/nl>,<info/mo/nu>,<info/mo/nt>,<info/mo/yk>,<info/mo/nrcan-rncan>.
+
 
 
 <info/mo/nrcan-rncan>
@@ -43,8 +44,8 @@
         schema:name "CGDN NRCan Mineral Occurrence dataset in PNG"@en, "RDGC jeu de données d'indices minéralisés RNCan en PNG"@fr  ; 
         schema:provider <https://nrcan.gc.ca/gsc> ;
         schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AmineraloccurrenceView"
-    ] ;
-    rdfs:seeAlso <info/mo/bc>,<info/mo/ab>,<info/mo/sk>,<info/mo/mb>,<info/mo/on>,<info/mo/qc>,<info/mo/nb>,<info/mo/ns>,<info/mo/nl>,<info/mo/nu>,<info/mo/nt>,<info/mo/yk>,<info/mo/nrcan-rncan>,<info/mo/cgdn-rdgc>.
+    ] .
+
     
 <https://nrcan.gc.ca/gsc> rdfs:label "Natural Resources Canada - Geological Survey of Canada" @en,"Ressources naturelles Canada - Commission géologique du Canada" @fr.
 
@@ -108,7 +109,7 @@
     gxp:encodes <info/mo/nrcan-rncan> ;
     dct:format "text/csv" ;
     schema:provider <https://nrcan.gc.ca/gsc> ;
-    schema:concretizedBy [
+    gxp:concretizedBy [
         a gxc:IQE ;
         gxp:preferred "true"^^xsd:boolean;
         rdfs:label "Latest: Anticlimax A"@en, "NRCan Mineral Occurrence 30001473" @en, "Dernier: RNCan Indice minéralisé 30001473" @fr ;
