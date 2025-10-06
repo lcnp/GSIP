@@ -177,6 +177,43 @@ public class ModelWrapper {
 		return getPreferredLabel(res,language,defaultLabel);
 	} **/
 
+
+
+	/**
+	 * return the first comment for this resource in that language, otherwise, return defaultComment
+	 * @param res context resource
+	 * @param language language of the comment
+	 * @param defaultComment default comment if none is found
+	 */
+public String getComment(Resource res,String language,String defaultComment)
+{
+	StmtIterator s = res.listProperties(RDFS.comment);
+	while(s.hasNext())
+	{
+
+		Statement st = s.next();
+		// is the language is null, we already found what we were looking for
+		if (language == null) return st.getLiteral().getValue().toString();
+		// got a language that matches 
+		if (language == null || language.equals(st.getLanguage()))
+			return st.getLiteral().getValue().toString();
+	}
+	return defaultComment;
+
+}
+
+public String getComment(String language,String defaultComment)
+{	
+	return getComment(this.contextResource,language,defaultComment);
+
+}
+
+public String getComment(String defaultComment)
+{
+	
+	return getComment(this.contextResource,locale,defaultComment);
+}
+
 	/**
 	 * Find a label for this language for this Resource, expressed as a Jena Resource.  If language is null or no label matches this language
 	 * return the first one

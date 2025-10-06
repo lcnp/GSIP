@@ -93,6 +93,7 @@ ${model.encode("JSON-LD")}
                 <div class="row">
                         <div class="col-sm-12">
                                 <h1>${model.getPreferredLabel("N/A")}</h1>
+                                <div>${model.getComment("")}</div>
                                 <blockquote class="blockquote container">
                                         <div class="row">
 						<div class="col-sm-12 col-md-12">
