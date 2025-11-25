@@ -1,0 +1,693 @@
+@base <https://geoconnex.ca/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <https://schema.org/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gxp: <id/prp/> .
+@prefix gxc: <id/cls/> .
+
+<info/mo/cgdn-rdgc>
+    a gxc:UICs;
+    rdfs:label "CGDN Mineral Occurrence datasets"@en, "RDGC jeu de données d'indices minéralisés"@fr ;
+    schema:name "CGDN Mineral Occurrence datasets"@en, "RDGC jeu de données d'indices minéralisés"@fr  ;
+    gxp:hasPart <info/mo/sk>,<info/mo/ab>,<info/mo/bc>,<info/mo/mb>,<info/mo/on>,<info/mo/qc>,<info/mo/nb>,<info/mo/ns>,<info/mo/nl>,<info/mo/nu>,<info/mo/nt>,<info/mo/yk>,<info/mo/nrcan-rncan>.
+
+<https://nrcan.gc.ca/gsc> rdfs:label "Natural Resources Canada - Geological Survey of Canada" @en,"Ressources naturelles Canada - Commission géologique du Canada" @fr.
+
+<info/mo/nrcan-rncan>
+    a gxc:UICs;
+    gxp:partOf <info/mo/cgdn-rdgc>;
+    rdfs:label "CGDN NRCan Mineral Occurrence datasets"@en, "RDGC jeu de données d'indices minéralisés RNCan"@fr ;
+    schema:name "CGDN NRCan Mineral Occurrence datasets"@en, "RDGC jeu de données d'indices minéralisés RNCan"@fr  ;
+    gxp:encodedBy [
+        a gxc:FICs ;
+        dct:format "application/gml+xml;subtype=erml";
+        dct:conformsTo "http://xmlns.earthresourceml.org/earthresourceml-lite/2.0" ; 
+        rdfs:label "CGDN NRCan Mineral Occurrence dataset in ERML"@en, "RDGC jeu de données d'indices minéralisés RNCan en ERML"@fr ;
+        schema:name "CGDN NRCan Mineral Occurrence dataset in ERML"@en, "RDGC jeu de données d'indices minéralisés RNCan en ERML"@fr  ; 
+        schema:provider <https://nrcan.gc.ca/gsc> ; 
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&SORTBY=identifier"
+    ], [
+        a gxc:FICs ;
+        dct:conformsTo "http://xmlns.earthresourceml.org/earthresourceml-lite/2.0" ;
+        dct:format "text/csv" ;
+        rdfs:label "CGDN NRCan Mineral Occurrence dataset in CSV"@en, "RDGC jeu de données d'indices minéralisés RNCan en CSV"@fr ; 
+        schema:name "CGDN NRCan Mineral Occurrence dataset in CSV"@en, "RDGC jeu de données d'indices minéralisés RNCan en CSV"@fr ;  
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&SORTBY=identifier"
+    ], [
+        a gxc:FICs ;
+        dct:format "image/png" ;
+        rdfs:label "CGDN NRCan Mineral Occurrence dataset in PNG"@en, "RDGC jeu de données d'indices minéralisés RNCan en PNG"@fr ;
+        schema:name "CGDN NRCan Mineral Occurrence dataset in PNG"@en, "RDGC jeu de données d'indices minéralisés RNCan en PNG"@fr  ; 
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AmineraloccurrenceView"
+    ] .
+
+
+<https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> rdfs:label "Saskatchewan Geological Survey" @en,"Saskatchewan - Saskatchewan Geological Survey" @fr.
+
+<info/mo/sk>
+    a gxc:UICs;
+    gxp:partOf <info/mo/cgdn-rdgc>;
+    rdfs:label "CGDN SK mineral occurrence dataset"@en, "RDGC jeu de données d'indices minéralisés SK"@fr ;
+    schema:name "CGDN SK mineral occurrence dataset"@en, "RDGC jeu de données d'indices minéralisés SK"@fr  ;
+    gxp:encodedBy [
+        a gxc:FICs ;
+        dct:format "application/gml+xml;subtype=erml";
+        dct:conformsTo "http://xmlns.earthresourceml.org/earthresourceml-lite/2.0" ; 
+        rdfs:label "CGDN SK Mineral Occurrence dataset in ERML"@en, "RDGC jeu de données d'indices minéralisés SK en ERML"@fr ;
+        schema:name "CGDN SK Mineral Occurrence dataset in ERML"@en, "RDGC jeu de données d'indices minéralisés SK en ERML"@fr  ; 
+        schema:provider <https://www2.gov.sk.ca/gov/content?id=279686SK782F47ECA7B257376391D210> ; 
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&CQL_FILTER=jurisdiction='SK'&SORTBY=identifier"
+    ], [
+        a gxc:FICs ;
+        dct:conformsTo "http://xmlns.earthresourceml.org/earthresourceml-lite/2.0" ;
+        dct:format "text/csv" ;
+        rdfs:label "CGDN SK Mineral Occurrence dataset in CSV"@en, "RDGC jeu de données d'indices minéralisés SK en CSV"@fr ; 
+        schema:name "CGDN SK Mineral Occurrence dataset in CSV"@en, "RDGC jeu de données d'indices minéralisés SK en CSV"@fr ;  
+        schema:provider <https://www2.gov.sk.ca/gov/content?id=279686SK782F47ECA7B257376391D210> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&CQL_FILTER=jurisdiction='SK'&SORTBY=identifier"
+    ], [
+        a gxc:FICs ;
+        dct:format "image/png" ;
+        rdfs:label "CGDN SK Mineral Occurrence dataset in PNG"@en, "RDGC jeu de données d'indices minéralisés SK en PNG"@fr ;
+        schema:name "CGDN SK Mineral Occurrence dataset in PNG"@en, "RDGC jeu de données d'indices minéralisés SK en PNG"@fr  ; 
+        schema:provider <https://www2.gov.sk.ca/gov/content?id=279686SK782F47ECA7B257376391D210> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=49,-110,60,-101.2&WIDTH=400&HEIGHT=300&CQL_FILTER=1=2;jurisdiction='SK'"
+    ] .
+
+<id/mo/0004348166>
+    a gxc:mo ;
+    rdfs:label "CGDN Mineral Occurrence 0004348166"@en, "RDGC Indice minéralisé 0004348166"@fr;
+    schema:geo [
+        a schema:GeoCoordinates ;
+        schema:Latitude 54.74222771 ;
+        schema:Longitude -101.9324866
+    ] ;
+    schema:name "CGDN Mineral Occurrence 0004348166"@en, "RDGC Indice minéralisé 0004348166"@fr;
+    gxp:subjectOf [
+        dct:format "text/html";
+        a gxc:FIC ;
+        rdfs:label "html: Douglas Lake North Cu Showing", "SK Indice minéralisé 0040"@fr, "SK Mineral Occurrence 0040"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "html: Douglas Lake North Cu Showing", "SK Indice minéralisé 0040"@fr, "SK Mineral Occurrence 0040"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://mineraldeposits.saskatchewan.ca/Home/Viewdetails/0040"
+    ], [
+        dct:format "application/gml+xml;subtype=erml";
+        a gxc:FIC ;
+        rdfs:label "erml: Douglas Lake North Cu Showing", "SK Indice minéralisé 0040"@fr, "SK Mineral Occurrence 0040"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "erml: Douglas Lake North Cu Showing", "SK Indice minéralisé 0040"@fr, "SK Mineral Occurrence 0040"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_0040'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png: Douglas Lake North Cu Showing", "SK Indice minéralisé 0040"@fr, "SK Mineral Occurrence 0040"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png: Douglas Lake North Cu Showing", "SK Indice minéralisé 0040"@fr, "SK Mineral Occurrence 0040"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=54.24222771,-102.4324866,55.24222771,-101.4324866&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;jurisdiction='SK'%20AND%20identifier='SK_0040'"
+    ], [
+        dct:format "text/csv";
+        a gxc:FIC ;
+        rdfs:label "csv: Douglas Lake North Cu Showing", "SK Indice minéralisé 0040"@fr, "SK Mineral Occurrence 0040"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "csv: Douglas Lake North Cu Showing", "SK Indice minéralisé 0040"@fr, "SK Mineral Occurrence 0040"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_0040'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png national: Douglas Lake North Cu Showing", "SK Indice minéralisé 0040"@fr, "SK Mineral Occurrence 0040"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png national: Douglas Lake North Cu Showing", "SK Indice minéralisé 0040"@fr, "SK Mineral Occurrence 0040"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='SK_0040'"
+    ] .
+
+<id/mo/0004899022>
+    a gxc:mo ;
+    rdfs:label "CGDN Mineral Occurrence 0004899022"@en, "RDGC Indice minéralisé 0004899022"@fr;
+    schema:geo [
+        a schema:GeoCoordinates ;
+        schema:Latitude 59.57083248 ;
+        schema:Longitude -108.3736005
+    ] ;
+    schema:name "CGDN Mineral Occurrence 0004899022"@en, "RDGC Indice minéralisé 0004899022"@fr;
+    gxp:subjectOf [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png: Fish Lake Uranium Showing", "SK Indice minéralisé 1304"@fr, "SK Mineral Occurrence 1304"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png: Fish Lake Uranium Showing", "SK Indice minéralisé 1304"@fr, "SK Mineral Occurrence 1304"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=59.07083248,-108.8736005,60.07083248,-107.8736005&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;jurisdiction='SK'%20AND%20identifier='SK_1304'"
+    ], [
+        dct:format "text/csv";
+        a gxc:FIC ;
+        rdfs:label "csv: Fish Lake Uranium Showing", "SK Indice minéralisé 1304"@fr, "SK Mineral Occurrence 1304"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "csv: Fish Lake Uranium Showing", "SK Indice minéralisé 1304"@fr, "SK Mineral Occurrence 1304"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_1304'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png national: Fish Lake Uranium Showing", "SK Indice minéralisé 1304"@fr, "SK Mineral Occurrence 1304"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png national: Fish Lake Uranium Showing", "SK Indice minéralisé 1304"@fr, "SK Mineral Occurrence 1304"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='SK_1304'"
+    ], [
+        dct:format "text/html";
+        a gxc:FIC ;
+        rdfs:label "html: Fish Lake Uranium; Fish Lake; Baska 1-18", "NRCan Mineral Occurrence 100000801"@en, "RNCan Indice minéralisé 100000801"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "html: Fish Lake Uranium; Fish Lake; Baska 1-18", "NRCan Mineral Occurrence 100000801"@en, "RNCan Indice minéralisé 100000801"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/htmldoc/mo/nrcan-rncan/100000801"
+    ], [
+        dct:format "application/gml+xml;subtype=erml";
+        a gxc:FIC ;
+        rdfs:label "erml: Fish Lake Uranium; Fish Lake; Baska 1-18", "NRCan Mineral Occurrence 100000801"@en, "RNCan Indice minéralisé 100000801"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "erml: Fish Lake Uranium; Fish Lake; Baska 1-18", "NRCan Mineral Occurrence 100000801"@en, "RNCan Indice minéralisé 100000801"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='100000801'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png: Fish Lake Uranium; Fish Lake; Baska 1-18", "NRCan Mineral Occurrence 100000801"@en, "RNCan Indice minéralisé 100000801"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "png: Fish Lake Uranium; Fish Lake; Baska 1-18", "NRCan Mineral Occurrence 100000801"@en, "RNCan Indice minéralisé 100000801"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=59.07083248,-108.8736005,60.07083248,-107.8736005&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='100000801'"
+    ], [
+        dct:format "text/csv";
+        a gxc:FIC ;
+        rdfs:label "csv: Fish Lake Uranium; Fish Lake; Baska 1-18", "NRCan Mineral Occurrence 100000801"@en, "RNCan Indice minéralisé 100000801"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "csv: Fish Lake Uranium; Fish Lake; Baska 1-18", "NRCan Mineral Occurrence 100000801"@en, "RNCan Indice minéralisé 100000801"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='100000801'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png national: Fish Lake Uranium; Fish Lake; Baska 1-18", "NRCan Mineral Occurrence 100000801"@en, "RNCan Indice minéralisé 100000801"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "png national: Fish Lake Uranium; Fish Lake; Baska 1-18", "NRCan Mineral Occurrence 100000801"@en, "RNCan Indice minéralisé 100000801"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='100000801'"
+    ], [
+        dct:format "text/html";
+        a gxc:FIC ;
+        rdfs:label "html: Fish Lake Uranium Showing", "SK Indice minéralisé 1304"@fr, "SK Mineral Occurrence 1304"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "html: Fish Lake Uranium Showing", "SK Indice minéralisé 1304"@fr, "SK Mineral Occurrence 1304"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://mineraldeposits.saskatchewan.ca/Home/Viewdetails/1304"
+    ], [
+        dct:format "application/gml+xml;subtype=erml";
+        a gxc:FIC ;
+        rdfs:label "erml: Fish Lake Uranium Showing", "SK Indice minéralisé 1304"@fr, "SK Mineral Occurrence 1304"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "erml: Fish Lake Uranium Showing", "SK Indice minéralisé 1304"@fr, "SK Mineral Occurrence 1304"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_1304'"
+    ] .
+
+
+<id/mo/0010625480>
+    a gxc:mo ;
+    rdfs:label "CGDN Mineral Occurrence 0010625480"@en, "RDGC Indice minéralisé 0010625480"@fr;
+    schema:geo [
+        a schema:GeoCoordinates ;
+        schema:Latitude 51.14726477 ;
+        schema:Longitude -102.7453913
+    ] ;
+    schema:name "CGDN Mineral Occurrence 0010625480"@en, "RDGC Indice minéralisé 0010625480"@fr;
+    gxp:subjectOf [
+        dct:format "text/html";
+        a gxc:FIC ;
+        rdfs:label "html: SG 62M-1", "SK Indice minéralisé 3842"@fr, "SK Mineral Occurrence 3842"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "html: SG 62M-1", "SK Indice minéralisé 3842"@fr, "SK Mineral Occurrence 3842"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://mineraldeposits.saskatchewan.ca/Home/Viewdetails/3842"
+    ], [
+        dct:format "application/gml+xml;subtype=erml";
+        a gxc:FIC ;
+        rdfs:label "erml: SG 62M-1", "SK Indice minéralisé 3842"@fr, "SK Mineral Occurrence 3842"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "erml: SG 62M-1", "SK Indice minéralisé 3842"@fr, "SK Mineral Occurrence 3842"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_3842'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png: SG 62M-1", "SK Indice minéralisé 3842"@fr, "SK Mineral Occurrence 3842"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png: SG 62M-1", "SK Indice minéralisé 3842"@fr, "SK Mineral Occurrence 3842"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=50.64726477,-103.2453913,51.64726477,-102.2453913&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;jurisdiction='SK'%20AND%20identifier='SK_3842'"
+    ], [
+        dct:format "text/csv";
+        a gxc:FIC ;
+        rdfs:label "csv: SG 62M-1", "SK Indice minéralisé 3842"@fr, "SK Mineral Occurrence 3842"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "csv: SG 62M-1", "SK Indice minéralisé 3842"@fr, "SK Mineral Occurrence 3842"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_3842'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png national: SG 62M-1", "SK Indice minéralisé 3842"@fr, "SK Mineral Occurrence 3842"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png national: SG 62M-1", "SK Indice minéralisé 3842"@fr, "SK Mineral Occurrence 3842"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='SK_3842'"
+    ] .
+
+
+<id/mo/0188793780>
+    a gxc:mo ;
+    rdfs:label "CGDN Mineral Occurrence 0188793780"@en, "RDGC Indice minéralisé 0188793780"@fr;
+    schema:geo [
+        a schema:GeoCoordinates ;
+        schema:Latitude 59.26666667 ;
+        schema:Longitude -105.85
+    ] ;
+    schema:name "CGDN Mineral Occurrence 0188793780"@en, "RDGC Indice minéralisé 0188793780"@fr;
+    gxp:subjectOf [
+        dct:format "text/html";
+        a gxc:FIC ;
+        rdfs:label "html: Erickson; McCoy Group", "NRCan Mineral Occurrence 100000883"@en, "RNCan Indice minéralisé 100000883"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "html: Erickson; McCoy Group", "NRCan Mineral Occurrence 100000883"@en, "RNCan Indice minéralisé 100000883"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/htmldoc/mo/nrcan-rncan/100000883"
+    ], [
+        dct:format "application/gml+xml;subtype=erml";
+        a gxc:FIC ;
+        rdfs:label "erml: Erickson; McCoy Group", "NRCan Mineral Occurrence 100000883"@en, "RNCan Indice minéralisé 100000883"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "erml: Erickson; McCoy Group", "NRCan Mineral Occurrence 100000883"@en, "RNCan Indice minéralisé 100000883"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='100000883'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png: Erickson; McCoy Group", "NRCan Mineral Occurrence 100000883"@en, "RNCan Indice minéralisé 100000883"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "png: Erickson; McCoy Group", "NRCan Mineral Occurrence 100000883"@en, "RNCan Indice minéralisé 100000883"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=58.76666667,-106.35,59.76666667,-105.35&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='100000883'"
+    ], [
+        dct:format "text/csv";
+        a gxc:FIC ;
+        rdfs:label "csv: Erickson; McCoy Group", "NRCan Mineral Occurrence 100000883"@en, "RNCan Indice minéralisé 100000883"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "csv: Erickson; McCoy Group", "NRCan Mineral Occurrence 100000883"@en, "RNCan Indice minéralisé 100000883"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='100000883'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png national: Erickson; McCoy Group", "NRCan Mineral Occurrence 100000883"@en, "RNCan Indice minéralisé 100000883"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "png national: Erickson; McCoy Group", "NRCan Mineral Occurrence 100000883"@en, "RNCan Indice minéralisé 100000883"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='100000883'"
+    ] .
+
+
+<id/mo/0361484453>
+    a gxc:mo ;
+    rdfs:label "CGDN Mineral Occurrence 0361484453"@en, "RDGC Indice minéralisé 0361484453"@fr;
+    gxp:hasPart <id/mo/5017641603>, <id/mo/8308573882> ;
+    schema:geo [
+        a schema:GeoCoordinates ;
+        schema:Latitude 55.81666994 ;
+        schema:Longitude -104.7238884
+    ] ;
+    schema:name "CGDN Mineral Occurrence 0361484453"@en, "RDGC Indice minéralisé 0361484453"@fr;
+    gxp:subjectOf [
+        dct:format "text/html";
+        a gxc:FIC ;
+        rdfs:label "html: Forbes Lake Cu-Zn Showing", "SK Indice minéralisé 0876"@fr, "SK Mineral Occurrence 0876"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "html: Forbes Lake Cu-Zn Showing", "SK Indice minéralisé 0876"@fr, "SK Mineral Occurrence 0876"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://mineraldeposits.saskatchewan.ca/Home/Viewdetails/0876"
+    ], [
+        dct:format "application/gml+xml;subtype=erml";
+        a gxc:FIC ;
+        rdfs:label "erml: Forbes Lake Cu-Zn Showing", "SK Indice minéralisé 0876"@fr, "SK Mineral Occurrence 0876"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "erml: Forbes Lake Cu-Zn Showing", "SK Indice minéralisé 0876"@fr, "SK Mineral Occurrence 0876"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_0876'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png: Forbes Lake Cu-Zn Showing", "SK Indice minéralisé 0876"@fr, "SK Mineral Occurrence 0876"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png: Forbes Lake Cu-Zn Showing", "SK Indice minéralisé 0876"@fr, "SK Mineral Occurrence 0876"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=55.31666994,-105.2238884,56.31666994,-104.2238884&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;jurisdiction='SK'%20AND%20identifier='SK_0876'"
+    ], [
+        dct:format "text/csv";
+        a gxc:FIC ;
+        rdfs:label "csv: Forbes Lake Cu-Zn Showing", "SK Indice minéralisé 0876"@fr, "SK Mineral Occurrence 0876"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "csv: Forbes Lake Cu-Zn Showing", "SK Indice minéralisé 0876"@fr, "SK Mineral Occurrence 0876"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_0876'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png national: Forbes Lake Cu-Zn Showing", "SK Indice minéralisé 0876"@fr, "SK Mineral Occurrence 0876"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png national: Forbes Lake Cu-Zn Showing", "SK Indice minéralisé 0876"@fr, "SK Mineral Occurrence 0876"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='SK_0876'"
+    ] .
+
+
+<id/mo/5017641603>
+    a gxc:mo ;
+    rdfs:label "CGDN Mineral Occurrence 5017641603"@en, "RDGC Indice minéralisé 5017641603"@fr;
+    gxp:partOf <id/mo/0361484453> ;
+    schema:geo [
+        a schema:GeoCoordinates ;
+        schema:Latitude 55.81666667 ;
+        schema:Longitude -104.725
+    ] ;
+    schema:name "CGDN Mineral Occurrence 5017641603"@en, "RDGC Indice minéralisé 5017641603"@fr;
+    gxp:subjectOf [
+        dct:format "text/html";
+        a gxc:FIC ;
+        rdfs:label "html: Forbes Lake Area", "NRCan Mineral Occurrence 30001207"@en, "RNCan Indice minéralisé 30001207"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "html: Forbes Lake Area", "NRCan Mineral Occurrence 30001207"@en, "RNCan Indice minéralisé 30001207"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/htmldoc/mo/nrcan-rncan/30001207"
+    ], [
+        dct:format "application/gml+xml;subtype=erml";
+        a gxc:FIC ;
+        rdfs:label "erml: Forbes Lake Area", "NRCan Mineral Occurrence 30001207"@en, "RNCan Indice minéralisé 30001207"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "erml: Forbes Lake Area", "NRCan Mineral Occurrence 30001207"@en, "RNCan Indice minéralisé 30001207"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='30001207'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png: Forbes Lake Area", "NRCan Mineral Occurrence 30001207"@en, "RNCan Indice minéralisé 30001207"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "png: Forbes Lake Area", "NRCan Mineral Occurrence 30001207"@en, "RNCan Indice minéralisé 30001207"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=55.31666667,-105.225,56.31666667,-104.225&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='30001207'"
+    ], [
+        dct:format "text/csv";
+        a gxc:FIC ;
+        rdfs:label "csv: Forbes Lake Area", "NRCan Mineral Occurrence 30001207"@en, "RNCan Indice minéralisé 30001207"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "csv: Forbes Lake Area", "NRCan Mineral Occurrence 30001207"@en, "RNCan Indice minéralisé 30001207"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001207'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png national: Forbes Lake Area", "NRCan Mineral Occurrence 30001207"@en, "RNCan Indice minéralisé 30001207"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "png national: Forbes Lake Area", "NRCan Mineral Occurrence 30001207"@en, "RNCan Indice minéralisé 30001207"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='30001207'"
+    ] .
+
+
+<id/mo/8308573882>
+    a gxc:mo ;
+    rdfs:label "CGDN Mineral Occurrence 8308573882"@en, "RDGC Indice minéralisé 8308573882"@fr;
+    gxp:partOf <id/mo/0361484453> ;
+    schema:geo [
+        a schema:GeoCoordinates ;
+        schema:Latitude 55.81666667 ;
+        schema:Longitude -104.7333333
+    ] ;
+    schema:name "CGDN Mineral Occurrence 8308573882"@en, "RDGC Indice minéralisé 8308573882"@fr;
+    gxp:subjectOf [
+        dct:format "text/html";
+        a gxc:FIC ;
+        rdfs:label "html: CBS 526; Lee; Pipestone Bay", "NRCan Mineral Occurrence 30001217"@en, "RNCan Indice minéralisé 30001217"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "html: CBS 526; Lee; Pipestone Bay", "NRCan Mineral Occurrence 30001217"@en, "RNCan Indice minéralisé 30001217"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/htmldoc/mo/nrcan-rncan/30001217"
+    ], [
+        dct:format "application/gml+xml;subtype=erml";
+        a gxc:FIC ;
+        rdfs:label "erml: CBS 526; Lee; Pipestone Bay", "NRCan Mineral Occurrence 30001217"@en, "RNCan Indice minéralisé 30001217"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "erml: CBS 526; Lee; Pipestone Bay", "NRCan Mineral Occurrence 30001217"@en, "RNCan Indice minéralisé 30001217"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='30001217'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png: CBS 526; Lee; Pipestone Bay", "NRCan Mineral Occurrence 30001217"@en, "RNCan Indice minéralisé 30001217"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "png: CBS 526; Lee; Pipestone Bay", "NRCan Mineral Occurrence 30001217"@en, "RNCan Indice minéralisé 30001217"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=55.31666667,-105.2333333,56.31666667,-104.2333333&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='30001217'"
+    ], [
+        dct:format "text/csv";
+        a gxc:FIC ;
+        rdfs:label "csv: CBS 526; Lee; Pipestone Bay", "NRCan Mineral Occurrence 30001217"@en, "RNCan Indice minéralisé 30001217"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "csv: CBS 526; Lee; Pipestone Bay", "NRCan Mineral Occurrence 30001217"@en, "RNCan Indice minéralisé 30001217"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001217'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png national: CBS 526; Lee; Pipestone Bay", "NRCan Mineral Occurrence 30001217"@en, "RNCan Indice minéralisé 30001217"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "png national: CBS 526; Lee; Pipestone Bay", "NRCan Mineral Occurrence 30001217"@en, "RNCan Indice minéralisé 30001217"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='30001217'"
+    ] .
+
+    <id/mo/8521643822>
+    a gxc:mo ;
+    rdfs:label "CGDN Mineral Occurrence 8521643822"@en, "RDGC Indice minéralisé 8521643822"@fr;
+    gxp:hasPart <id/mo/0265008877>, <id/mo/5080788947>, <id/mo/9464927869> ;
+    schema:geo [
+        a schema:GeoCoordinates ;
+        schema:Latitude 59.56666667 ;
+        schema:Longitude -108.4166667
+    ] ;
+    schema:name "CGDN Mineral Occurrence 8521643822"@en, "RDGC Indice minéralisé 8521643822"@fr;
+    gxp:subjectOf [
+        dct:format "text/html";
+        a gxc:FIC ;
+        rdfs:label "html: Radiore Claims; RADIORE Claims Uranium Occurrence; Radiore Uranium Zone No. B-12; Radiore Uranium Zone No. C-1", "NRCan Mineral Occurrence 100000807"@en, "RNCan Indice minéralisé 100000807"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "html: Radiore Claims; RADIORE Claims Uranium Occurrence; Radiore Uranium Zone No. B-12; Radiore Uranium Zone No. C-1", "NRCan Mineral Occurrence 100000807"@en, "RNCan Indice minéralisé 100000807"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/htmldoc/mo/nrcan-rncan/100000807"
+    ], [
+        dct:format "application/gml+xml;subtype=erml";
+        a gxc:FIC ;
+        rdfs:label "erml: Radiore Claims; RADIORE Claims Uranium Occurrence; Radiore Uranium Zone No. B-12; Radiore Uranium Zone No. C-1", "NRCan Mineral Occurrence 100000807"@en, "RNCan Indice minéralisé 100000807"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "erml: Radiore Claims; RADIORE Claims Uranium Occurrence; Radiore Uranium Zone No. B-12; Radiore Uranium Zone No. C-1", "NRCan Mineral Occurrence 100000807"@en, "RNCan Indice minéralisé 100000807"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='100000807'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png: Radiore Claims; RADIORE Claims Uranium Occurrence; Radiore Uranium Zone No. B-12; Radiore Uranium Zone No. C-1", "NRCan Mineral Occurrence 100000807"@en, "RNCan Indice minéralisé 100000807"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "png: Radiore Claims; RADIORE Claims Uranium Occurrence; Radiore Uranium Zone No. B-12; Radiore Uranium Zone No. C-1", "NRCan Mineral Occurrence 100000807"@en, "RNCan Indice minéralisé 100000807"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=59.06666667,-108.9166667,60.06666667,-107.9166667&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='100000807'"
+    ], [
+        dct:format "text/csv";
+        a gxc:FIC ;
+        rdfs:label "csv: Radiore Claims; RADIORE Claims Uranium Occurrence; Radiore Uranium Zone No. B-12; Radiore Uranium Zone No. C-1", "NRCan Mineral Occurrence 100000807"@en, "RNCan Indice minéralisé 100000807"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "csv: Radiore Claims; RADIORE Claims Uranium Occurrence; Radiore Uranium Zone No. B-12; Radiore Uranium Zone No. C-1", "NRCan Mineral Occurrence 100000807"@en, "RNCan Indice minéralisé 100000807"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='100000807'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png national: Radiore Claims; RADIORE Claims Uranium Occurrence; Radiore Uranium Zone No. B-12; Radiore Uranium Zone No. C-1", "NRCan Mineral Occurrence 100000807"@en, "RNCan Indice minéralisé 100000807"@fr;
+        gxp:encodes <info/mo/nrcan-rncan> ;
+        schema:name "png national: Radiore Claims; RADIORE Claims Uranium Occurrence; Radiore Uranium Zone No. B-12; Radiore Uranium Zone No. C-1", "NRCan Mineral Occurrence 100000807"@en, "RNCan Indice minéralisé 100000807"@fr;
+        schema:provider <https://nrcan.gc.ca/gsc> ;
+        schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='100000807'"
+    ] .
+
+    <id/mo/0265008877>
+    a gxc:mo ;
+    rdfs:label "CGDN Mineral Occurrence 0265008877"@en, "RDGC Indice minéralisé 0265008877"@fr;
+    gxp:partOf <id/mo/8521643822> ;
+    schema:geo [
+        a schema:GeoCoordinates ;
+        schema:Latitude 59.56387576 ;
+        schema:Longitude -108.3986191
+    ] ;
+    schema:name "CGDN Mineral Occurrence 0265008877"@en, "RDGC Indice minéralisé 0265008877"@fr;
+    gxp:subjectOf [
+        dct:format "text/html";
+        a gxc:FIC ;
+        rdfs:label "html: Radiore Uranium Zone No. C-1", "SK Indice minéralisé 1303"@fr, "SK Mineral Occurrence 1303"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "html: Radiore Uranium Zone No. C-1", "SK Indice minéralisé 1303"@fr, "SK Mineral Occurrence 1303"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://mineraldeposits.saskatchewan.ca/Home/Viewdetails/1303"
+    ], [
+        dct:format "application/gml+xml;subtype=erml";
+        a gxc:FIC ;
+        rdfs:label "erml: Radiore Uranium Zone No. C-1", "SK Indice minéralisé 1303"@fr, "SK Mineral Occurrence 1303"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "erml: Radiore Uranium Zone No. C-1", "SK Indice minéralisé 1303"@fr, "SK Mineral Occurrence 1303"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_1303'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png: Radiore Uranium Zone No. C-1", "SK Indice minéralisé 1303"@fr, "SK Mineral Occurrence 1303"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png: Radiore Uranium Zone No. C-1", "SK Indice minéralisé 1303"@fr, "SK Mineral Occurrence 1303"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=59.06387576,-108.8986191,60.06387576,-107.8986191&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;jurisdiction='SK'%20AND%20identifier='SK_1303'"
+    ], [
+        dct:format "text/csv";
+        a gxc:FIC ;
+        rdfs:label "csv: Radiore Uranium Zone No. C-1", "SK Indice minéralisé 1303"@fr, "SK Mineral Occurrence 1303"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "csv: Radiore Uranium Zone No. C-1", "SK Indice minéralisé 1303"@fr, "SK Mineral Occurrence 1303"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_1303'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png national: Radiore Uranium Zone No. C-1", "SK Indice minéralisé 1303"@fr, "SK Mineral Occurrence 1303"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png national: Radiore Uranium Zone No. C-1", "SK Indice minéralisé 1303"@fr, "SK Mineral Occurrence 1303"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='SK_1303'"
+    ] .
+
+<id/mo/5080788947>
+    a gxc:mo ;
+    rdfs:label "CGDN Mineral Occurrence 5080788947"@en, "RDGC Indice minéralisé 5080788947"@fr;
+    gxp:partOf <id/mo/8521643822> ;
+    schema:geo [
+        a schema:GeoCoordinates ;
+        schema:Latitude 59.56666049 ;
+        schema:Longitude -108.4097222
+    ] ;
+    schema:name "CGDN Mineral Occurrence 5080788947"@en, "RDGC Indice minéralisé 5080788947"@fr;
+    gxp:subjectOf [
+        dct:format "text/html";
+        a gxc:FIC ;
+        rdfs:label "html: RADIORE Claims Uranium Occurrence", "SK Indice minéralisé 1301"@fr, "SK Mineral Occurrence 1301"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "html: RADIORE Claims Uranium Occurrence", "SK Indice minéralisé 1301"@fr, "SK Mineral Occurrence 1301"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://mineraldeposits.saskatchewan.ca/Home/Viewdetails/1301"
+    ], [
+        dct:format "application/gml+xml;subtype=erml";
+        a gxc:FIC ;
+        rdfs:label "erml: RADIORE Claims Uranium Occurrence", "SK Indice minéralisé 1301"@fr, "SK Mineral Occurrence 1301"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "erml: RADIORE Claims Uranium Occurrence", "SK Indice minéralisé 1301"@fr, "SK Mineral Occurrence 1301"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_1301'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png: RADIORE Claims Uranium Occurrence", "SK Indice minéralisé 1301"@fr, "SK Mineral Occurrence 1301"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png: RADIORE Claims Uranium Occurrence", "SK Indice minéralisé 1301"@fr, "SK Mineral Occurrence 1301"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=59.06666049,-108.9097222,60.06666049,-107.9097222&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;jurisdiction='SK'%20AND%20identifier='SK_1301'"
+    ], [
+        dct:format "text/csv";
+        a gxc:FIC ;
+        rdfs:label "csv: RADIORE Claims Uranium Occurrence", "SK Indice minéralisé 1301"@fr, "SK Mineral Occurrence 1301"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "csv: RADIORE Claims Uranium Occurrence", "SK Indice minéralisé 1301"@fr, "SK Mineral Occurrence 1301"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_1301'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png national: RADIORE Claims Uranium Occurrence", "SK Indice minéralisé 1301"@fr, "SK Mineral Occurrence 1301"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png national: RADIORE Claims Uranium Occurrence", "SK Indice minéralisé 1301"@fr, "SK Mineral Occurrence 1301"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='SK_1301'"
+    ] .
+
+<id/mo/9464927869>
+    a gxc:mo ;
+    rdfs:label "CGDN Mineral Occurrence 9464927869"@en, "RDGC Indice minéralisé 9464927869"@fr;
+    gxp:partOf <id/mo/8521643822> ;
+    schema:geo [
+        a schema:GeoCoordinates ;
+        schema:Latitude 59.56527749 ;
+        schema:Longitude -108.4041625
+    ] ;
+    schema:name "CGDN Mineral Occurrence 9464927869"@en, "RDGC Indice minéralisé 9464927869"@fr;
+    gxp:subjectOf [
+        dct:format "text/html";
+        a gxc:FIC ;
+        rdfs:label "html: Radiore Uranium Zone No. B-12", "SK Indice minéralisé 1302"@fr, "SK Mineral Occurrence 1302"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "html: Radiore Uranium Zone No. B-12", "SK Indice minéralisé 1302"@fr, "SK Mineral Occurrence 1302"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://mineraldeposits.saskatchewan.ca/Home/Viewdetails/1302"
+    ], [
+        dct:format "application/gml+xml;subtype=erml";
+        a gxc:FIC ;
+        rdfs:label "erml: Radiore Uranium Zone No. B-12", "SK Indice minéralisé 1302"@fr, "SK Mineral Occurrence 1302"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "erml: Radiore Uranium Zone No. B-12", "SK Indice minéralisé 1302"@fr, "SK Mineral Occurrence 1302"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_1302'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png: Radiore Uranium Zone No. B-12", "SK Indice minéralisé 1302"@fr, "SK Mineral Occurrence 1302"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png: Radiore Uranium Zone No. B-12", "SK Indice minéralisé 1302"@fr, "SK Mineral Occurrence 1302"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=59.06527749,-108.9041625,60.06527749,-107.9041625&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;jurisdiction='SK'%20AND%20identifier='SK_1302'"
+    ], [
+        dct:format "text/csv";
+        a gxc:FIC ;
+        rdfs:label "csv: Radiore Uranium Zone No. B-12", "SK Indice minéralisé 1302"@fr, "SK Mineral Occurrence 1302"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "csv: Radiore Uranium Zone No. B-12", "SK Indice minéralisé 1302"@fr, "SK Mineral Occurrence 1302"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=jurisdiction='SK'%20AND%20identifier='SK_1302'"
+    ], [
+        dct:format "image/png";
+        a gxc:FIC ;
+        rdfs:label "png national: Radiore Uranium Zone No. B-12", "SK Indice minéralisé 1302"@fr, "SK Mineral Occurrence 1302"@en;
+        gxp:encodes <info/mo/sk> ;
+        schema:name "png national: Radiore Uranium Zone No. B-12", "SK Indice minéralisé 1302"@fr, "SK Mineral Occurrence 1302"@en;
+        schema:provider <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey> ;
+        schema:url "https://geoconnex.ca/central-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='SK_1302'"
+    ] .
