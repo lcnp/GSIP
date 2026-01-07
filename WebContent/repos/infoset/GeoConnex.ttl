@@ -1,21 +1,30 @@
 @base <https://geoconnex.ca/> .
-@prefix gxo: <https://geoconnex.ca/info/ont/>.
+@prefix gxo: <https://geoconnex.ca/id/ont/>.
 @prefix gxc: <https://geoconnex.ca/id/cls/>.
 @prefix gxp: <https://geoconnex.ca/id/prp/>.
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix owl2: <http://www.w3.org/2006/12/owl2#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix schema: <https://schema.org/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-gxo:geoconnex
+gxo:geoconnex.ca
     a owl:Ontology;
     # gxp:searchable "true";
-    rdfs:label "GeoConnex Ontology"@en, "GeoConnex.ca Ontologie"@fr ;
-    schema:name "GeoConnex Ontology"@en, "GeoConnex.ca Ontologie"@fr  ;
-    rdfs:comment "GeoConnex ontology for representing entities in Linked SDI."@en, "Ontologie GeoConnex.ca pour la représentation des entités dans Linked SDI."@fr ;
+    rdfs:label "Geoconnex.ca ontology"@en, "Geoconnex.ca ontologie"@fr ;
+#comment should be displayed on info page for all /id/
+    rdfs:comment "Geoconnex.ca ontology for representing entities in linked SDI."@en, "Ontologie Geoconnex.ca pour la représentation des entités dans Linked SDI."@fr ;
+    gxp:subjectOf [
+        a gxc:FICs;
+        dct:format "text/turtle" ;
+        dct:conformsTo <http://www.w3.org/2002/07/owl#> ; 
+        rdfs:label "Geoconnex.ca ontology in ttl" @en, "Ontologie Geoconnex.ca en ttl" @fr ;
+        gxp:concretizedBy [
+            a gxc:IQE ;
+            schema:provider <https://nrcan.gc.ca/gsc> ;
+            schema:url <https://geoconnex.ca/ont/geoconnex.ca.ttl>
+        ]
 .
  
 gxc:mo
@@ -75,18 +84,18 @@ rdfs:comment "GeoConnex Representation class. Instances are representations such
 
 
 gxp:subjectOf
-    a owl:ObjectProperty,owl:TransitiveProperty;
+    a owl:ObjectProperty;
     rdfs:label "subject of"@en,"sujet de"@fr;
     rdfs:comment "GeoConnex subject of relation: between a thing and a representational entity, e.g. between a mineral occurrence and its unformatted or formatted information content or its representation (e.g. a database record, pdf file, or web page)."@en,
     "Sujet de relation GeoConnex : entre une chose et une entité représentationnelle, par exemple entre une occurrence minérale et son contenu d’information non formaté ou formaté, ou sa représentation (par exemple, un enregistrement de base de données, un fichier PDF ou une page web)."@fr;
     rdfs:range [
         a owl:Class ;
-        owl:unionOf ( gxc:UIC gxc:FIC gxc:IQE)
+        owl:unionOf ( gxc:UIC gxc:FIC gxc:IQE )
     ] 
 .
 
 gxp:about
-    a owl:ObjectProperty,owl:TransitiveProperty;
+    a owl:ObjectProperty;
     rdfs:label "about"@en,"concernant"@fr;
     rdfs:comment "GeoConnex about relation: between a representational entity and the thing being described by the entity, e.g. between unformatted or formatted information content or a representation (e.g. a database record, pdf file, or web page) and a mineral occurrence."@en,
     "GeoConnex concernant la relation : entre une entité représentationnelle et la chose décrite par cette entité, par exemple entre un contenu d’information non formaté ou formaté, ou une représentation (par exemple, un enregistrement de base de données, un fichier PDF ou une page web) et une occurrence minérale."@fr;
@@ -107,7 +116,7 @@ gxp:partOf
 
  
 gxp:hasPart
-    a owl:ObjectProperty,owl:TransitiveProperty;
+    a owl:ObjectProperty;
     rdfs:label "has part"@en,"a comme partie"@fr;
     owl:inverseOf gxp:partOf;
     rdfs:comment "GeoConnex has part relation: between a whole and a part, e.g. a mineral occurrence (whole) divided into smaller pieces (parts), so the whole has parts that are the pieces."@en,
