@@ -74,9 +74,10 @@ public class ModelUtil {
 		String result = out.toString();
 		// replace resource
 		String n = result.replaceAll("<"+ inPrefix, "<"+outPrefix);
+		String n2 = n.replaceAll("\""+inPrefix, "\""+outPrefix);
 		Model newModel = ModelFactory.createDefaultModel();
 		
-			RDFDataMgr.read(newModel, IOUtils.toInputStream(n,"UTF-8"),Lang.TURTLE);
+			RDFDataMgr.read(newModel, IOUtils.toInputStream(n2,"UTF-8"),Lang.TURTLE);
 			//newModel.read(IOUtils.toInputStream(n, "UTF-8"),null,"TURTLE");
 		
 		return newModel;
