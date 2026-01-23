@@ -21,7 +21,7 @@ EXPOSE 8080 8443
 WORKDIR ${CATALINA_HOME}
 # redirect access logs to stdout
 COPY --from=build /usr/src/gsip/WebContent/conf/server.xml /usr/local/tomcat/conf/
-COPY --from=build /usr/src/gsip/target/gsip.war /usr/local/tomcat/webapps/
+COPY --from=build /usr/src/gsip/target/gsip.war /usr/local/tomcat/webapps/root.war
 RUN ln -sf /dev/stdout /usr/local/tomcat/logs/access_log 
 #HEALTHCHECK CMD curl --fail http://localhost:8080/gsip/id/x/x || exit 1
 
