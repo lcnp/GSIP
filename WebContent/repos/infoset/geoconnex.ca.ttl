@@ -20,8 +20,8 @@ gxo:geoconnex.ca
         dct:format "text/turtle" ;
         dct:conformsTo <http://www.w3.org/2002/07/owl#> ; 
         rdfs:label "Geoconnex.ca ontology in ttl" @en, "Ontologie Geoconnex.ca en ttl" @fr ;
-        gxp:concretizedBy [
-            a gxc:IQE ;
+        gxp:representedBy [
+            a gxc:RIC ;
             schema:provider <https://nrcan.gc.ca/gsc> ;
             schema:url <https://geoconnex.ca/ont/geoconnex.ca.ttl>
         ]
@@ -37,7 +37,7 @@ rdfs:comment "GeoConnex Mineral Occurrence class. May be a single mineral occurr
 
 gxc:UIC
 a owl:Class;
-owl:disjointWith gxc:FIC, gxc:IQE;
+owl:disjointWith gxc:FIC, gxc:RIC;
 # gxp:searchable "true";
 rdfs:label "Info"@en, "Info"@fr;
 rdfs:comment "GeoConnex Information Content Entity class. Instances are abstract information content."@en,
@@ -56,7 +56,7 @@ rdfs:comment "GeoConnex Infoset class. A collection of abstract information cont
 
 gxc:FIC
 a owl:Class;
-owl:disjointWith gxc:UIC, gxc:IQE;
+owl:disjointWith gxc:UIC, gxc:RIC;
 # gxp:searchable "true";
 rdfs:label "Data"@en, "Data"@fr;
 rdfs:comment "GeoConnex Information Form Entity (data) class. Instances are formatted information (data)."@en,
@@ -73,7 +73,7 @@ rdfs:comment "GeoConnex Dataset class. A collection of data (FICs): formatted in
 "Classe GeoConnex d'un Ensemble de Données. Une collection de données (FICs)."@fr ;
 .
 
-gxc:IQE
+gxc:RIC
 a owl:Class;
 owl:disjointWith gxc:UIC, gxc:FIC;
 # gxp:searchable "false";
@@ -90,7 +90,7 @@ gxp:subjectOf
     "Sujet de relation GeoConnex : entre une chose et une entité représentationnelle, par exemple entre une occurrence minérale et son contenu d’information non formaté ou formaté, ou sa représentation (par exemple, un enregistrement de base de données, un fichier PDF ou une page web)."@fr;
     rdfs:range [
         a owl:Class ;
-        owl:unionOf ( gxc:UIC gxc:FIC gxc:IQE )
+        owl:unionOf ( gxc:UIC gxc:FIC gxc:RIC )
     ] 
 .
 
@@ -102,7 +102,7 @@ gxp:about
     owl:inverseOf gxp:subjectOf;
     rdfs:domain [
         a owl:Class ;
-        owl:unionOf ( gxc:UIC gxc:FIC gxc:IQE)
+        owl:unionOf ( gxc:UIC gxc:FIC gxc:RIC)
     ] 
 .
 
@@ -124,22 +124,22 @@ gxp:hasPart
 .
 
 
-gxp:concretizes
+gxp:represents
     a owl:ObjectProperty;
-    rdfs:domain  gxc:IQE;
+    rdfs:domain  gxc:RIC;
     rdfs:range [a owl:Class; owl:unionOf (gxc:UIC gxc:FIC)];
-    rdfs:label "concretizes"@en,"concrétise"@fr;
-    rdfs:comment "GeoConnex concretizes relation: holds between a representation and instances of info or data."@en,
+    rdfs:label "represents"@en,"concrétise"@fr;
+    rdfs:comment "GeoConnex represents relation: holds between a representation and instances of info or data."@en,
     "Relation GeoConnex 'contrétise': lien entre une représentation et les instances d'une information ou d'une données."@fr;
 .
  
-gxp:concretizedBy
+gxp:representedBy
     a owl:ObjectProperty;
     rdfs:domain [a owl:Class; owl:unionOf (gxc:UIC gxc:FIC)];
-    rdfs:range  gxc:IQE;
-    owl:inverseOf gxp:concretizes;
-    rdfs:label "concretizedBy"@en;
-    rdfs:comment "GeoConnex concretizedBy relation: holds between instances of info or data and a representation."@en,
+    rdfs:range  gxc:RIC;
+    owl:inverseOf gxp:represents;
+    rdfs:label "representedBy"@en;
+    rdfs:comment "GeoConnex representedBy relation: holds between instances of info or data and a representation."@en,
     "Relation GeoConnex contrétisé par: lien entre les instances d'une information ou d'une données et une représentation."@fr;
 .
 
