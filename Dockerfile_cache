@@ -9,8 +9,8 @@ RUN mvn -f /usr/src/gsip/pom.xml package
 ###
 # Expose ports
 ###
-FROM docker.io/tomcat:jre11-openjdk-slim-buster AS app
-
+#FROM docker.io/tomcat:jre11-openjdk-slim-buster AS app
+FROM docker.io/tomcat:jre17-temurin as app
 EXPOSE 8080 8443
 
 WORKDIR ${CATALINA_HOME}
