@@ -25,6 +25,7 @@ gxo:geoconnex.ca
             schema:provider <https://nrcan.gc.ca/gsc> ;
             schema:url <https://geoconnex.ca/ont/geoconnex.ca.ttl>
         ]
+    ]
 .
  
 gxc:mo

@@ -20,6 +20,8 @@ import javax.xml.namespace.QName;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.jena.query.ParameterizedSparqlString;
+import org.apache.jena.query.QuerySolution;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
@@ -38,6 +40,7 @@ import org.apache.jena.vocabulary.RDFS;
 
 import nrcan.lms.gsc.gsip.Manager;
 import nrcan.lms.gsc.gsip.conf.Configuration;
+import nrcan.lms.gsc.gsip.triple.SolutionHandler;
 import nrcan.lms.gsc.gsip.vocabulary.SCHEMA;
 import nrcan.lms.gsc.gsip.vocabulary.CGDN;
 
@@ -68,6 +71,8 @@ public class ModelWrapper {
     public static final Property SUBJECT_OF =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/prp/", "subjectOf" );
 	public static final Property PARTOF =  ResourceFactory.createProperty( System.getenv("GSIP_BASEURI")+"/id/prp/", "partOf" );
 	public static final Property CONCRETIZEDBY = ResourceFactory.createProperty(SCHEMAORG,"concretizedBy");
+	public static final Property REPRESENTEDBY = ResourceFactory.createProperty(System.getenv("GSIP_BASEURI")+"/id/prp/", "representedBy" );
+	public static final Property PREFERRED = ResourceFactory.createProperty(System.getenv("GSIP_BASEURI") + "/id/prp/","preferred");
 	// this is not not a very good design for long term, but this codebase might not be maintained in the long term
 
 	//TODO. I should get the default baseUri from context, not hardcoded
@@ -301,9 +306,8 @@ public String getComment(String defaultComment)
 
 	public String getJoinedLabels(String lang,boolean includeUndefined,String sep)
 	{
-		List<String> lbl = getLabels(lang,includeUndefined);
-		lbl.sort(new LauraLabelComparator());
-		return	StringUtils.join(lbl,sep);
+		return getJoinedLabels(this.contextResource,lang,includeUndefined,sep);
+
 	}
 	
 
@@ -331,7 +335,58 @@ public String getComment(String defaultComment)
 	 */
 	public List<Link> getDatasetForProvider(Resource r,Resource p,boolean isNir,String l)
 	{
-		
+		//System.out.println(r.toString() + "-" + p.toString());
+
+		String sparql = "PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>  \n"+
+						"PREFIX dct: <http://purl.org/dc/terms/> \n"+
+						"PREFIX schema: <https://schema.org/> \n"+
+						"PREFIX gxp: <" + System.getenv("GSIP_BASEURI") + "/id/prp/>  \n"+
+						"SELECT ?url ?res \n"+
+						"WHERE {?n schema:url ?url. ?n schema:provider ?provider. ?res gxp:representedBy ?n. ?resource gxp:subjectOf ?res}";
+
+
+
+						
+		// bind the resource and the provider (p)
+		ParameterizedSparqlString pss = new ParameterizedSparqlString(sparql);
+		pss.setIri("resource", r.getURI()); // should be already localised
+		pss.setIri("provider",p.getURI()); // schema namespace, so we'Re goog
+
+		List<Link> links = new ArrayList<>();
+		this.executeSelect(pss, new SolutionHandler() {
+
+			@Override
+			public boolean init() {
+				// TODO Auto-generated method stub
+				return true;
+			}
+
+			@Override
+			public boolean read(QuerySolution qs) {
+				String url = qs.getLiteral("url").toString();
+				Resource rr = qs.getResource("res");
+				String pl = getPreferredLabel(rr, l, "N/A");
+				Link l = new Link("",url,pl);
+				//System.out.println(url);
+				links.add(l);
+				return true;
+
+			}
+
+			@Override
+			public void end() {
+				// TODO Auto-generated method stub
+				return;
+			}
+			
+		});
+
+		return links;
+
+
+
+
+		/** 
 		return getRepresentationByProvider(r, p, isNir).
 			stream().
 			map(m -> getEncodes(m)).
@@ -339,8 +394,14 @@ public String getComment(String defaultComment)
 			distinct().
 			map(m-> new Link("",m.getURI(),getPreferredLabel(m, l, "N/A"))).
 			collect(Collectors.toList());
+		*/
 		
-		
+	}
+
+	private void executeSelect(ParameterizedSparqlString select, SolutionHandler h )
+	{
+		Manager.getInstance().getTripleStore().executeSelect(select, h,this.model);
+
 	}
 
 	public  List<Link> getDatasetForProvider(Resource p,boolean isNir,String l)
@@ -364,7 +425,8 @@ public String getComment(String defaultComment)
 	private List<Resource> getRepresentations(Resource res,Property p)
 	{
 		// new sept25 Ontology, some of the representation might be /dat/
-		//Logger.getAnonymousLogger().log(Level.INFO,"subjectOf "+ res.getURI());
+		// new Jan26 Ontology. just get them all
+		
 		StmtIterator statements = res.listProperties(p);
 		List<Resource> subjectOf = new ArrayList<Resource>();
 		while(statements.hasNext())
@@ -555,7 +617,11 @@ public String getComment(String defaultComment)
 	public List<Resource> getAllProviders(Resource res,boolean isNir)
 	{
 
+
+
 		//Logger.getAnonymousLogger().log(Level.INFO,"Get all the providers for "+ res.getURI());
+		// get DSProperty will return either subjectOf or encodedBy depending it's a NIR or IR
+		// getProvider will return representedBy/<FIC>/provider resources for each, flatten the list to a stream and remove all duplicated (disctinct())
 		return getRepresentations(res,getDsProperty(isNir)).stream().map(r -> getProviders(r)).flatMap(List::stream).distinct().collect(Collectors.toList());
 		
 	}
@@ -631,8 +697,11 @@ public String getComment(String defaultComment)
 	 */
 	public List<Resource> getProviders(Resource res)
 	{
-		StmtIterator statements = res.listProperties(SCHEMA.provider);
+		// new to jan26, the providers are now under representedBy
+		Resource repBy = res.getPropertyResourceValue(REPRESENTEDBY);
 		List<Resource> subjectOf = new ArrayList<Resource>();
+		if (repBy == null) return subjectOf;
+		StmtIterator statements = repBy.listProperties(SCHEMA.provider);
 		while(statements.hasNext())
 		{
 			Statement s = statements.next();
@@ -971,6 +1040,20 @@ public String getComment(String defaultComment)
 		
 		}
 	}
+
+	public List<Resource> getPropertyResource(Resource context,Property property)
+	{
+		if (property == null)
+			return getAllResource(this.contextResource.listProperties(property));
+		else
+		{
+		if (context == null)
+			return null;
+		else
+			return getAllResource(context.listProperties(property));
+		
+		}
+	}
 	
 	private List<Resource> getAllResource(StmtIterator it)
 	{
@@ -1098,17 +1181,43 @@ public String getComment(String defaultComment)
 			return stmt.getObject().asLiteral().toString();
 		
 	}
+
+	
 	/**
 	 * Get the URLs for the remote resource (we assume this is a data node)
 	 * @param res. data resource. can be a blank node
 	 * @param useResourceUri.  if url is missing and the resource is not a blank node, use the resource URL
 	 * @return
 	 */
-	public List<Link> getUrls(Resource res,boolean useResourceUri)
+	public List<Link> getUrls(Resource res,Resource provider,boolean useResourceUri)
 	{
+
+
 		List<Link> urls = new ArrayList<Link>();
-		String url = getLiteralPropertyValue(res,SCHEMA.url);
-		
+		// Jan26, the URL is now in the provider - what a shitty code
+
+		String url = null;
+
+		// Dammit, since a resource can have multiple providers, must filter out the other providers
+		// must also check for a "preferred" repby
+		List<Resource> repby = getPropertyResource(res,REPRESENTEDBY);
+		for(Resource r:repby)
+		{
+			// if it's not the right provider, skip
+			Resource prov = r.getPropertyResourceValue(SCHEMA.provider);
+			if (!prov.equals(provider)) {System.out.println("skipping");continue;};
+			// we need to get the first url, except if tagged as "preferred"
+			if (url == null)
+				url = getLiteralPropertyValue(r,SCHEMA.url);
+			// however, if it is preferred, just pick this one
+			Statement stmt = r.getProperty(PREFERRED);
+			if (stmt != null && stmt.getBoolean())
+			{
+				url = getLiteralPropertyValue(r,SCHEMA.url);
+				break; // we're done
+			}
+
+		}
 		// if the url list is empty and we are allowed to use the resource uri, do so
 		if (url==null)
 		{
@@ -1128,7 +1237,7 @@ public String getComment(String defaultComment)
 				// we expect a literal
 				// if there is only 1 format, 
 				List<String> formats = getFormats(res);
-				if (formats.size() < 2)
+				if (formats.size() == 1) 
 				{
 					Link l = new Link(formats.size() == 0?"":formats.get(0),url,"");
 					l.setMimeType(formats.size() == 0?"":formats.get(0));
@@ -1136,7 +1245,7 @@ public String getComment(String defaultComment)
 					
 				}
 				else
-				for(String f:getFormats(res))
+				for(String f:formats)
 				{
 					Link l = new Link(f,getFormatOverride(url,f),"");
 					l.setMimeType(f);

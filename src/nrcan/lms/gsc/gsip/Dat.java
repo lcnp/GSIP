@@ -59,7 +59,7 @@ public class Dat {
             return Response.status(500).entity("Internal server error").type(MediaType.TEXT_PLAIN).build();
         }
         TripleStore j = Manager.getInstance().getTripleStore();
-        j.executeSelect(query, handler);
+        j.executeSelect(query, handler,null);
         if (handler.getUrl() != null)
         {
             // found a URL to redirect to

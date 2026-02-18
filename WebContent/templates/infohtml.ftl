@@ -167,6 +167,7 @@ ${model.encode("JSON-LD")}
 							   <#--  <#list model.getAllProviders(true) as p> -->
 							<#list providers?sort_by("name") as prov>
 							   <#assign p = prov.provider>
+                                                           
 
 
                                                          <#if collapsableId == 0>
@@ -186,25 +187,29 @@ ${model.encode("JSON-LD")}
                                                                         Source : ${model.getJoinedLabels(p, locale, true," | ")}<sub><i class="material-icons"> ${collapsableShow_arrow}</i>
                                                                         </sub></button>
                                                                 </h2>
-                                                                        <#list model.getDatasetForProvider(p,true,locale) as ds>
-                                                                                <a
-                                                                                        href="${ds.getUrl()}?lang=${locale}"
-                                                                                        title="${ds.getUrl()}"> Dataset: ${ds.getResLabel()}</a> </#list>
+                                                                <!-- this gets the list of all dataset for this provider -->
+                                                                      <!-- CHECK with Boyan. What is supposed to be here. -->
+
 									<!-- <a> End div source title and dataset</a> -->
                                                                         </div>  
 								<!-- <a> End div card-header</a> -->
                                                                 </div>
+                                                                <#-- This creates a label out of the first element -->
                                                                 <div id="collapse_${collapsableId}" class="collapse ${collapsableShow}" aria-labelledby="heading_${collapsableId}" data-parent="#accordionExample">
                                                                         <div class="card-body">
                                                                         <#assign items =model.getRepresentationByProvider(p,true)>
                                                                        <#assign firstItem = items?first>
                                                                         <#assign myString = model.getJoinedLabels(firstItem, locale, true," | ")>
                                                                         <#assign parts = myString?split(":")>
+                                                                        <#if parts?size gt 1>
                                                                         <#assign theLable = parts[1]?trim>
                                                                         <#assign labels = theLable?split(" | ")>
                                                                         <#list labels as part>
                                                                         ${part} <br>
                                                                         </#list>
+                                                                        <#else>
+                                                                        ${myString} <br>
+                                                                        </#if>
                                                                         									
 				                           <!-- <table width="100%" style="border_collpase:collapse" >
 								   <tr> -->  <a> <b> Data formats </b> </a> 
@@ -214,19 +219,18 @@ ${model.encode("JSON-LD")}
 								   <!-- sort the representations -->
 								   <#assign representations = [] >
 								  <#list model.getRepresentationByProvider(p,true) as rep>
+                                                                  <!-- X -->
 								  <#assign representations=representations + [{"name":model.getJoinedLabels(rep, locale, true, " | "),"representation":rep}]>
 								  </#list>
 						  	   <#list representations?sort_by("name") as rp>
 								  <#assign r = rp.representation>
- 
-
-								  <#--  <#list model.getRepresentationByProvider(p,true) as r> -->
 
 								   <!--	<td style="padding: 10px" > -->	<!--	<tr><td style="vertical-align:top"> -->
 												<!--	<div style="display:flex" width="100%" > -->
 
                                                                         <#assign links = []>
-                                                                        <#list model.getUrls(r,true) as url>
+                                                                        <#list model.getUrls(r,p,true) as url>
+                                                                        <!-- URL ${url.getLabel()}-->
                                                                         <#assign link><a href="${url.getUrl()}"><#switch url.getLabel()>
 												<#case "application/rdf+xml"><img class="img-fluid" title="${model.getLocText('Display in RDF/XML format','Afficher en format RDF/XML')}" alt="${model.getLocText('Display in RDF/XML','Afficher en format RDF/XML')}" src="${host}/app/img/rdfxmlicon.png" style="max-width: 60px; width: 90px;padding: 10px 5px 0 5px"/><#break>
 												<#case "text/xml"><img class="img-fluid" title="${model.getLocText('Display in XML format','Afficher en format XML')}" alt="${model.getLocText('Display in XML format','Afficher en format XML')}" src="${host}/app/img/xmlicon.png" style="max-width: 60px;width: 12px; padding: 10px 5px 0 5px"/><#break>
@@ -243,8 +247,9 @@ ${model.encode("JSON-LD")}
                                                                         </#assign>
                                                                         <#assign links = links + [link]>
                                                                         </#list>
-
+                                                                        <!-- this is where the list of links is generated -->
                                                                         ${links?join(" ")}
+                                                                        <!-- with a join -->
 								<!--	${model.getJoinedLabels(r, locale, true," | ")} -->
 
                                                                         <!-- </td></tr> -->

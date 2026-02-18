@@ -9,6 +9,9 @@
 @prefix gxp: <https://geoconnex.ca/id/prp/> .
 @prefix gxc: <https://geoconnex.ca/id/cls/> .
 
+#Questions for Boyan
+# Not all FIC have a conformsTo. ok ?
+
 <info/mo/cgdn-rdgc>
     a gxc:UICs;
     rdfs:label "CGDN Mineral Occurrence datasets"@en, "RDGC jeu de données d'indices minéralisés"@fr ;
@@ -50,8 +53,8 @@
 # add representedBy relation and RIC class
         gxp:representedBy [
             a gxc:RIC ;
-# move provider to here
-            schema:provider <https://nrcan.gc.ca/gsc> ; 
+# move provider to here EB: added a different one to test multiple providers
+            schema:provider <https://inrs.ca> ; 
             schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&SORTBY=identifier"
        ]
     ], [
@@ -71,6 +74,7 @@
 
     
 <https://nrcan.gc.ca/gsc> rdfs:label "Natural Resources Canada - Geological Survey of Canada" @en,"Ressources naturelles Canada - Commission géologique du Canada" @fr.
+<https://inrs.ca> rdfs:label "Institut national de la recherche scientifique"@fr.
 
 #add info for each min occ
 <info/mo/0003847526> a gxc:UIC.
@@ -95,14 +99,14 @@
 # add conforms to: should be URL not string in ""
         dct:conformsTo <http://xmlns.earthresourceml.org/earthresourceml-lite/2.0> ; 
         gxp:encodes <info/mo/nrcan-rncan> ;
-        rdfs:label "html: Anticlimax A; Crazy Fox; MD"@en, "NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
+        rdfs:label "#1 html: Anticlimax A; Crazy Fox; MD"@en, "#1 NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
 # remove schema name
 #       schema:name "html: Anticlimax A; Crazy Fox; MD"@en, "NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
 # add representedBy relation and RIC class
         gxp:representedBy [
             a gxc:RIC ;
 # move provider to here
-            schema:provider <https://nrcan.gc.ca/gsc> ; 
+            schema:provider <https://inrs.ca>; 
             schema:url "https://geoconnex.ca/htmldoc/mo/nrcan-rncan/30001473"
         ]
     ],  [
@@ -111,7 +115,7 @@
 # add conforms to - should be URL not string in ""
         dct:conformsTo <http://xmlns.earthresourceml.org/earthresourceml-lite/2.0> ; 
         gxp:encodes <info/mo/nrcan-rncan> ;
-        rdfs:label "erml: Anticlimax A; Crazy Fox; MD"@en, "NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
+        rdfs:label "#2 erml: Anticlimax A; Crazy Fox; MD"@en, "#2 NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
 # remove schema name
 #       schema:name "erml: Anticlimax A; Crazy Fox; MD"@en, "NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
 # add representedBy relation and RIC class
@@ -125,7 +129,7 @@
         a gxc:FIC;
         dct:format "image/png" ;
         gxp:encodes <info/mo/nrcan-rncan> ;
-        rdfs:label "png: Anticlimax A; Crazy Fox; MD"@en, "NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
+        rdfs:label "#3 png: Anticlimax A; Crazy Fox; MD"@en, "#3 NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
 # remove schema name
 #       schema:name "png: Anticlimax A; Crazy Fox; MD"@en, "NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
 # add representedBy relation and RIC class
@@ -141,7 +145,7 @@
 # add conforms to 
         dct:conformsTo <http://xmlns.earthresourceml.org/earthresourceml-lite/2.0> ;
         gxp:encodes <info/mo/nrcan-rncan> ;
-        rdfs:label "csv: Anticlimax A; Crazy Fox; MD"@en, "NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
+        rdfs:label "#4 csv: Anticlimax A; Crazy Fox; MD"@en, "#4 NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
 # remove schema name
 #       schema:name "csv: Anticlimax A; Crazy Fox; MD"@en, "NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
 # add representedBy relation and RIC class
@@ -155,7 +159,7 @@
         a gxc:FIC;
         dct:format "image/png" ;
         gxp:encodes <info/mo/nrcan-rncan> ;
-        rdfs:label "png national: Anticlimax A; Crazy Fox; MD"@en, "NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
+        rdfs:label "#5 png national: Anticlimax A; Crazy Fox; MD"@en, "#5 NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
 # remove schema name
 #       schema:name "png national: Anticlimax A; Crazy Fox; MD"@en, "NRCan Mineral Occurrence 30001473" @en, "RNCan Indice minéralisé 30001473" @fr ;
 # add representedBy relation and RIC class
@@ -174,17 +178,17 @@
 # add conforms to 
     dct:conformsTo <http://xmlns.earthresourceml.org/earthresourceml-lite/2.0> ; 
     gxp:encodes <info/mo/nrcan-rncan> ;
-    rdfs:label "/data/ csv encoding for mo/0003847526 by nrcan-rncan.gc"@en,"encodage /data/ csv pour mo/0003847526 par rncan-nrcan.gc"@fr;
+    rdfs:label "#6 /data/ csv encoding for mo/0003847526 by nrcan-rncan.gc"@en,"encodage /data/ csv pour mo/0003847526 par rncan-nrcan.gc"@fr;
     gxp:representedBy [
         a gxc:RIC ;
         gxp:preferred "true"^^xsd:boolean;
-        rdfs:label "Latest: Anticlimax A"@en, "NRCan Mineral Occurrence 30001473" @en, "Dernier: RNCan Indice minéralisé 30001473" @fr ;
+        rdfs:label "#7 Latest: Anticlimax A"@en, "NRCan Mineral Occurrence 30001473" @en, "Dernier: RNCan Indice minéralisé 30001473" @fr ;
 # move provider to here
         schema:provider <https://nrcan.gc.ca/gsc> ; 
         schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001473'"
     ], [
         a gxc:RIC ;
-        rdfs:label "Backup: Anticlimax A"@en, "NRCan Mineral Occurrence 30001473" @en, "Sauvegarde: RNCan Indice minéralisé 30001473" @fr ;
+        rdfs:label "#8 Backup: Anticlimax A"@en, "NRCan Mineral Occurrence 30001473" @en, "Sauvegarde: RNCan Indice minéralisé 30001473" @fr ;
 # move provider to here
         schema:provider <https://nrcan.gc.ca/gsc> ; 
         schema:url "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001473'"

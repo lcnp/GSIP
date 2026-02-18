@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.jena.query.ParameterizedSparqlString;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
@@ -70,9 +71,9 @@ public class RemoteStore extends TripleStoreImpl {
 	}
 
 	@Override
-	public void executeSelect(String select,SolutionHandler h) {
-		Query qry = QueryFactory.create(select);
-    	QueryExecution qe = QueryExecution.service(this.sparqlRepo,select);
+	public void executeSelect(String select,SolutionHandler h,Model m) {
+		//Query qry = QueryFactory.create(select);
+    	QueryExecution qe = m==null?QueryExecution.service(this.sparqlRepo,select):QueryExecutionFactory.create(select, m);
     	ResultSet rs = qe.execSelect();
 		if (h.init())
 		{
@@ -85,6 +86,22 @@ public class RemoteStore extends TripleStoreImpl {
 		h.end();
 		rs.close();
 		
+	}
+
+	@Override
+	public void executeSelect(ParameterizedSparqlString select, SolutionHandler h,Model m) {
+    QueryExecution qe = m==null?QueryExecution.service(this.sparqlRepo,select.asQuery()):QueryExecutionFactory.create(select.asQuery(), m);;
+    	ResultSet rs = qe.execSelect();
+		if (h.init())
+		{
+			while(rs.hasNext())
+			{
+				if (!h.read(rs.next())) break;
+			}
+		}
+
+		h.end();
+		rs.close();
 	}
 
 	

@@ -63,7 +63,7 @@ public class Api {
     {
         TripleStore j = Manager.getInstance().getTripleStore();
             SelectToHtml sh = new SelectToHtml(sb);
-            j.executeSelect(selectSparql, sh);
+            j.executeSelect(selectSparql, sh,null);
 
 
     }
