@@ -296,6 +296,7 @@ public String getComment(String defaultComment)
 
 	}
 
+
 	public String getJoinedLabels(Resource r,String lang,boolean includeUndefined,String sep)
 	{
 	
@@ -560,8 +561,66 @@ public String getComment(String defaultComment)
 	}
 
 	/**
+	 * Given this 
+	 *  id
+	 *    - subjectOf
+	 *        - encodes DATASET
+	 *        - representedBy
+	 *           - provider PROVIDER
+	 * 
+	 * returns a list of links to DATASET when PROVIDER matches 
+	 * 
+	 *  
+	 * @param context the context node, that we assume is a /id/ 
+	 * @param provider a provider that mush match the provider in the representedBy
+	 * @return
+	 */
+	public List<Link> getDatasetList(Resource context, Resource provider)
+	{
+		List<Link> links = new ArrayList<>();
+		// loop in all the subjectOF
+		for(Resource sub : this.getPropertyResource(context,SUBJECT_OF))
+		{
+			// loop in all the representedBy
+				for(Resource rep:this.getPropertyResource(sub,REPRESENTEDBY))
+				{
+					// loop in all the providers to check if it's the right provider
+					for(Resource prov:getPropertyResource(rep,SCHEMA.provider))
+					{
+						if (prov.equals(provider))
+						{
+							// add all the encodes in the list
+							for(Resource enc:getPropertyResource(sub,ENCODES))
+							{
+								links.add(new Link(getPreferredLabel(enc,this.locale,"N/A"),getUrl(enc,true),""));
+
+							}
+							break;  // we're happy, no need to check more providers
+						}
+					}
+				}
+					
+
+		}
+		return links;
+	}
+
+
+
+	/**
+	 * Same a getDatasetList, but assume the default contextNode
+	 * @param provider
+	 * @return
+	 */
+	public List<Link> getDatasetList(Resource provider)
+	{
+		return getDatasetList(this.contextResource,provider);
+	}
+
+	/**
 	 * Add the concretizations of a resource to an existing list of datasets
 	 * see issue #12.
+	 * New for Jan26, 
 	 */
 	private Set<Resource> getEncodes(Resource dataset)
 	{
@@ -1184,9 +1243,35 @@ public String getComment(String defaultComment)
 
 	
 	/**
+	 * return a usable URL by looking for schema:url.  
+	 * @param res
+	 * @param useResourceUri priviledge using the resource URI if there is one
+	 * @return
+	 */
+	public String getUrl(Resource res,boolean useResourceUri)
+	{
+		if (useResourceUri && res.isURIResource())
+		{
+			return res.getURI();
+		}
+		// otherwise, look for a schema:uri
+		String url = getLiteralPropertyValue(res,SCHEMA.url);
+		if (url == null)
+		{
+			// if url is null, let'S try URI, otherwise, a blank
+			return res.isURIResource()?res.getURI():"";
+		}
+		else
+			return url;
+
+	}
+
+
+	/**
 	 * Get the URLs for the remote resource (we assume this is a data node)
 	 * @param res. data resource. can be a blank node
 	 * @param useResourceUri.  if url is missing and the resource is not a blank node, use the resource URL
+	 * @param provider filter for this provider
 	 * @return
 	 */
 	public List<Link> getUrls(Resource res,Resource provider,boolean useResourceUri)

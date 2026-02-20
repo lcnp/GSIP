@@ -189,6 +189,10 @@ ${model.encode("JSON-LD")}
                                                                 </h2>
                                                                 <!-- this gets the list of all dataset for this provider -->
                                                                       <!-- CHECK with Boyan. What is supposed to be here. -->
+                                                                       <#assign ds = model.getDatasetList(p)>
+                                                                       <#if ds?size gt 0>
+                                                                       <a href="${ds?first.getUrl()}">${ds?first.getLabel()}</a>
+                                                                       </#if>
 
 									<!-- <a> End div source title and dataset</a> -->
                                                                         </div>  
