@@ -1,0 +1,380 @@
+PREFIX dc:     <http://purl.org/dc/elements/1.1/>
+PREFIX dct:    <http://purl.org/dc/terms/>
+PREFIX gxc:    <https://geoconnex.ca/id/cls/>
+PREFIX gxo:    <https://geoconnex.ca/id/ont/>
+PREFIX gxp:    <https://geoconnex.ca/id/prp/>
+PREFIX owl:    <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <https://schema.org/>
+PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+_:b0    rdf:type         rdfs:Class , owl:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:Resource , _:b0;
+        owl:unionOf      [ rdf:type   rdf:List , rdfs:Resource;
+                           rdf:first  gxc:UIC;
+                           rdf:rest   [ rdf:type   rdf:List , rdfs:Resource;
+                                        rdf:first  gxc:FIC;
+                                        rdf:rest   ()
+                                      ]
+                         ] .
+
+_:b1    rdf:type         rdfs:Class , owl:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:Resource , _:b1;
+        owl:unionOf      [ rdf:type   rdf:List , rdfs:Resource;
+                           rdf:first  gxc:UIC;
+                           rdf:rest   [ rdf:type   rdf:List , rdfs:Resource;
+                                        rdf:first  gxc:FIC;
+                                        rdf:rest   [ rdf:type   rdf:List , rdfs:Resource;
+                                                     rdf:first  gxc:RIC;
+                                                     rdf:rest   ()
+                                                   ]
+                                      ]
+                         ] .
+
+xsd:boolean  rdf:type    rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:Resource , xsd:boolean .
+
+gxc:FIC  rdf:type         rdfs:Class , owl:Class , rdfs:Resource;
+        rdfs:comment      "Classe GeoConnex d'informations formatées (data). Les instances sont des informations formatées (data)."@fr , "GeoConnex Information Form Entity (data) class. Instances are formatted information (data)."@en;
+        rdfs:label        "Data"@fr , "Data"@en;
+        rdfs:subClassOf   rdfs:Resource , gxc:FIC;
+        owl:disjointWith  gxc:RIC , gxc:UIC .
+
+gxc:UIC  rdf:type         rdfs:Class , owl:Class , rdfs:Resource;
+        rdfs:comment      "Classe GeoConnex d'information. Les instances sont une information abstraite."@fr , "GeoConnex Information Content Entity class. Instances are abstract information content."@en;
+        rdfs:label        "Info"@fr , "Info"@en;
+        rdfs:subClassOf   rdfs:Resource , gxc:UIC;
+        owl:disjointWith  gxc:RIC , gxc:FIC .
+
+gxc:RIC  rdf:type         rdfs:Class , owl:Class , rdfs:Resource;
+        rdfs:comment      "Classe GeoConnex de Représentation. Les instances sont des représentations telles que des fichiers de données."@fr , "GeoConnex Representation class. Instances are representations such as data files."@en;
+        rdfs:label        "Représentation"@fr , "Representation"@en;
+        rdfs:subClassOf   rdfs:Resource , gxc:RIC;
+        owl:disjointWith  gxc:FIC , gxc:UIC .
+
+_:b2    rdf:type         rdfs:Class , owl:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:Resource , _:b2;
+        owl:unionOf      [ rdf:type   rdf:List , rdfs:Resource;
+                           rdf:first  gxc:UIC;
+                           rdf:rest   [ rdf:type   rdf:List , rdfs:Resource;
+                                        rdf:first  gxc:FIC;
+                                        rdf:rest   ()
+                                      ]
+                         ] .
+
+_:b3    rdf:type         rdfs:Class , owl:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:Resource , _:b3;
+        owl:unionOf      [ rdf:type   rdf:List , rdfs:Resource;
+                           rdf:first  gxc:UIC;
+                           rdf:rest   [ rdf:type   rdf:List , rdfs:Resource;
+                                        rdf:first  gxc:FIC;
+                                        rdf:rest   [ rdf:type   rdf:List , rdfs:Resource;
+                                                     rdf:first  gxc:RIC;
+                                                     rdf:rest   ()
+                                                   ]
+                                      ]
+                         ] .
+
+rdf:type  rdf:type  rdf:Property , rdfs:Resource;
+        rdfs:range  rdfs:Class .
+
+rdfs:Resource  rdf:type  rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:Resource .
+
+rdfs:Literal  rdf:type   rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:Resource .
+
+rdf:Statement  rdf:type  rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:Resource .
+
+rdf:nil  rdf:type  rdf:List , rdfs:Resource .
+
+rdf:subject  rdf:type       rdf:Property , rdfs:Resource;
+        rdfs:domain         rdf:Statement;
+        rdfs:subPropertyOf  rdf:subject .
+
+rdf:object  rdf:type        rdf:Property , rdfs:Resource;
+        rdfs:domain         rdf:Statement;
+        rdfs:subPropertyOf  rdf:object .
+
+rdf:predicate  rdf:type     rdf:Property , rdfs:Resource;
+        rdfs:domain         rdf:Statement;
+        rdfs:subPropertyOf  rdf:predicate .
+
+rdf:first  rdf:type         rdf:Property , rdfs:Resource;
+        rdfs:domain         rdf:List;
+        rdfs:subPropertyOf  rdf:first .
+
+rdf:rest  rdf:type          rdf:Property , rdfs:Resource;
+        rdfs:domain         rdf:List;
+        rdfs:range          rdf:List;
+        rdfs:subPropertyOf  rdf:rest .
+
+rdfs:subPropertyOf  rdf:type  rdf:Property , rdfs:Resource;
+        rdfs:domain  rdf:Property;
+        rdfs:range   rdf:Property .
+
+rdfs:subClassOf  rdf:type  rdf:Property , rdfs:Resource;
+        rdfs:domain  rdfs:Class;
+        rdfs:range   rdfs:Class .
+
+rdfs:domain  rdf:type  rdf:Property , rdfs:Resource;
+        rdfs:domain  rdf:Property;
+        rdfs:range   rdfs:Class .
+
+rdfs:range  rdf:type  rdf:Property , rdfs:Resource;
+        rdfs:domain  rdf:Property;
+        rdfs:range   rdfs:Class .
+
+rdfs:comment  rdf:type  rdf:Property , rdfs:Resource;
+        rdfs:range  rdfs:Literal .
+
+rdfs:label  rdf:type  rdf:Property , rdfs:Resource;
+        rdfs:range  rdfs:Literal .
+
+rdf:XMLLiteral  rdf:type  rdfs:Datatype , rdfs:Class , rdfs:Resource .
+
+rdf:List  rdf:type       rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:Resource .
+
+rdfs:Class  rdf:type     rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:Resource , rdfs:Class .
+
+rdf:Property  rdf:type   rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:Resource , rdf:Property .
+
+<https://geoconnex.ca/dat/mo/0003847526/nrcan-rncan/csv>
+        rdf:type           gxc:FIC , _:b3 , _:b0 , rdfs:Resource;
+        rdfs:label         "encodage /data/ csv pour mo/0003847526 par rncan-nrcan.gc"@fr , "#6 /data/ csv encoding for mo/0003847526 by nrcan-rncan.gc"@en;
+        dct:conformsTo     <http://xmlns.earthresourceml.org/earthresourceml-lite/2.0>;
+        dct:format         "text/csv";
+        gxp:encodes        <https://geoconnex.ca/info/mo/nrcan-rncan>;
+        gxp:representedBy  [ rdf:type         gxc:RIC , rdfs:Resource;
+                             rdfs:label       "Sauvegarde: RNCan Indice minéralisé 30001473"@fr , "NRCan Mineral Occurrence 30001473"@en , "#8 Backup: Anticlimax A"@en;
+                             schema:provider  <https://nrcan.gc.ca/gsc>;
+                             schema:url       "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001473'"
+                           ];
+        gxp:representedBy  [ rdf:type         gxc:RIC , rdfs:Resource;
+                             rdfs:label       "Dernier: RNCan Indice minéralisé 30001473"@fr , "NRCan Mineral Occurrence 30001473"@en , "#7 Latest: Anticlimax A"@en;
+                             gxp:preferred    true;
+                             schema:provider  <https://nrcan.gc.ca/gsc>;
+                             schema:url       "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001473'"
+                           ] .
+
+<https://geoconnex.ca/id/mo/0003847526>
+        rdf:type       gxc:mo;
+        rdfs:label     "RDGC Indice minéralisé 0003847526"@fr , "CGDN Mineral Occurrence 0003847526"@en;
+        gxp:subjectOf  <https://geoconnex.ca/info/mo/0003847526> , <https://geoconnex.ca/dat/mo/0003847526/nrcan-rncan/csv>;
+        gxp:subjectOf  [ rdf:type           gxc:FIC , _:b3 , _:b0 , rdfs:Resource;
+                         rdfs:label         "RNCan Indice minéralisé 30001473"@fr , "#5 NRCan Mineral Occurrence 30001473"@en , "#5 png national: Anticlimax A; Crazy Fox; MD"@en;
+                         dct:format         "image/png";
+                         gxp:encodes        <https://geoconnex.ca/info/mo/nrcan-rncan>;
+                         gxp:representedBy  [ rdf:type         gxc:RIC , rdfs:Resource;
+                                              schema:provider  <https://nrcan.gc.ca/gsc>;
+                                              schema:url       "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='30001473'"
+                                            ]
+                       ];
+        gxp:subjectOf  [ rdf:type           gxc:FIC , _:b3 , _:b0 , rdfs:Resource;
+                         rdfs:label         "RNCan Indice minéralisé 30001473"@fr , "#4 NRCan Mineral Occurrence 30001473"@en , "#4 csv: Anticlimax A; Crazy Fox; MD"@en;
+                         dct:conformsTo     <http://xmlns.earthresourceml.org/earthresourceml-lite/2.0>;
+                         dct:format         "text/csv";
+                         gxp:encodes        <https://geoconnex.ca/info/mo/nrcan-rncan>;
+                         gxp:representedBy  [ rdf:type         gxc:RIC , rdfs:Resource;
+                                              schema:provider  <https://nrcan.gc.ca/gsc>;
+                                              schema:url       "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&maxFeatures=10&CQL_FILTER=identifier='30001473'"
+                                            ]
+                       ];
+        gxp:subjectOf  [ rdf:type           gxc:FIC , _:b3 , _:b0 , rdfs:Resource;
+                         rdfs:label         "RNCan Indice minéralisé 30001473"@fr , "#3 NRCan Mineral Occurrence 30001473"@en , "#3 png: Anticlimax A; Crazy Fox; MD"@en;
+                         dct:format         "image/png";
+                         gxp:encodes        <https://geoconnex.ca/info/mo/nrcan-rncan>;
+                         gxp:representedBy  [ rdf:type         gxc:RIC , rdfs:Resource;
+                                              schema:provider  <https://nrcan.gc.ca/gsc>;
+                                              schema:url       "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view_png&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=51.090556,-120.795833,52.090556,-119.795833&WIDTH=400&HEIGHT=300&query_layers=erml%3AMineralOccurrenceView&maxFeatures=10&CQL_FILTER=1=2;identifier='30001473'"
+                                            ]
+                       ];
+        gxp:subjectOf  [ rdf:type           gxc:FIC , _:b3 , _:b0 , rdfs:Resource;
+                         rdfs:label         "RNCan Indice minéralisé 30001473"@fr , "#2 NRCan Mineral Occurrence 30001473"@en , "#2 erml: Anticlimax A; Crazy Fox; MD"@en;
+                         dct:conformsTo     <http://xmlns.earthresourceml.org/earthresourceml-lite/2.0>;
+                         dct:format         "application/gml+xml;subtype=erml";
+                         gxp:encodes        <https://geoconnex.ca/info/mo/nrcan-rncan>;
+                         gxp:representedBy  [ rdf:type         gxc:RIC , rdfs:Resource;
+                                              schema:provider  <https://nrcan.gc.ca/gsc>;
+                                              schema:url       "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&maxFeatures=10&CQL_FILTER=identifier='30001473'"
+                                            ]
+                       ];
+        gxp:subjectOf  [ rdf:type           gxc:FIC , _:b3 , _:b0 , rdfs:Resource;
+                         rdfs:label         "RNCan Indice minéralisé 30001473"@fr , "#1 NRCan Mineral Occurrence 30001473"@en , "#1 html: Anticlimax A; Crazy Fox; MD"@en;
+                         dct:conformsTo     <http://xmlns.earthresourceml.org/earthresourceml-lite/2.0>;
+                         dct:format         "text/html";
+                         gxp:encodes        <https://geoconnex.ca/info/mo/nrcan-rncan>;
+                         gxp:representedBy  [ rdf:type         gxc:RIC , rdfs:Resource;
+                                              schema:provider  <https://inrs.ca>;
+                                              schema:url       "https://geoconnex.ca/htmldoc/mo/nrcan-rncan/30001473"
+                                            ]
+                       ];
+        schema:geo     [ rdf:type          schema:GeoCoordinates;
+                         schema:latitude   51.590556;
+                         schema:longitude  -120.295833
+                       ] .
+
+<https://geoconnex.ca/info/mo/0003847526>
+        rdf:type  gxc:UIC , _:b3 , rdfs:Resource .
+
+<https://inrs.ca>  rdfs:label  "Institut national de la recherche scientifique"@fr .
+
+<https://nrcan.gc.ca/gsc>
+        rdfs:label  "Ressources naturelles Canada - Commission géologique du Canada"@fr , "Natural Resources Canada - Geological Survey of Canada"@en .
+
+<https://geoconnex.ca/info/mo/nrcan-rncan>
+        rdf:type       gxc:UICs , gxc:UIC , rdfs:Resource;
+        rdfs:label     "RDGC jeu de données d'indices minéralisés RNCan"@fr , "CGDN NRCan Mineral Occurrence datasets"@en;
+        gxp:encodedBy  [ rdf:type           gxc:FICs , gxc:FIC , _:b0 , rdfs:Resource;
+                         rdfs:label         "RDGC jeu de données d'indices minéralisés RNCan en PNG"@fr , "CGDN NRCan Mineral Occurrence dataset in PNG"@en;
+                         dct:format         "image/png";
+                         gxp:representedBy  [ rdf:type         gxc:RIC , rdfs:Resource;
+                                              schema:provider  <https://nrcan.gc.ca/gsc>;
+                                              schema:url       "https://geoconnex.ca/gsc-node/geoserver/erml/ows?request=GetMap&service=WMS&version=1.3.0&LAYERS=erml%3ACBMT,erml%3AMineralOccurrenceView&STYLES=,mineraloccurrence_view&FORMAT=image/png&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&CRS=EPSG:4326&BBOX=41.6,-141,83.2,-52.5&WIDTH=400&HEIGHT=300&query_layers=erml%3AmineraloccurrenceView"
+                                            ]
+                       ];
+        gxp:encodedBy  [ rdf:type           gxc:FICs , gxc:FIC , _:b0 , rdfs:Resource;
+                         rdfs:label         "RDGC jeu de données d'indices minéralisés RNCan en CSV"@fr , "CGDN NRCan Mineral Occurrence dataset in CSV"@en;
+                         dct:conformsTo     <http://xmlns.earthresourceml.org/earthresourceml-lite/2.0>;
+                         dct:format         "text/csv";
+                         gxp:representedBy  [ rdf:type         gxc:RIC , rdfs:Resource;
+                                              schema:provider  <https://inrs.ca>;
+                                              schema:url       "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=csv&SORTBY=identifier"
+                                            ]
+                       ];
+        gxp:encodedBy  [ rdf:type           gxc:FICs , gxc:FIC , _:b0 , rdfs:Resource;
+                         rdfs:label         "RDGC jeu de données d'indices minéralisés RNCan en ERML"@fr , "CGDN NRCan Mineral Occurrence dataset in ERML"@en;
+                         dct:conformsTo     <http://xmlns.earthresourceml.org/earthresourceml-lite/2.0>;
+                         dct:format         "application/gml+xml;subtype=erml";
+                         gxp:representedBy  [ rdf:type         gxc:RIC , rdfs:Resource;
+                                              schema:provider  <https://nrcan.gc.ca/gsc>;
+                                              schema:url       "https://geoconnex.ca/gsc-node/geoserver/erml/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=erml%3AMineralOccurrenceView&outputFormat=gml32&SORTBY=identifier"
+                                            ]
+                       ];
+        gxp:partOf     <https://geoconnex.ca/info/mo/cgdn-rdgc> .
+
+<https://geoconnex.ca/info/mo/cgdn-rdgc>
+        rdf:type     gxc:UICs , gxc:UIC , rdfs:Resource;
+        rdfs:label   "RDGC jeu de données d'indices minéralisés"@fr , "CGDN Mineral Occurrence datasets"@en;
+        gxp:hasPart  <https://geoconnex.ca/info/mo/nrcan-rncan> , <https://geoconnex.ca/info/mo/yk> , <https://geoconnex.ca/info/mo/nt> , <https://geoconnex.ca/info/mo/nu> , <https://geoconnex.ca/info/mo/nl> , <https://geoconnex.ca/info/mo/ns> , <https://geoconnex.ca/info/mo/nb> , <https://geoconnex.ca/info/mo/qc> , <https://geoconnex.ca/info/mo/on> , <https://geoconnex.ca/info/mo/mb> , <https://geoconnex.ca/info/mo/sk> , <https://geoconnex.ca/info/mo/ab> , <https://geoconnex.ca/info/mo/bc> .
+
+gxp:preferred  rdf:type  owl:DatatypeProperty , rdf:Property , rdfs:Resource;
+        rdfs:label  "préféré"@fr , "preferred"@en;
+        rdfs:range  xsd:boolean .
+
+gxp:encodedBy  rdf:type  owl:ObjectProperty , rdf:Property , rdfs:Resource;
+        rdfs:comment   "Relation GeoConnex codé par: lien entre les instances d'une données et d'une information."@fr , "GeoConnex encoded by relation: holds between instances of info and data."@en;
+        rdfs:domain    gxc:UIC;
+        rdfs:label     "encodedBy"@en;
+        rdfs:range     gxc:FIC;
+        owl:inverseOf  gxp:encodes .
+
+gxp:encodes  rdf:type  owl:ObjectProperty , rdf:Property , rdfs:Resource;
+        rdfs:comment  "Relation GeoConnex encode: lien entre les instances d'une information et d'une données."@fr , "GeoConnex encodes relation: holds between instances of data and info. Data can partially or fully encode info."@en;
+        rdfs:domain   gxc:FIC;
+        rdfs:label    "encodes"@en;
+        rdfs:range    gxc:UIC .
+
+gxp:representedBy  rdf:type  owl:ObjectProperty , rdf:Property , rdfs:Resource;
+        rdfs:comment   "Relation GeoConnex contrétisé par: lien entre les instances d'une information ou d'une données et une représentation."@fr , "GeoConnex representedBy relation: holds between instances of info or data and a representation."@en;
+        rdfs:domain    _:b0;
+        rdfs:label     "representedBy"@en;
+        rdfs:range     gxc:RIC;
+        owl:inverseOf  gxp:represents .
+
+gxp:represents  rdf:type  owl:ObjectProperty , rdf:Property , rdfs:Resource;
+        rdfs:comment  "Relation GeoConnex 'contrétise': lien entre une représentation et les instances d'une information ou d'une données."@fr , "GeoConnex represents relation: holds between a representation and instances of info or data."@en;
+        rdfs:domain   gxc:RIC;
+        rdfs:label    "concrétise"@fr , "represents"@en;
+        rdfs:range    _:b2 .
+
+gxp:hasPart  rdf:type  owl:ObjectProperty;
+        rdfs:comment   "Relation GeoConnex 'a comme partie': entre un tout et une partie,  ex: un indice minéralisé (tout) divisé en elements plus petits (parties), de sorte que chaque elements sont une partie de l'ensemble."@fr , "GeoConnex has part relation: between a whole and a part, e.g. a mineral occurrence (whole) divided into smaller pieces (parts), so the whole has parts that are the pieces."@en;
+        rdfs:label     "a comme partie"@fr , "has part"@en;
+        owl:inverseOf  gxp:partOf .
+
+gxp:partOf  rdf:type  owl:TransitiveProperty , owl:ObjectProperty;
+        rdfs:comment  "Partie d'une relation GeoConnex: entre une partie et son tout, ex: un indice minéralisé (tout) divisé en elements plus petits (parties), de sorte que chaque elements sont une partie de l'ensemble."@fr , "GeoConnex part of relation: between a part and a whole, e.g. a mineral occurrence (whole) divided into smaller pieces (parts), so each piece is part of the whole."@en;
+        rdfs:label    "partie de"@fr , "part of"@en .
+
+gxp:about  rdf:type    owl:ObjectProperty , rdf:Property , rdfs:Resource;
+        rdfs:comment   "GeoConnex concernant la relation : entre une entité représentationnelle et la chose décrite par cette entité, par exemple entre un contenu d’information non formaté ou formaté, ou une représentation (par exemple, un enregistrement de base de données, un fichier PDF ou une page web) et une occurrence minérale."@fr , "GeoConnex about relation: between a representational entity and the thing being described by the entity, e.g. between unformatted or formatted information content or a representation (e.g. a database record, pdf file, or web page) and a mineral occurrence."@en;
+        rdfs:domain    _:b1;
+        rdfs:label     "concernant"@fr , "about"@en;
+        owl:inverseOf  gxp:subjectOf .
+
+gxp:subjectOf  rdf:type  owl:ObjectProperty , rdf:Property , rdfs:Resource;
+        rdfs:comment  "Sujet de relation GeoConnex : entre une chose et une entité représentationnelle, par exemple entre une occurrence minérale et son contenu d’information non formaté ou formaté, ou sa représentation (par exemple, un enregistrement de base de données, un fichier PDF ou une page web)."@fr , "GeoConnex subject of relation: between a thing and a representational entity, e.g. between a mineral occurrence and its unformatted or formatted information content or its representation (e.g. a database record, pdf file, or web page)."@en;
+        rdfs:label    "sujet de"@fr , "subject of"@en;
+        rdfs:range    _:b3 .
+
+gxc:FICs  rdf:type       owl:Class , rdfs:Class , rdfs:Resource;
+        rdfs:comment     "Classe GeoConnex d'un Ensemble de Données. Une collection de données (FICs)."@fr , "GeoConnex Dataset class. A collection of data (FICs): formatted information content."@en;
+        rdfs:label       "Dataset"@fr , "Dataset"@en;
+        rdfs:subClassOf  gxc:FIC , gxc:FICs , rdfs:Resource .
+
+gxc:UICs  rdf:type       owl:Class , rdfs:Class , rdfs:Resource;
+        rdfs:comment     "Classe GeoConnex d'un Ensemble d'information. Une collection d'information abstraite (UICs)."@fr , "GeoConnex Infoset class. A collection of abstract information content (UICs)."@en;
+        rdfs:label       "Infoset"@fr , "Infoset"@en;
+        rdfs:subClassOf  gxc:UIC , gxc:UICs , rdfs:Resource .
+
+gxc:mo  rdf:type      owl:Class , rdfs:Class , rdfs:Resource;
+        rdfs:comment  "Classe GeoConnex d'un indice minéralisé (équivalent à la définition d'un indice minéralisé de ERML) ou un agrégat d'occurrences minérales."@fr , "GeoConnex Mineral Occurrence class. May be a single mineral occurrence (equivalent to ERML definition of mineral occurrence) or an aggregate of mineral occurrences."@en;
+        rdfs:label    "Indice minéralisé"@fr , "Mineral Occurrence"@en .
+
+gxo:geoconnex.ca  rdf:type  owl:Ontology;
+        rdfs:comment   "Ontologie Geoconnex.ca pour la représentation des entités dans Linked SDI."@fr , "Geoconnex.ca ontology for representing entities in linked SDI."@en;
+        rdfs:label     "Geoconnex.ca ontologie"@fr , "Geoconnex.ca ontology"@en;
+        gxp:subjectOf  [ rdf:type           gxc:FICs , _:b3 , _:b0 , gxc:FIC , rdfs:Resource;
+                         rdfs:label         "Ontologie Geoconnex.ca en ttl"@fr , "Geoconnex.ca ontology in ttl"@en;
+                         dct:conformsTo     owl:;
+                         dct:format         "text/turtle";
+                         gxp:representedBy  [ rdf:type         gxc:RIC , rdfs:Resource;
+                                              schema:provider  <https://nrcan.gc.ca/gsc>;
+                                              schema:url       <https://geoconnex.ca/ont/geoconnex.ca.ttl>
+                                            ]
+                       ] .
+
+rdf:Bag  rdf:type        rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  rdf:Bag , rdfs:Container .
+
+rdf:Alt  rdf:type        rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  rdf:Alt , rdfs:Container .
+
+rdfs:Datatype  rdf:type  rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:Datatype , rdfs:Class .
+
+rdfs:Container  rdf:type  rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:Container .
+
+rdf:Seq  rdf:type        rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  rdf:Seq , rdfs:Container .
+
+rdfs:ContainerMembershipProperty
+        rdf:type         rdfs:Class , rdfs:Resource;
+        rdfs:subClassOf  rdfs:ContainerMembershipProperty , rdf:Property .
+
+rdfs:isDefinedBy  rdf:type  rdf:Property , rdfs:Resource;
+        rdfs:subPropertyOf  rdfs:isDefinedBy , rdfs:seeAlso .
+
+rdfs:seeAlso  rdf:type      rdf:Property , rdfs:Resource;
+        rdfs:subPropertyOf  rdfs:seeAlso .
+
+schema:GeoCoordinates
+        rdf:type  rdfs:Class , rdfs:Resource .
+
+owl:Ontology  rdf:type  rdfs:Class , rdfs:Resource .
+
+owl:Class  rdf:type  rdfs:Class , rdfs:Resource .
+
+owl:ObjectProperty  rdf:type  rdfs:Class , rdfs:Resource .
+
+owl:TransitiveProperty
+        rdf:type  rdfs:Class , rdfs:Resource .
+
+owl:DatatypeProperty  rdf:type  rdfs:Class , rdfs:Resource .

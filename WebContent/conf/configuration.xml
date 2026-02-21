@@ -70,6 +70,7 @@
 		
 		<p:parameter name="supportedLanguages">en,fr</p:parameter>
 		<p:parameter name="defaultLanguage">en</p:parameter>
+		<p:parameter name="apply-inferrence">${GSIP_PERFORM_INFERRENCE}</p:parameter> <!-- default it true -->
 		
 		
 		

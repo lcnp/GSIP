@@ -36,6 +36,8 @@ import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.tdb.TDBFactory;
 
+import nrcan.lms.gsc.gsip.Manager;
+
 public class EmbeddedStore extends TripleStoreImpl {
 
 	@Override
@@ -49,11 +51,8 @@ public class EmbeddedStore extends TripleStoreImpl {
 
 	@Override
 	public Model getSparqlConstructModel(String sparql) {
-
-
 			Model m = null;
 			try(RDFConnection conn = RDFConnectionFactory.connect(ds)){
-	
 			m = conn.queryConstruct(sparql);
 			conn.close();
 			return m;
@@ -72,12 +71,14 @@ public class EmbeddedStore extends TripleStoreImpl {
 	@Override
 	public Model getSparqlDescribeModel(String describe)
 	{
+
 		Model m = null;
 		try(RDFConnection conn = RDFConnectionFactory.connect(ds)){
 
 			
 			m = conn.queryDescribe(describe);
 			conn.close();
+
 			return m;
 			}
 			catch(Exception ex)
@@ -85,6 +86,7 @@ public class EmbeddedStore extends TripleStoreImpl {
 				Logger.getAnonymousLogger().log(Level.SEVERE, "Failed to execute [" + describe + "]",ex);
 				return null;
 			}
+		
 	}
 
 	private Dataset ds;
@@ -97,11 +99,14 @@ public class EmbeddedStore extends TripleStoreImpl {
 	
 	private void initServer(List<File> datasets)
 	{
+		boolean useInference = Manager.getInstance().applyInferrence();
+		Logger.getAnonymousLogger().log(Level.INFO,useInference?"GSIP will apply inferrence on mode":"GSIP assumes model is already inferred");
 		// if the file in folder, get all the files in the folder
 		ds = DatasetFactory.createGeneral();
 		// add the model
-		Model m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RDFS_INF);
-		
+
+		//Model m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RDFS_INF);
+		Model m = useInference?ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RDFS_INF):ModelFactory.createDefaultModel();
 
 		for(File f:datasets )
 		{
@@ -157,9 +162,11 @@ public class EmbeddedStore extends TripleStoreImpl {
 		long t = System.currentTimeMillis();
 		Logger.getAnonymousLogger().log(Level.INFO, m.size() + " statements loaded");
 		Logger.getAnonymousLogger().log(Level.INFO, "Repo loaded - creating reasoner");
-		Reasoner owl = ReasonerRegistry.getOWLReasoner();
+
+		//Reasoner owl = ReasonerRegistry.getOWLReasoner();
 		
-		ds.setDefaultModel(ModelFactory.createInfModel(owl, m));
+		//ds.setDefaultModel(ModelFactory.createInfModel(owl, m));
+		ds.setDefaultModel(useInference?ModelFactory.createInfModel(ReasonerRegistry.getOWLReasoner(), m):m);
 		Logger.getAnonymousLogger().log(Level.INFO, m.size() + " statements :" + (System.currentTimeMillis() - t) / 1000 + " s");
 
 		

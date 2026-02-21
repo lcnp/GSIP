@@ -26,10 +26,16 @@ public class Manager {
 	private TripleStore store = null;
 	private TemplateManager template = null;
 	private DataManager data = null;
+
 	
 	public boolean isInitialised()
 	{
 		return conf != null && store != null;
+	}
+
+	public boolean applyInferrence()
+	{
+		return this.conf.getParameterAsBoolean(Constants.APPLY_INFERRENCE, true);
 	}
 	// singleton
 	public static class ManagerSingleHolder

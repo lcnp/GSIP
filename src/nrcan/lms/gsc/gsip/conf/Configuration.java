@@ -38,6 +38,8 @@ import nrcan.lms.gsc.gsip.template.TemplateManager;
  *
  */
 public class Configuration {
+
+	// default values if not found
 	public static final String DEFAULT_LANGUAGE = "en";
 	public static final String HTML_TEMPLATE = "infoTemplate";
 	public static final String HTML_TEMPLATE_INFO = "infoInfoTemplate";
@@ -45,6 +47,7 @@ public class Configuration {
 	private static final String GSIP_BASEURI = "http://localhost:8080";
 	private static final String GSIP_APP = "http://localhost:8080/gsip";
 	private static final String GSIP_TRIPLESTORE = "webapp:repos/gsip";
+	private static final String GSIP_PERFORM_INFERRENCE="true";
 	// Hashtable are threadsafe, so we are technically good accessing 
 	private Hashtable<String,String> formatToMime = null;
 	private Hashtable<String,String> mimeToFormat = null;
@@ -145,6 +148,7 @@ public class Configuration {
 		params.put("GSIP_BASEURI", getSysEnv("GSIP_BASEURI",GSIP_BASEURI));
 		params.put("GSIP_APP", getSysEnv("GSIP_APP",GSIP_APP));
 		params.put("GSIP_TRIPLESTORE", getSysEnv("GSIP_TRIPLESTORE",GSIP_TRIPLESTORE));
+		params.put("GSIP_PERFORM_INFERRENCE",getSysEnv("GSIP_PERFORM_INFERRENCE",GSIP_PERFORM_INFERRENCE));
 		
 		
 		try {
