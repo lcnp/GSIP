@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.compress.utils.Lists;
-import org.apache.http.HttpStatus;
 import org.apache.jena.query.QuerySolution;
 
 import jakarta.ws.rs.GET;

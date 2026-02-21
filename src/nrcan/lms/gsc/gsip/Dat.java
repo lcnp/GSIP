@@ -4,25 +4,20 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 import org.apache.jena.query.QuerySolution;
 
 import freemarker.template.TemplateException;
 import jakarta.ws.rs.GET;
-import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.PathSegment;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriInfo;
 import nrcan.lms.gsc.gsip.conf.Configuration;
-import nrcan.lms.gsc.gsip.data.MatchType.MimeType;
 import nrcan.lms.gsc.gsip.template.TemplateManager;
 import nrcan.lms.gsc.gsip.triple.SolutionHandler;
 import nrcan.lms.gsc.gsip.triple.TripleStore;
-import nrcan.lms.gsc.gsip.util.MediaTypeUtil;
 
 
 /**
@@ -46,7 +41,7 @@ public class Dat {
         String persistentUri = Configuration.getInstance().getParameterAsString("persistentUri", "https://geoconnex.ca");
         
         String searchUri = uriInfo.getAbsolutePath().toString().replace(baseUri, persistentUri); 
-        Logger.getAnonymousLogger().log(Level.INFO, "Converted URI" + searchUri);
+        //Logger.getAnonymousLogger().log(Level.INFO, "Converted URI" + searchUri);
         // create a SPARQL query to get local uri to redirect to
         ReadUltimateUrl handler = new ReadUltimateUrl();
         Map<String,Object> params = Map.of("resource", searchUri);

@@ -5,17 +5,16 @@ import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Hashtable;
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javax.xml.namespace.QName;
-
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.commons.lang3.StringUtils;
@@ -32,7 +31,6 @@ import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
-import org.apache.jena.util.PrintUtil;
 import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.OWL;
 import org.apache.jena.vocabulary.RDF;
@@ -42,7 +40,6 @@ import nrcan.lms.gsc.gsip.Manager;
 import nrcan.lms.gsc.gsip.conf.Configuration;
 import nrcan.lms.gsc.gsip.triple.SolutionHandler;
 import nrcan.lms.gsc.gsip.vocabulary.SCHEMA;
-import nrcan.lms.gsc.gsip.vocabulary.CGDN;
 
 
 
