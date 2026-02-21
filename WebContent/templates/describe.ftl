@@ -2,7 +2,6 @@
 PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX schema: <https://schema.org/>
 PREFIX gxp: <https://geoconnex.ca/id/prp/>
-PREFIX schema: <https://schema.org/> 
 CONSTRUCT {
     <${resource?replace(' ','%20')}> ?p ?o. # all resources from any property
     ?o ?p2 ?o2. # all predicate-of an any object selected above
