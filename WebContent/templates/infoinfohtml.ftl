@@ -92,6 +92,7 @@ ${model.encode("JSON-LD")}
 		<div class="row">
 			<div class="col-sm-12">
 				<h1>${model.getPreferredLabel("N/A")}</h1>
+				<div>${model.getComment("")}</div>
 				<blockquote class="blockquote container">
 					<div class="row">
 						<div class="col-sm-12 col-md-12">
@@ -150,8 +151,19 @@ ${model.encode("JSON-LD")}
 							<#assign collapsableShow = ''>
 							<#assign collapsableShow_arrow = 'arrow_drop_down'>
 							<div class="accordion" id="accordionExample">
-							
-							<#list model.getAllProviders(false) as p>
+
+								  <!-- sort the providers by name -->
+							   <#assign providers = []>
+							   <#list model.getAllProviders(false) as p1>
+							   <#assign providers=providers+[{"name":model.getPreferredLabel(p1,l,"N/A"),"provider":p1}]>
+							   </#list>
+							   <!-- end sorting providers -->
+
+							   <#--  <#list model.getAllProviders(true) as p> -->
+							<#list providers?sort_by("name") as prov>
+							   <#assign p = prov.provider>
+
+					
 							
 
 							<#if collapsableId == 0>
@@ -219,10 +231,10 @@ ${model.encode("JSON-LD")}
 									   <div class="row" style="display: flex; gap: 5px" >  <!-- this division is created once in the loop and is closed just after the end of the current list loop in order to create a separate row division for the representation under the text.   -->
 					        			</#if>
 									
-								<div class="representation"  > 
+								<div class="representation"> 
 								
 									<#assign links = []>
-									<#list model.getUrls(r,true) as url>
+									<#list model.getUrls(r,p,false) as url>
 									<div id=urlIteration  >
 									<#assign link><a href="${url.getUrl()}"><#switch url.getLabel()>
 												<#case "application/rdf+xml"><img class="img-fluid" title="${model.getLocText('Display in RDF/XML format','Afficher en format RDF/XML')}" alt="${model.getLocText('Display in RDF/XML','Afficher en format RDF/XML')}" src="${host}/app/img/rdfxmlicon.png" style="max-width: 60px;  width: 90px; padding: 10px 5px 0 5px"/><#break>
@@ -248,7 +260,7 @@ ${model.encode("JSON-LD")}
 									 <#-- end listing formats -->	
 								</div> <#-- class representation -->
 									
-								
+								</div>
 								</div>
 
 								<!-- </div>  -->
