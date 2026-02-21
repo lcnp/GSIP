@@ -465,6 +465,7 @@ The configuration file sets values used by GSIP.
 		<p:parameter name="triplestore">webapp:repos/gsip</p:parameter>
 		<p:parameter name="supportedLanguages">en,fr</p:parameter>
 		<p:parameter name="defaultLanguage">en</p:parameter>
+		<p:parameter name="apply-inferrence">true</p:parameter> <!-- default it true -->
 	</p:parameters>
 </p:configuration>
 ----
@@ -485,6 +486,7 @@ The second section is a list of configuration keys used be the application.
 | triplestore | location of the RDF catalog (see section on RDF catalog) |
 | supportedLanguages | comma delimited list of supported languages |
 | defaultLanguage | assumed language |
+| apply-inferrence | if true, GSIP will load the data and apply OWL inferrence model. if 'false', it will assume the data is already inferred. default is true |
 |========
 
 Because the application works on the concept of resolving URI to representation, it means that /id/ URI are unique identifier AND location.  This can be a problem when the GSIP runs on a different location than the persistent URI.  Any resolution will immediately go to the persistent location instead of the location where GSIP is running.  This is obviously a problem when one tries to run GSIP in a developpement or a staging environment. It means that one needs to maintain different copies of the RDF catalog.
