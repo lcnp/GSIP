@@ -575,11 +575,12 @@ public String getComment(String defaultComment)
 	 * @param provider a provider that mush match the provider in the representedBy
 	 * @return
 	 */
-	public List<Link> getDatasetList(Resource context, Resource provider)
+	public List<Link> getDatasetList(Resource context, Resource provider,boolean isNir)
 	{
+		Property p = this.getDsProperty(isNir);
 		List<Link> links = new ArrayList<>();
 		// loop in all the subjectOF
-		for(Resource sub : this.getPropertyResource(context,SUBJECT_OF))
+		for(Resource sub : this.getPropertyResource(context,p))
 		{
 			// loop in all the representedBy
 				for(Resource rep:this.getPropertyResource(sub,REPRESENTEDBY))
@@ -612,9 +613,9 @@ public String getComment(String defaultComment)
 	 * @param provider
 	 * @return
 	 */
-	public List<Link> getDatasetList(Resource provider)
+	public List<Link> getDatasetList(Resource provider,boolean isNir)
 	{
-		return getDatasetList(this.contextResource,provider);
+		return getDatasetList(this.contextResource,provider,isNir);
 	}
 
 	/**
